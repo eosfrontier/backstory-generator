@@ -1,5 +1,5 @@
 	<h2>Backstory</h2>
-	<h3><?php echo $backstory->status_description; ?></h3>
+	<h3>Status: <?php echo $backstory->status_description; ?></h3>
 	<div class="text">
 		<div class="text-container">
 			<?php echo $backstory->content; ?>

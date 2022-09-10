@@ -1,6 +1,6 @@
 <div class="concept">
 	<h2>Concept</h2>
-	<h3><?php echo $concept->status_description; ?></h3>
+	<h3>Status: <?php echo $concept->status_description; ?></h3>
 	<div class="concept-text">
 		<?php
 		echo $concept->content;
