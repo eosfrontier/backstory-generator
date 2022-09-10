@@ -1,7 +1,7 @@
 <?php
 namespace Eos\Backstory_generator\Api;
 
-class Get {
+class Put {
 
 	public $token;
 
@@ -12,7 +12,7 @@ class Get {
 		$this->apilocation = $_ENV['api_location'];
 	}
 
-	private function get( $headers, $location ) {
+	private function get( $headers, $location, $content = '' ) {
 		$curl = curl_init();
 
 		curl_setopt_array(
@@ -25,8 +25,9 @@ class Get {
 				CURLOPT_TIMEOUT        => 0,
 				CURLOPT_FOLLOWLOCATION => true,
 				CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST  => 'GET',
+				CURLOPT_CUSTOMREQUEST  => 'PUT',
 				CURLOPT_HTTPHEADER     => $headers,
+				CURLOPT_POSTFIELDS     => json_encode( $content ),
 			]
 		);
 
@@ -37,7 +38,8 @@ class Get {
 		return $response;
 	}
 
-	public function get_user_backstory( $id ) {
+	public function update_backstory( $id, $content ) {
+
 		$headers = [
 			'type: backstory',
 			"token: $this->token",
@@ -46,33 +48,7 @@ class Get {
 
 		$location = 'v2/chars_player/backstory/';
 
-		$response = $this->get( $headers, $location );
-
-		return $response;
-	}
-
-	public function get_character( $id ) {
-		$headers = [
-			"token: $this->token",
-			"char_id: $id",
-		];
-
-		$location = 'v2/chars_player/';
-
-		$response = $this->get( $headers, $location );
-
-		return $response;
-	}
-
-	public function get_all_status() {
-		$headers = [
-			"token: $this->token",
-			'type: backstory',
-		];
-
-		$location = 'v2/chars_player/backstory/statuses/';
-
-		$response = json_decode( $this->get( $headers, $location ) );
+		$response = $this->get( $headers, $location, $content );
 
 		return $response;
 	}

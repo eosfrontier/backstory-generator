@@ -1,14 +1,24 @@
 <?php
+$id = 42;
+
 require './includes/include.php';
 
 use Eos\Backstory_generator\Character\Character;
+use Eos\Backstory_generator\Status\Status;
 use Eos\Backstory_generator\Text\Text;
 
 $text      = new Text();
-$backstory = $text->get_backstory( 42 );
-
 $character = new Character();
+$status    = new Status();
 
+if ( isset( $_POST['content'] ) ) {
+	$content['content'] = $_POST['content'];
+
+	$save = $text->save_backstory( $id, $content );
+}
+
+$backstory   = $text->get_backstory( $id );
+$status_name = str_replace( '_', ' ', $backstory->status_name );
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +36,7 @@ tinymce.init({
 <body>
 <header>
 	<h1><?php echo $character->get_character_name( 42 ); ?> - backstory</h1>
-	Backstory status <span>In review</span>
+	Backstory status - <span><?php echo $status_name; ?></span>
 </header>
 <main>
 	<div class="text">
@@ -39,7 +49,8 @@ tinymce.init({
 	</div>
 	<div id="backstory-editor">
 		<form method="post">
-			<textarea id="mytextarea"><?php echo $backstory->content; ?></textarea>
+			<textarea name="content" id="mytextarea"><?php echo $backstory->content; ?></textarea>
+			<button>Save</button>
 		</form>
 		<button class="view-button">View text</button>
 	</div>

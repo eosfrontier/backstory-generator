@@ -2,18 +2,26 @@
 namespace Eos\Backstory_generator\Text;
 
 use Eos\Backstory_generator\Api\Get;
+use Eos\Backstory_generator\Api\Put;
 
 class Text {
 
-	public $api;
+	public $get;
+
+	public $put;
 
 	public function __construct() {
-		$this->api = new Get();
+		$this->get = new Get();
+		$this->put = new Put();
 	}
 
 	public function get_backstory( $id ) {
-		$backstory = json_decode( $this->api->get_user_backstory( $id ) );
+		$backstory = json_decode( $this->get->get_user_backstory( $id ) );
 
 		return $backstory;
+	}
+
+	public function save_backstory( $id, $content ) {
+		return $this->put->update_backstory( $id, $content );
 	}
 }
