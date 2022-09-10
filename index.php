@@ -23,9 +23,8 @@ if ( isset( $_POST['concept-content'] ) ) {
 	$save = $text->save_concept( $id, $content );
 }
 
-$backstory   = $text->get_backstory( $id );
-$concept     = $text->get_concept( $id );
-$status_name = str_replace( '_', ' ', $backstory->status_name );
+$backstory = $text->get_backstory( $id );
+$concept   = $text->get_concept( $id );
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +36,6 @@ $status_name = str_replace( '_', ' ', $backstory->status_name );
 <body>
 <header>
 	<h1><?php echo $character->get_character_name( 42 ); ?></h1>
-	Backstory status - <span><?php echo $status_name; ?></span>
 </header>
 <main>
 	<?php

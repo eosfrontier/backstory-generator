@@ -13,16 +13,14 @@ document.addEventListener( "DOMContentLoaded", function() {
 		var viewButton = document.querySelector( ".view-button" );
 		viewButton.addEventListener( "click", function() {
 			var text = document.querySelector( '.text' );
-			var textContainer = document.getElementsByClassName( 'text-container' );
 			var editor = document.querySelector( '#backstory-editor' );
-			var content = tinymce.activeEditor.getContent();
 
 			text.style.display = "block";
 			editor.style.display = "none";
 		} );
 
 		tinymce.init( {
-			selector: '#backstory-textarea"',
+			selector: '#backstory-textarea',
 			menubar: false
 		} );
 	}
