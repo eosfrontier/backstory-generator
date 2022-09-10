@@ -6,3 +6,7 @@ body{
 .tox-promotion {
 	display: none;
 }
+
+#backstory-editor {
+	display: none;
+}

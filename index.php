@@ -1,3 +1,15 @@
+<?php
+require './includes/include.php';
+
+use Eos\Backstory_generator\Character\Character;
+use Eos\Backstory_generator\Text\Text;
+
+$text      = new Text();
+$backstory = $text->get_backstory( 42 );
+
+$character = new Character();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,23 +17,66 @@
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
-    </script>
+tinymce.init({
+	selector: '#mytextarea',
+	menubar: false
+});
+</script>
 </head>
 <body>
 <header>
-	<h1>Character name - backstory</h1>
+	<h1><?php echo $character->get_character_name( 42 ); ?> - backstory</h1>
 	Backstory status <span>In review</span>
 </header>
 <main>
-	<form method="post">
-		<textarea id="mytextarea">Hello, World!</textarea>
-    </form>
+	<div class="text">
+		<div class="text-container">
+			<?php echo $backstory->content; ?>
+		</div>
+		<button class="edit-button">
+			Edit backstory
+		</button>
+	</div>
+	<div id="backstory-editor">
+		<form method="post">
+			<textarea id="mytextarea"><?php echo $backstory->content; ?></textarea>
+		</form>
+		<button class="view-button">View text</button>
+	</div>
 </main>
 <footer>
 	  Hier komt de footer
 </footer>
+<script>
+	document.addEventListener("DOMContentLoaded", function(){
+
+		var editButton = document.querySelector(".edit-button");
+		editButton.addEventListener("click", function(){
+			var text = document.querySelector('.text');
+			var editor = document.querySelector('#backstory-editor');
+
+			text.style.display = "none";
+			editor.style.display = "block";
+		});
+
+		var viewButton = document.querySelector(".view-button");
+		viewButton.addEventListener("click", function(){
+			var text = document.querySelector('.text');
+			var textContainer = document.getElementsByClassName('text-container');
+			var editor = document.querySelector('#backstory-editor');
+			var content = tinymce.activeEditor.getContent();
+
+			text.style.display = "block";
+			editor.style.display = "none";
+		});
+
+		window.onbeforeunload = function(){
+			if (tinymce.activeEditor.isDirty()) {
+				return "Leaving this page will reset the wizard";
+			}
+		}
+
+	});
+</script>
 </body>
 </html>
