@@ -52,4 +52,19 @@ class Put {
 
 		return $response;
 	}
+
+	public function update_concept( $id, $content ) {
+
+		$headers = [
+			'type: concept',
+			"token: $this->token",
+			"char_id: $id",
+		];
+
+		$location = 'v2/chars_player/backstory/';
+
+		$response = $this->get( $headers, $location, $content );
+
+		return $response;
+	}
 }

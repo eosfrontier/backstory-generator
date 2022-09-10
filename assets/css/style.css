@@ -7,6 +7,6 @@ body{
 	display: none;
 }
 
-#backstory-editor {
+#backstory-editor, #concept-editor {
 	display: none;
 }

@@ -51,6 +51,20 @@ class Get {
 		return $response;
 	}
 
+	public function get_user_concept( $id ) {
+		$headers = [
+			'type: concept',
+			"token: $this->token",
+			"char_id: $id",
+		];
+
+		$location = 'v2/chars_player/backstory/';
+
+		$response = $this->get( $headers, $location );
+
+		return $response;
+	}
+
 	public function get_character( $id ) {
 		$headers = [
 			"token: $this->token",

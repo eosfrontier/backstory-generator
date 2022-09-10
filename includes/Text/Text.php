@@ -24,4 +24,14 @@ class Text {
 	public function save_backstory( $id, $content ) {
 		return $this->put->update_backstory( $id, $content );
 	}
+
+	public function save_concept( $id, $content ) {
+		return $this->put->update_concept( $id, $content );
+	}
+
+	public function get_concept( $id ) {
+		$concept = json_decode( $this->get->get_user_concept( $id ) );
+
+		return $concept;
+	}
 }
