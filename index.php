@@ -11,16 +11,21 @@ $text      = new Text();
 $character = new Character();
 $status    = new Status();
 
-if ( isset( $_POST['backstory-content'] ) ) {
-	$content['content'] = $_POST['backstory-content'];
-
-	$save = $text->save_backstory( $id, $content );
-}
-
 if ( isset( $_POST['concept-content'] ) ) {
 	$content['content'] = $_POST['concept-content'];
 
-	$save = $text->save_concept( $id, $content );
+	$text->save_concept( $id, $content );
+}
+
+if ( isset( $_POST['backstory-content'] ) ) {
+	$content['content'] = $_POST['backstory-content'];
+
+	$text->save_backstory( $id, $content );
+}
+
+if ( isset( $_POST['status'] ) && isset( $_POST['type'] ) ) {
+	$saved = $status->update_status( $id, $_POST['status'], $_POST['type'] );
+	dump( $saved );
 }
 
 $backstory = $text->get_backstory( $id );
@@ -39,16 +44,16 @@ $concept   = $text->get_concept( $id );
 </header>
 <main>
 	<?php
-	require './concept.php';
+	require './partials/concept.php';
 
 	if ( $concept->status_name === 'approved' ) {
-		require './backstory.php';
+		require './partials/backstory.php';
 	}
 
 	?>
 </main>
 <footer>
-	  Hier komt de footer
+	Hier komt de footer
 </footer>
 <script src="/assets/js/include.js"></script>
 </body>

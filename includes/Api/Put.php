@@ -67,4 +67,20 @@ class Put {
 
 		return $response;
 	}
+
+	public function update_status( $id, $status, $type ) {
+
+		$headers = [
+			"char_id: $id",
+			"type: $type",
+			"status: $status",
+			"token: $this->token",
+		];
+
+		$location = 'v2/chars_player/backstory/statuses/';
+
+		$response = $this->get( $headers, $location );
+
+		return $response;
+	}
 }
