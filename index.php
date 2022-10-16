@@ -34,7 +34,7 @@ $concept   = $text->get_concept( $id );
 <!DOCTYPE html>
 <html>
 <head>
-<title>Concept/background editor - <?php echo $character->get_character_name( 42 ); ?></title>
+<title>Concept/Backstory editor - <?php echo $character->get_character_name( 42 ); ?></title>
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
