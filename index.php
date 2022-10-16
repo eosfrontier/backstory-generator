@@ -34,7 +34,7 @@ $concept   = $text->get_concept( $id );
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Concept/background editor - <?php echo $character->get_character_name( 42 ); ?></title>
 <link rel="stylesheet" href="/assets/css/style.css" />
 <script src="/vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
@@ -53,7 +53,6 @@ $concept   = $text->get_concept( $id );
 	?>
 </main>
 <footer>
-	Hier komt de footer
 </footer>
 <script src="/assets/js/include.js"></script>
 </body>

@@ -1,12 +1,117 @@
-body{
+:root {
+	--background: #262e3e;
+	--text-color: #ccd1dd;
+	--dark-gray: #323846;
+	--light-gray: rgb(44, 52, 69);
+}
+
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/Roboto-Regular.ttf');
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/Roboto-Bold.ttf');
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/Roboto-Medium.ttf');
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/Roboto-Light.ttf');
+	font-weight: 400;
+}
+
+body {
 	margin: 0;
 	padding: 0;
+	background: var(--background);
+	color: var(--text-color);
+	padding: 24px 48px 0;
+	font-family: 'roboto', sans-serif, arial;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+h3 span {
+	font-weight: 600;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #838795;
+	margin: 1.5rem 1px;
+}
+
+.button {
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 0.75rem 1.75rem;
+	transition: 0.4s;
+	margin-bottom: 0.5rem;
+	border: 0;
+	color: var(--text-color);
+	font-size: 14px;
+	font-family: 'roboto', sans-serif, arial;
+}
+
+.button--primary {
+	background: #008A0E;
+}
+
+.button--primary:hover {
+	background: #00A310;
+}
+
+.button--secondary {
+	background: #3b414e;
+	border: solid 1px var(--text-color);
+}
+
+.button--secondary:hover {
+	background: #424959;
 }
 
 .tox-promotion {
 	display: none;
 }
 
-#backstory-editor, #concept-editor {
+.tox-tinymce {
+	margin-bottom: 24px;
+}
+
+header {
+	padding: 16px;
+	background: var(--dark-gray);
+	margin-bottom: 2px;
+}
+
+header h1 {
+	font-weight: 400;
+	text-transform: uppercase;
+	margin: 0;
+}
+
+#backstory-editor,
+#concept-editor {
 	display: none;
+}
+
+main {
+	padding: 16px;
+	background: var(--light-gray);
 }
