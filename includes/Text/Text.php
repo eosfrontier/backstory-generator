@@ -21,6 +21,12 @@ class Text {
 		return $backstory;
 	}
 
+	public function get_all_backstory() {
+		$backstory = json_decode( $this->get->get_user_backstory( 'all' ) );
+
+		return $backstory;
+	}
+
 	public function save_backstory( $id, $content ) {
 		return $this->put->update_backstory( $id, $content );
 	}
@@ -31,6 +37,12 @@ class Text {
 
 	public function get_concept( $id ) {
 		$concept = json_decode( $this->get->get_user_concept( $id ) );
+
+		return $concept;
+	}
+
+	public function get_all_concept() {
+		$concept = json_decode( $this->get->get_user_concept( 'all' ) );
 
 		return $concept;
 	}

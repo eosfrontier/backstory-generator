@@ -1,3 +1,6 @@
+<?php
+	require '../includes/include.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +22,7 @@
 		<div class="tabs">
 			<div data-tab="concept" class="tab active">
 				<h2>Concept</h2>
+				<?php require './partials/concept.php'; ?>
 			</div>
 			<div data-tab="backstory" class="tab">
 				<h2>Backstory</h2>
