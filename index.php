@@ -25,11 +25,11 @@ if ( isset( $_POST['backstory-content'] ) ) {
 
 if ( isset( $_POST['status'] ) && isset( $_POST['type'] ) ) {
 	$saved = $status->update_status( $id, $_POST['status'], $_POST['type'] );
-	dump( $saved );
 }
 
 $backstory = $text->get_backstory( $id );
 $concept   = $text->get_concept( $id );
+
 ?>
 <!DOCTYPE html>
 <html>
