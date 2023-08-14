@@ -1,0 +1,22 @@
+{
+	"require": {
+		"yoast/yoastcs": "2.1",
+		"squizlabs/php_codesniffer": "^3.5",
+		"vlucas/phpdotenv": "^5.4",
+		"tinymce/tinymce": "^6.2",
+		"phpmailer/phpmailer": "^6.8"
+	},
+	"autoload": {
+		"psr-4": {
+			"Eos\\Backstory_generator\\": "includes/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"require-dev": {
+		"symfony/var-dumper": "^5.4"
+	}
+}
