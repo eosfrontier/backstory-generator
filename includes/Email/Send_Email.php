@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Send_Email {
 
-	public function send_concept_changes_email() {
+	public function send_concept_changes_email( $email ) {
 
 		$mail = new PHPMailer();
 
@@ -21,7 +21,9 @@ class Send_Email {
 		$mail->Subject = 'Concept changes requested';
 		$mail->Body    = 'test email';
 
-		$mail->addAddress();
+		var_dump( $email );
+
+		$mail->addAddress( $email );
 
 		$mail->send();
 	}

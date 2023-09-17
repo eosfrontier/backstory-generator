@@ -25,7 +25,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 	if ( $email ) {
 		$mail = new Send_Email();
 
-		$mail->send_concept_changes_email();
+		$mail->send_concept_changes_email( $email );
 
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";

@@ -48,7 +48,7 @@ class Get {
 
 		$response = $this->get( $headers, $location );
 
-		return $response;
+		return json_decode( $response )->email;
 	}
 
 	public function get_user_backstory( $id ) {
