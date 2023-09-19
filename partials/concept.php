@@ -5,7 +5,7 @@
 		<h4>Concept:</h4>
 		<?php
 		echo $concept->content;
-		if ( $concept->concept_changes ) {
+		if ( $concept->concept_changes && $concept->status_name !== 'approved' ) {
 			?>
 		<h4>Requested changes</h4>
 			<?php

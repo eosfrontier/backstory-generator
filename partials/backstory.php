@@ -6,6 +6,12 @@
 		<?php echo $backstory->content; ?>
 	</div>
 	<?php
+	if ( $backstory->backstory_changes && $backstory->status_name !== 'approved' ) {
+		?>
+		<h4>Requested changes</h4>
+		<?php
+		echo $backstory->backstory_changes;
+	}
 		$edit_status = [
 			'requested',
 			'being_edited',

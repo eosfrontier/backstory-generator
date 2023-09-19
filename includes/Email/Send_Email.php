@@ -21,8 +21,6 @@ class Send_Email {
 		$mail->Subject = 'Concept changes requested';
 		$mail->Body    = 'test email';
 
-		var_dump( $email );
-
 		$mail->addAddress( $email );
 
 		$mail->send();

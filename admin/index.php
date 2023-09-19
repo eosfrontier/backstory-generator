@@ -15,12 +15,37 @@ $text      = new Text();
 $status    = new Status();
 $api       = new Get();
 
+if ( isset( $_POST['backstory_changes'] ) ) {
+	$content['content'] = $_POST['backstory_changes'];
+
+	$return = $text->save_backstory_changes( $_POST['id'], $content );
+	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'backstory' );
+	$email  = $api->get_user_email( $_POST['id'] );
+
+	if ( $email ) {
+		$mail = new Send_Email();
+
+		$mail->send_concept_changes_email( $email );
+
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";
+
+		// Additional headers
+		$headers .= 'From: Eos Frontier SL-team<spelleider@eosfrontier.space' . "\r\n";
+		$headers .= 'Reply-To: spelleider@eosfrontier.space' . "\r\n";
+
+		mail( $email, 'Concept changes requestd', "Dear player,<br /><br />The SL's requested a change in your character concept. Login into the website and go the the backstory editor to see the changes we've requested.<br /><br />With kind regards,<br />The SL-team", $headers );
+	}
+
+	unset( $_POST );
+}
+
 if ( isset( $_POST['concept_changes'] ) ) {
 	$content['content'] = $_POST['concept_changes'];
 
 	$return = $text->save_concept_changes( $_POST['id'], $content );
-	//$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept' );
-	$email = $api->get_user_email( $_POST['id'] );
+	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept' );
+	$email  = $api->get_user_email( $_POST['id'] );
 
 	if ( $email ) {
 		$mail = new Send_Email();
@@ -59,6 +84,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 		<div class="tab-list">
 			<button data-tab="concept" class="active">Concept</button>
 			<button data-tab="backstory">Backstory</button>
+			<button data-tab="completed">Completed</button>
 		</div>
 		<div class="tabs">
 			<div data-tab="concept" class="tab active">
@@ -67,6 +93,11 @@ if ( isset( $_POST['concept_changes'] ) ) {
 			</div>
 			<div data-tab="backstory" class="tab">
 				<h2>Backstory</h2>
+				<?php require './partials/backstory.php'; ?>
+			</div>
+			<div data-tab="completed" class="tab">
+				<h2>Completed</h2>
+				<?php require './partials/completed.php'; ?>
 			</div>
 		</div>
 	</div>
