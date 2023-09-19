@@ -25,16 +25,7 @@ if ( isset( $_POST['backstory_changes'] ) ) {
 	if ( $email ) {
 		$mail = new Send_Email();
 
-		$mail->send_concept_changes_email( $email );
-
-		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";
-
-		// Additional headers
-		$headers .= 'From: Eos Frontier SL-team<spelleider@eosfrontier.space' . "\r\n";
-		$headers .= 'Reply-To: spelleider@eosfrontier.space' . "\r\n";
-
-		mail( $email, 'Concept changes requestd', "Dear player,<br /><br />The SL's requested a change in your character concept. Login into the website and go the the backstory editor to see the changes we've requested.<br /><br />With kind regards,<br />The SL-team", $headers );
+		$mail->send_concept_changes_email( $email, 'Backstory changes requested', "Dear player,<br /><br />The SL's requested a change in your character backstory. Login into the website and go the the backstory editor to see the changes we've requested.<br /><br />With kind regards,<br />The SL-team" );
 	}
 
 	unset( $_POST );
@@ -44,22 +35,13 @@ if ( isset( $_POST['concept_changes'] ) ) {
 	$content['content'] = $_POST['concept_changes'];
 
 	$return = $text->save_concept_changes( $_POST['id'], $content );
-	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept' );
-	$email  = $api->get_user_email( $_POST['id'] );
+	// $saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept' );
+	$email = $api->get_user_email( $_POST['id'] );
 
 	if ( $email ) {
 		$mail = new Send_Email();
 
-		$mail->send_concept_changes_email( $email );
-
-		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type:text/html;charset=UTF-8' . "\r\n";
-
-		// Additional headers
-		$headers .= 'From: Eos Frontier SL-team<spelleider@eosfrontier.space' . "\r\n";
-		$headers .= 'Reply-To: spelleider@eosfrontier.space' . "\r\n";
-
-		mail( $email, 'Concept changes requestd', "Dear player,<br /><br />The SL's requested a change in your character concept. Login into the website and go the the backstory editor to see the changes we've requested.<br /><br />With kind regards,<br />The SL-team", $headers );
+		$mail->send_concept_changes_email( $email, 'Concept changes requested', "Dear player,<br /><br />The SL's requested a change in your character Concept. Login into the website and go the the backstory editor to see the changes we've requested.<br /><br />With kind regards,<br />The SL-team" );
 	}
 
 	unset( $_POST );

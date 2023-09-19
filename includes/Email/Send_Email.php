@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Send_Email {
 
-	public function send_concept_changes_email( $email ) {
+	public function send_concept_changes_email( $email, $subject, $text ) {
 
 		$mail = new PHPMailer();
 
@@ -16,10 +16,11 @@ class Send_Email {
 		$mail->Password   = $_ENV['email_pass'];
 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		$mail->Port       = 587;
+		$mail->isHTML( true );
 
 		$mail->setFrom( 'spelleider@eosfrontier.space', 'Frontier SL-team' );
-		$mail->Subject = 'Concept changes requested';
-		$mail->Body    = 'test email';
+		$mail->Subject = $subject;
+		$mail->Body    = $text;
 
 		$mail->addAddress( $email );
 
