@@ -1,6 +1,8 @@
 <?php
 $id = $logged_in_char->CharacterID;
 
+dump( $logged_in_char );
+
 require './includes/include.php';
 
 use Eos\Backstory_generator\Character\Character;
