@@ -18,6 +18,11 @@ $user   = JFactory::getUser();
 $jid    = $user->id;
 $jname  = $user->name;
 $jguest = $user->guest;
+
+if ( $user->id === 0 ) {
+	header( 'location: https://eosfrontier.space' );
+}
+
 // $TIJDELIJKID = $user->id;
 $myobj         = new \stdClass();
 $myobj->id     = $user->get( 'id' );
@@ -32,5 +37,3 @@ $array   = [
 	'groups' => $array1,
 ];
 $jgroups = $array['groups'];
-
-var_dump( $user );
