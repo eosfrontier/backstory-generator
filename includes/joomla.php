@@ -32,3 +32,5 @@ $array   = [
 	'groups' => $array1,
 ];
 $jgroups = $array['groups'];
+
+var_dump( $user );
