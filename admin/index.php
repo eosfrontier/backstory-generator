@@ -4,6 +4,8 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/..' );
 $dotenv->load();
 
+require_once '../includes/SSO.php';
+
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Text\Text;
 use Eos\Backstory_generator\Status\Status;
