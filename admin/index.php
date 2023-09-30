@@ -6,10 +6,8 @@ $dotenv->load();
 
 require_once '../includes/SSO.php';
 
-var_dump( $jgroups );
-
 if ( ! in_array( [ '30', '32' ], $jgroups ) ) {
-	echo 'not allowed';
+	die( 'Sorry, you don\'t have access here. Naughty person' );
 }
 
 use Eos\Backstory_generator\Character\Character;
