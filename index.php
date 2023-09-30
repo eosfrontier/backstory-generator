@@ -1,5 +1,5 @@
 <?php
-$id = $logged_in_char;
+$id = $logged_in_char->CharacterID;
 
 require './includes/include.php';
 
