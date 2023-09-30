@@ -6,7 +6,7 @@ $dotenv->load();
 
 require_once '../includes/SSO.php';
 
-if ( ! in_array( [ '30', '32', '36' ], $jgroups ) ) {
+if ( in_array( [ '30', '32' ], $jgroups, true ) ) {
 	die( 'Sorry, you don\'t have access here. Naughty person' );
 }
 
