@@ -1,7 +1,7 @@
 <?php
 $id = $logged_in_char->CharacterID;
 
-dump( $logged_in_char );
+var_dump( $logged_in_char );
 
 require './includes/include.php';
 
