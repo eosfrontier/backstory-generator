@@ -3,6 +3,8 @@ require './includes/include.php';
 
 $id = $logged_in_char->characterID;
 
+var_dump( $logged_in_char );
+
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Status\Status;
 use Eos\Backstory_generator\Text\Text;
