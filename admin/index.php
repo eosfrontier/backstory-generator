@@ -8,6 +8,10 @@ require_once '../includes/SSO.php';
 
 var_dump( $jgroups );
 
+if ( ! in_array( [ '30', '32' ], $jgroups ) ) {
+	echo 'not allowed';
+}
+
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Text\Text;
 use Eos\Backstory_generator\Status\Status;
