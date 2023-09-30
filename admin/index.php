@@ -6,6 +6,8 @@ $dotenv->load();
 
 require_once '../includes/SSO.php';
 
+var_dump( $jgroups );
+
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Text\Text;
 use Eos\Backstory_generator\Status\Status;
