@@ -40,8 +40,8 @@ $concept   = $text->get_concept( $id );
 </head>
 <body>
 <header>
-	<h1><?php echo $character->get_character_name( $id ); ?></h1>
-	<a style="float:right;" href="/eoschargen/index.php?viewChar=<?php echo $id; ?>">Return to Chargen</a>
+	<h1><?php echo $character->get_character_name( $id ); ?></h1><br />
+	<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>">Return to Chargen</a>
 </header>
 <main>
 	<?php

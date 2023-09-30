@@ -112,6 +112,10 @@ header h1 {
 	margin: 0;
 }
 
+header a {
+	color: var(--text-color);
+}
+
 #backstory-editor,
 #concept-editor {
 	display: none;
