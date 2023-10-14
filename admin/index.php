@@ -32,7 +32,7 @@ if (isset($_POST['backstory_changes'])) {
 		$subject = 'Backstory changes requested';
 		$body = "Dear player,
 		<br /><br />
-		The SL team have requested a change in your character backstory. 
+		The SL team have requested a change in your character backstory. <br />
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
 		<br />
 		<br />
@@ -53,7 +53,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		$subject = 'Character Concept approved - please submit backstory.';
 		$body = "Dear player,
 		<br /><br />
-		The SL team have approved your character concept. 
+		The SL team have approved your character concept. <br />
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
 		<br />
 		Kind regards,
@@ -92,7 +92,7 @@ if (isset($_POST['concept_changes'])) {
 		$subject = 'Character Concept changes requested.';
 		$body = "Dear player,
 		<br /><br />
-		The SL team have requested a change in your character concept. 
+		The SL team have requested a change in your character concept. <br />
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
 		<br />
 		<br />
