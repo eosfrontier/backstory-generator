@@ -5,9 +5,8 @@ $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/..' );
 $dotenv->load();
 
 require_once '../includes/SSO.php';
-
-if ( ! in_array( [ '30', '32' ], $jgroups, true ) ) {
-	die( 'Sorry, you don\'t have access here. Naughty person' );
+if ( ! in_array("32", $jgroups, true ) && ! in_array ( "30", $jgroups, true ) ) {
+	die( "Sorry, you don't have access here. Naughty person." );
 }
 
 use Eos\Backstory_generator\Character\Character;
@@ -57,12 +56,15 @@ if ( isset( $_POST['concept_changes'] ) ) {
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Admin - Concept/Backstory editor</title>
 <link rel="stylesheet" href="../assets/css/style.css" />
 <script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
 <header>
+	<div class="logo cell">
+			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 	<h1>
 		Admin - Concept/Backstory editor
 	</h1>
