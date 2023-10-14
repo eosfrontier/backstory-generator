@@ -49,7 +49,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 	$content['content'] = $_POST['concept_changes'];
 
 	$return = $text->save_concept_changes( $_POST['id'], $content );
-	// $saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept' );
+	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept' );
 	$email = $api->get_user_email( $_POST['id'] );
 
 	if ( $email ) {
