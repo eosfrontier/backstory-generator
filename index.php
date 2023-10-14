@@ -39,11 +39,14 @@ $concept   = $text->get_concept( $id );
 <script src="./vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
-<header>
-	<h1><?php echo $character->get_character_name( $id ); ?></h1><br />
-	<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>">Return to Chargen</a>
-</header>
+	<header>
+		<div class="logo cell">
+        		<img class="responsive" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" /> 
+			<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>"> <button type="button" class="button" name="button"><strong>Return to Chargen</strong></button></a> 
+      		</div>
+	</header>
 <main>
+	<h2> <?php echo $character->get_character_name( $id ); ?> </h2>
 	<?php
 	if ( $concept !== 'None found.' && $concept->status_name !== 'requested' ) {
 		require './partials/concept.php';
