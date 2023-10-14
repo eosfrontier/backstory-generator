@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_array($res)) {
         Eos: Frontier
         <br />";
         echo $body;
-        $mail->send_concept_changes_email($email, $subject, $body);
+        $mail->send_email_to_player($email, $subject, $body);
         $sqlinsert = "INSERT INTO ecc_backstory (`characterID`) VALUES ('" . $row['characterID'] . "')";
         $resinsert = $UPLINK->query($sqlinsert);
 
