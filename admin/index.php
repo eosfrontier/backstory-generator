@@ -32,7 +32,7 @@ if ( isset( $_POST['backstory_changes'] ) ) {
 		$subject = 'Backstory changes requested';
 		$body = "Dear player,
 		<br /><br />
-		The SL's have requested a change in your character backstory. 
+		The SL team have requested a change in your character backstory. 
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
 		<br />
 		<br />
@@ -54,8 +54,17 @@ if ( isset( $_POST['concept_changes'] ) ) {
 
 	if ( $email ) {
 		$mail = new Send_Email();
-
-		$mail->send_concept_changes_email( $email, 'Concept changes requested', "Dear player,<br /><br />The SL's requested a change in your character Concept. Login into the website and go the the backstory editor to see the changes we've requested.<br /><br />With kind regards,<br />The SL-team" );
+		$subject = 'Character Concept changes requested.';
+		$body = "Dear player,
+		<br /><br />
+		The SL team have requested a change in your character concept. 
+		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
+		<br />
+		<br />
+		With kind regards,
+		<br />\
+		The SL-team"; 
+		$mail->send_concept_changes_email( $email, $subject , $body );
 	}
 
 	unset( $_POST );
