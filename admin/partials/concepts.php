@@ -1,9 +1,9 @@
 <?php
 
-if (isset($_POST['type']) && $_POST['type'] === 'concept') {
-	$status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
-	if ($_POST['status'] === 'approved') {
-		$status->update_status($_POST['id'], 'approved', 'backstory');
+if ( isset( $_POST['type'] ) && $_POST['type'] === 'concept' ) {
+	$status->update_status( $_POST['id'], $_POST['status'], $_POST['type'] );
+	if ( $_POST['status'] === 'approved' ) {
+		$status->update_status( $_POST['id'], 'approved', 'concept' );
 	}
 }
 

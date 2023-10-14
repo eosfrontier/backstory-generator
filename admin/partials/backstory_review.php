@@ -15,7 +15,7 @@ $text = new Text();
 					<textarea name="backstory_changes" id="concept_changes-form-<?php echo $awaiting->characterID; ?>">
 						<?php echo $awaiting->backstory_changes; ?>
 					</textarea><br />
-					<input type="hidden" name="type" value="backstory-changes" />
+					<input type="hidden" name="type" value="backstory" />
 					<input type="hidden" name="status" value="changes_requested" />
 					<input type="hidden" name="id" value="<?php echo $awaiting->characterID; ?>" />
 					<button class="button button--primary">Send change request</button>
