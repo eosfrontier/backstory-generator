@@ -2,28 +2,34 @@
 namespace Eos\Backstory_generator\Email;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-class Send_Email {
+class Send_Email
+{
 
-	public function send_concept_changes_email( $email, $subject, $text ) {
+	public function send_concept_changes_email($email, $subject, $text)
+	{
+		try {
+			$mail = new PHPMailer();
 
-		$mail = new PHPMailer();
+			$mail->isSMTP();
+			$mail->Host = $_ENV['email_host'];
+			$mail->SMTPAuth = true;
+			$mail->Username = $_ENV['email_user'];
+			$mail->Password = $_ENV['email_pass'];
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Port = 587;
+			$mail->isHTML(true);
 
-		$mail->isSMTP();
-		$mail->Host       = $_ENV['email_host'];
-		$mail->SMTPAuth   = true;
-		$mail->Username   = $_ENV['email_user'];
-		$mail->Password   = $_ENV['email_pass'];
-		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-		$mail->Port       = 587;
-		$mail->isHTML( true );
+			$mail->setFrom('spelleider@eosfrontier.space', 'Eos: Frontier SLs');
+			$mail->Subject = $subject;
+			$mail->Body = $text;
 
-		$mail->setFrom( 'spelleider@eosfrontier.space', 'Frontier SL-team' );
-		$mail->Subject = $subject;
-		$mail->Body    = $text;
+			$mail->addAddress($email);
 
-		$mail->addAddress( $email );
-
-		$mail->send();
+			$mail->send();
+		} catch (Exception $e) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
 	}
 }

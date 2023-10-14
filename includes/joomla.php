@@ -20,7 +20,7 @@ $jname  = $user->name;
 $jguest = $user->guest;
 
 if ( $user->id === 0 ) {
-	header( 'location: https://eosfrontier.space' );
+	header( 'location: https://eosfrontier.space/return-to-backstory-system' );
 }
 
 // $TIJDELIJKID = $user->id;
