@@ -65,10 +65,10 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	if ($_POST['type'] == 'backstory') {
 		$email = $api->get_user_email($_POST['id']);
 		$mail = new Send_Email();
-		$subject = 'Character Concept approved.';
+		$subject = 'Character Backstory approved.';
 		$body = "Dear player,
 		<br /><br />
-		The SL team have approved your character backstory. You're all set! 
+		The SL team have approved your character backstory. You're all set! <br />
 		We look forward to welcoming your new character to Eos!		<br />
 		<br />
 		<br />
