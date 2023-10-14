@@ -48,6 +48,7 @@ if (isset($_POST['backstory_changes'])) {
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
 	$email = $api->get_user_email($_POST['id']);
+	$saved = $status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
 	$mail = new Send_Email();
 	if ($_POST['type'] == 'concept') {
 		$subject = 'Character Concept approved - please submit backstory.';
