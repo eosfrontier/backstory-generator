@@ -47,22 +47,19 @@ if (isset($_POST['backstory_changes'])) {
 }
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
+	$email = $api->get_user_email($_POST['id']);
+	$mail = new Send_Email();
 	if ($_POST['type'] == 'concept') {
-		$email = $api->get_user_email($_POST['id']);
-		$mail = new Send_Email();
 		$subject = 'Character Concept approved - please submit backstory.';
 		$body = "Dear player,
 		<br /><br />
-		The SL team have approved your character backstory. You're all set! 
-		We look forward to welcoming your new character to Eos!		<br />
+		The SL team have approved your character concept. 
+		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
 		<br />
 		Kind regards,
 		<br />
 		The Spelleider Team<br />
         Eos: Frontier";
-		$mail->send_email_to_player($email, $subject, $body);
-
-		unset($_POST);
 	}
 	if ($_POST['type' == 'backstory']) {
 		$email = $api->get_user_email($_POST['id']);
@@ -70,18 +67,17 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		$subject = 'Character Concept approved.';
 		$body = "Dear player,
 		<br /><br />
-		The SL team have approved your character concept. 
-		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
+		The SL team have approved your character backstory. You're all set! 
+		We look forward to welcoming your new character to Eos!		<br />
 		<br />
 		<br />
 		Kind regards,
 		<br />
 		The Spelleider Team<br />
         Eos: Frontier";
-		$mail->send_email_to_player($email, $subject, $body);
-
-		unset($_POST);
 	}
+	$mail->send_email_to_player($email, $subject, $body);
+	unset($_POST);
 }
 
 if (isset($_POST['concept_changes'])) {
