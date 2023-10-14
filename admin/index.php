@@ -62,7 +62,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		The Spelleider Team<br />
         Eos: Frontier";
 	}
-	if ($_POST['type' == 'backstory']) {
+	if ($_POST['type'] == 'backstory') {
 		$email = $api->get_user_email($_POST['id']);
 		$mail = new Send_Email();
 		$subject = 'Character Concept approved.';
