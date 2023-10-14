@@ -7,61 +7,68 @@ use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Status\Status;
 use Eos\Backstory_generator\Text\Text;
 
-$text      = new Text();
+$text = new Text();
 $character = new Character();
-$status    = new Status();
+$status = new Status();
 
-if ( isset( $_POST['concept-content'] ) ) {
+if (isset($_POST['concept-content'])) {
 	$content['content'] = $_POST['concept-content'];
 
-	$text->save_concept( $id, $content );
+	$text->save_concept($id, $content);
 }
 
-if ( isset( $_POST['backstory-content'] ) ) {
+if (isset($_POST['backstory-content'])) {
 	$content['content'] = $_POST['backstory-content'];
 
-	$text->save_backstory( $id, $content );
+	$text->save_backstory($id, $content);
 }
 
-if ( isset( $_POST['status'] ) && isset( $_POST['type'] ) ) {
-	$saved = $status->update_status( $id, $_POST['status'], $_POST['type'] );
-	header( 'Refresh:0' );
+if (isset($_POST['status']) && isset($_POST['type'])) {
+	$saved = $status->update_status($id, $_POST['status'], $_POST['type']);
+	header('Refresh:0');
 }
 
-$backstory = $text->get_backstory( $id );
-$concept   = $text->get_concept( $id );
+$backstory = $text->get_backstory($id);
+$concept = $text->get_concept($id);
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Concept/Backstory editor - <?php echo $character->get_character_name( $id ); ?></title>
-<link rel="stylesheet" href="./assets/css/style.css" />
-<script src="./vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+	<title>Concept/Backstory editor -
+		<?php echo $character->get_character_name($id); ?>
+	</title>
+	<link rel="stylesheet" href="./assets/css/style.css" />
+	<script src="./vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
+
 <body>
 	<header>
 		<div class="logo cell">
-        		<img class="responsive" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" /> 
-			<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>"> <button type="button" class="button" name="button"><strong>Return to Chargen</strong></button></a> 
-      		</div>
+			<img class="responsive" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
+			<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>"> <button type="button" class="button"
+					name="button"><strong>Return to Chargen</strong></button></a>
+		</div>
 	</header>
-<main>
-	<h2> <?php echo $character->get_character_name( $id ); ?> </h2>
-	<?php
-	if ( $concept !== 'None found.' && $concept->status_name !== 'requested' ) {
-		require './partials/concept.php';
+	<main>
+		<h2>
+			<?php echo $character->get_character_name($id); ?>
+		</h2>
+		<?php
+		if ($concept !== 'None found.' && $concept->status_name !== 'requested') {
+			require './partials/concept.php';
 
-		if ( $concept->status_name === 'approved' ) {
-			require './partials/backstory.php';
+			if ($concept->status_name === 'approved') {
+				require './partials/backstory.php';
+			}
+		} else {
+			require './partials/new_concept.php';
 		}
-	}
-	else {
-		require './partials/new_concept.php';
-	}
-	?>
-</main>
-<footer>
-</footer>
-<script src="./assets/js/include.js"></script>
+		?>
+	</main>
+	<footer>
+	</footer>
+	<script src="./assets/js/include.js"></script>
 </body>
+
 </html>
