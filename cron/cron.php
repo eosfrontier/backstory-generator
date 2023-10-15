@@ -17,8 +17,7 @@ r.email as email, faction.character_name as ic_name, soort_inschrijving.field_va
     left join joomla.jml_eb_field_values new_player on (new_player.registrant_id = r.id and new_player.field_id = 54)
     where soort_inschrijving.field_value = 'Speler' AND r.event_id = $EVENTID and 
 	((r.published = 1 AND (r.payment_method = 'os_ideal' OR r.payment_method = 'os_paypal' OR r.payment_method = 'os_bancontact')) OR
-    (r.published in (0,1) AND r.payment_method = 'os_offline')) AND characterID = '42'";
-    // (r.published in (0,1) AND r.payment_method = 'os_offline')) AND new_player.field_value = 'Yes'";
+    (r.published in (0,1) AND r.payment_method = 'os_offline')) AND new_player.field_value = 'Yes'";
 $res = $UPLINK->query($sql);
 $sqle = "SELECT title FROM jml_eb_events WHERE id = $EVENTID";
 $rese = $UPLINK->query($sqle);
