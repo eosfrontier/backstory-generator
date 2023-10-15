@@ -41,10 +41,9 @@ while ($row = mysqli_fetch_array($res)) {
 		The Spelleider Team<br />
         Eos: Frontier
         <br />";
-        echo $body;
         $mail->send_email_to_player($email, $subject, $body);
         $sqlinsert = "INSERT INTO ecc_backstory (`characterID`) VALUES ('" . $row['characterID'] . "')";
         $resinsert = $UPLINK->query($sqlinsert);
-
+        echo "Mail sent to $email for character " . utf8_encode($row['ic_name']) . ".<br />";
     }
 }
