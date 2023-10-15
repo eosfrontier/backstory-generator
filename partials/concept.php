@@ -30,7 +30,6 @@
 		<form method="POST">
 			<input type="hidden" name="type" value="concept" />
 			<input type="hidden" name="status" value="awaiting_review" />
-			<!-- <input type="hidden" name="id" value="<?php echo $awaiting->characterID; ?>"> -->
 			<button class="submit-backstory button button--primary">Submit Concept</button>
 		</form>
 	<?php } ?>

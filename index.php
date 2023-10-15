@@ -6,7 +6,6 @@ $id = $logged_in_char->characterID;
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Status\Status;
 use Eos\Backstory_generator\Text\Text;
-use Eos\Backstory_generator\Api\Get;
 use Eos\Backstory_generator\Email\Send_Email;
 
 
