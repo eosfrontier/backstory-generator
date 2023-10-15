@@ -29,7 +29,7 @@ if (isset($_POST['backstory-content'])) {
 
 if (isset($_POST['status']) && isset($_POST['type'])) {
 	$saved = $status->update_status($id, $_POST['status'], $_POST['type']);
-	$email = $api->get_user_email($_POST['id']);
+	$email = $api->get_user_email($id);
 	$char_name = $character->get_character_name($id);
 	if ($_POST['status'] == "awaiting_review") {
 		if ($_POST['type'] == "concept") {
