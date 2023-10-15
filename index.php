@@ -69,6 +69,6 @@ $concept = $text->get_concept($id);
 	<footer>
 	</footer>
 	<script src="./assets/js/include.js"></script>
-</body>
+<?php require_once './footer.php'; ?>
 
 </html>
