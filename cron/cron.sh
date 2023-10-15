@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /var/eos_apps/eos-backstory/cron
+cd "$(dirname "$0")"
 php './cron.php'
