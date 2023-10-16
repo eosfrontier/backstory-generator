@@ -5,7 +5,10 @@
 	</h3>
 	<div class="concept-text">
 		<h4>Concept:</h4>
-	<p>Please submit your character concept; a fundamental idea or description that outlines the key aspects of your proposed in-game persona, offering a concise idea of who the character is, their goals, and their distinguishing traits. This should not exceed 1-2 paragraphs. Once the SLs have approved your basic concept, you will then be asked to submit your character's full backstory. </p>
+		<p>Please submit your character concept; a fundamental idea or description that outlines the key aspects of your
+			proposed in-game persona, offering a concise idea of who the character is, their goals, and their
+			distinguishing traits. This should not exceed 1-2 paragraphs. Once the SLs have approved your basic concept,
+			you will then be asked to submit your character's full backstory. </p>
 		<?php
 		echo $concept->content;
 		if ($concept->concept_changes && $concept->status_name !== 'approved') {
@@ -46,7 +49,11 @@
 		?>
 		<div id="concept-editor">
 			<form method="post">
-				<textarea name="concept-content" id="concept-textarea"><?php echo $concept->content; ?></textarea>
+				<textarea name="concept-content" id="concept-textarea">
+					<?php echo $concept->content; ?>
+				</textarea>
+				<input type="hidden" name="type" value="concept" />
+				<input type="hidden" name="status" value="being_edited" />
 				<button class="button button--primary">Save Draft</button>
 			</form>
 		</div>

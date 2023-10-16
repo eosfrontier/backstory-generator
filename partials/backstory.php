@@ -48,7 +48,7 @@
 			<?php echo $backstory->content; ?>
 		</textarea>
 		<input type="hidden" name="type" value="backstory" />
-			<input type="hidden" name="status" value="being_edited" />
+		<input type="hidden" name="status" value="being_edited" />
 		<button class="button button--primary">Save Draft</button>
 	</form>
 </div>
