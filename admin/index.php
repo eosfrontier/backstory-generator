@@ -21,7 +21,7 @@ $status = new Status();
 $api = new Get();
 
 if (isset($_POST['backstory_changes'])) {
-	$content['content'] = $_POST['backstory_changes'];
+	$content['content'] = str_replace("'", "&#39;", $_POST['backstory_changes']);
 
 	$return = $text->save_backstory_changes($_POST['id'], $content);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory');
