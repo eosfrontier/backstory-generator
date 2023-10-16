@@ -18,7 +18,9 @@ $api = new Get();
 
 if (isset($_POST['concept-content'])) {
 	$content['content'] = $_POST['concept-content'];
-	echo $content;
+	echo '<pre>';
+	var_dump($content);
+	echo '</pre>';
 	$text->save_concept($id, $content);
 }
 
