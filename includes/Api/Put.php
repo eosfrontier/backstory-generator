@@ -70,14 +70,13 @@ class Put
 
 		$location = 'v2/chars_player/backstory/';
 
-		$response = $this->get($headers, $location, $content);
+		$response = $this->get($headers, $location, base64_decode($content));
 
 		return $response;
 	}
 
 	public function update_concept($id, $content)
 	{
-
 		$headers = [
 			'type: concept',
 			"token: $this->token",

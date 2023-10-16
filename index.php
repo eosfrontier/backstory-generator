@@ -17,7 +17,7 @@ $mail = new Send_Email();
 $api = new Get();
 
 if (isset($_POST['concept-content'])) {
-	$content['content'] = $_POST['concept-content'];
+	$content['content'] = htmlspecialchars($_POST['concept-content']);
 	echo '<pre>';
 	var_dump($content);
 	echo '</pre>';
@@ -25,7 +25,7 @@ if (isset($_POST['concept-content'])) {
 }
 
 if (isset($_POST['backstory-content'])) {
-	$content['content'] = $_POST['backstory-content'];
+	$content['content'] = htmlspecialchars($_POST['backstory-content']);
 	$text->save_backstory($id, $content);
 
 }
