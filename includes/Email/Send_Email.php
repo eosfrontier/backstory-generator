@@ -33,9 +33,10 @@ class Send_Email
 		}
 	}
 
-	public function send_email_from_player($email, $subject, $text)
+	public function send_email_from_player($email, $subject, $text, $faction)
 	{
 		try {
+			$recipient = $faction . '_sl@eosfrontier.space';
 			$mail = new PHPMailer();
 
 			$mail->isSMTP();
@@ -52,7 +53,7 @@ class Send_Email
 			$mail->Subject = $subject;
 			$mail->Body = $text;
 
-			$mail->addAddress('spelleider@eosfrontier.space');
+			$mail->addAddress($recipient);
 
 			$mail->send();
 		} catch (Exception $e) {

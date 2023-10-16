@@ -32,6 +32,7 @@ if (isset($_POST['status']) && isset($_POST['type'])) {
 	$saved = $status->update_status($id, $_POST['status'], $_POST['type']);
 	$email = $api->get_user_email($id);
 	$char_name = $character->get_character_name($id);
+	$char_faction = $character->get_character_faction($id);
 	if ($_POST['status'] == "awaiting_review") {
 		if ($_POST['type'] == "concept") {
 			$subject = 'Character Concept submitted: ' . $char_name . '. Please review.';
@@ -57,7 +58,7 @@ if (isset($_POST['status']) && isset($_POST['type'])) {
 			The Backstory System<br />
 			Eos: Frontier";
 		}
-		$mail->send_email_from_player($email, $subject, $body);
+		$mail->send_email_from_player($email, $subject, $body, $char_faction);
 	}
 	header('Refresh:0');
 }

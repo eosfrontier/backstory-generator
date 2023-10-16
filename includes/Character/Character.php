@@ -19,4 +19,11 @@ class Character
 
 		return $character->character_name;
 	}
+
+	public function get_character_faction($id)
+	{
+		$character = json_decode($this->api->get_character($id));
+
+		return $character->faction;
+	}
 }
