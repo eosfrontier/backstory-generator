@@ -70,7 +70,7 @@ class Put
 
 		$location = 'v2/chars_player/backstory/';
 
-		$response = $this->get($headers, $location, base64_decode($content));
+		$response = $this->get($headers, $location, $content);
 
 		return $response;
 	}
