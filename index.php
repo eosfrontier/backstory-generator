@@ -17,7 +17,7 @@ $mail = new Send_Email();
 $api = new Get();
 
 if (isset($_POST['concept-content'])) {
-	$content['content'] = htmlspecialchars($_POST['concept-content']);
+	$content['content'] = str_replace($_POST['concept-content'], "'", "&#39;");
 	echo '<pre>';
 	var_dump($content);
 	echo '</pre>';
