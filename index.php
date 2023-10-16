@@ -18,14 +18,14 @@ $api = new Get();
 
 if (isset($_POST['concept-content'])) {
 	$content['content'] = $_POST['concept-content'];
-
+	echo $content;
 	$text->save_concept($id, $content);
 }
 
 if (isset($_POST['backstory-content'])) {
 	$content['content'] = $_POST['backstory-content'];
-
 	$text->save_backstory($id, $content);
+
 }
 
 if (isset($_POST['status']) && isset($_POST['type'])) {
