@@ -17,12 +17,12 @@ $mail = new Send_Email();
 $api = new Get();
 
 if (isset($_POST['concept-content'])) {
-	$content['content'] = htmlentities($_POST['concept-content']);
+	$content['content'] = str_replace("'", "&#39;", $_POST['concept-content']);
 	$text->save_concept($id, $content);
 }
 
 if (isset($_POST['backstory-content'])) {
-	$content['content'] = htmlentities($_POST['backstory-content']);
+	$content['content'] = str_replace("'", "&#39;", $_POST['backstory-content']);
 	$text->save_backstory($id, $content);
 
 }
