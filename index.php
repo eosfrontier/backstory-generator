@@ -9,6 +9,7 @@ use Eos\Backstory_generator\Text\Text;
 use Eos\Backstory_generator\Api\Get;
 use Eos\Backstory_generator\Email\Send_Email;
 
+require_once './includes/SSO.php';
 
 $text = new Text();
 $character = new Character();
@@ -82,6 +83,12 @@ $concept = $text->get_concept($id);
 			<img class="responsive" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 			<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>"> <button type="button" class="button"
 					name="button"><strong>Return to Chargen</strong></button></a>
+			<?php
+			if (in_array("32", $jgroups, true) || in_array("30", $jgroups, true)) {
+				echo '<a href="./admin"> <button type="button" class="button"
+				name="button"><strong>Admin Portal</strong></button></a>';
+			}	 
+			?>
 		</div>
 	</header>
 	<main>
