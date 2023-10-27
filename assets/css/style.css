@@ -48,7 +48,7 @@ body {
 	color: var(--text-color);
 	padding: 24px 48px 0;
 	font-family: 'roboto', sans-serif, arial;
-	font-size: 20px;
+	font-size: 1rem;
 }
 
 h1,
