@@ -7,7 +7,7 @@ $dotenv->load();
 require_once '../includes/SSO.php';
 
 if ($jid === 0) {
-	header('location: https://eosfrontier.space/return-to-backstory-admin');
+	header('location: https://www.eosfrontier.space/return-to-backstory-admin');
 } elseif (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
 	header('Status: 303 Moved Temporarily', false, 303);
 	header('Location: ../');
