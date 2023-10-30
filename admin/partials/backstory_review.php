@@ -7,7 +7,7 @@ $text = new Text();
 <div class="overview-block">
 	<h4 class="mouse_hover"><?php echo $awaiting->name; ?> - <?php echo $awaiting->faction; ?></h4>
 	<div class="admin_concept_edit">
-		<?php echo $awaiting->content; ?>
+		<?php if ($IS_SL) {echo $awaiting->content;} ?>
 		<div>
 			<button class="concept_change-request-button button button--secondary" id="concept-changes-button-<?php echo $awaiting->characterID; ?>">Request changes</button>
 			<div class="concept-changes-form" id="concept-changes-<?php echo $awaiting->characterID; ?>">

@@ -13,6 +13,11 @@ if ($jid === 0) {
 	header('Status: 303 Moved Temporarily', false, 303);
 	header('Location: ../');
 }
+if (in_array("30", $jgroups, true)) {
+	$IS_SL = true;
+} else {
+	$IS_SL = false;
+}
 
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Text\Text;
@@ -148,7 +153,8 @@ if (isset($_POST['concept_changes'])) {
 					echo ' - ' . $_POST['faction'] . ' only';
 				} ?>
 			</h1>
-			<p> Welcome, <?php echo $jname; ?>!
+			<p> Welcome,
+				<?php echo $jname; ?>!
 			<form method="post">
 				<select name="faction" onchange="this.form.submit()">
 					<option value="">Filter by faction</option>

@@ -1,6 +1,7 @@
 <?php
 if ($_ENV['dev'] == 'true') {
 	$jid = "747";
+	$jname = "Nimuel Agati Iskandu (Development Environment)";
 	$jgroups = ["32"];
 } else {
 require 'joomla.php';

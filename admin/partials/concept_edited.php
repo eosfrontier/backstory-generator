@@ -10,11 +10,13 @@ $text = new Text();
 		<?php echo $edited->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
-		<h5>Concept text</h5>
-		<?php echo $edited->content; ?>
-		<?php if ($edited->concept_changes) { ?>
-			<h5>Concept changes</h5>
-			<?php echo $edited->concept_changes; ?>
-		<?php } ?>
+		<?php if ($IS_SL) {
+			echo '<h5>Concept text</h5>';
+			echo $edited->content;
+			if ($edited->concept_changes) {
+				echo '<h5>Concept changes</h5>';
+				echo $edited->concept_changes;
+			}
+		} ?>
 	</div>
 </div>
