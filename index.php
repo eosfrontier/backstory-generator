@@ -1,5 +1,6 @@
 <?php
 require './includes/include.php';
+require_once './includes/SSO.php';
 
 $id = $logged_in_char->characterID;
 
@@ -9,7 +10,6 @@ use Eos\Backstory_generator\Text\Text;
 use Eos\Backstory_generator\Api\Get;
 use Eos\Backstory_generator\Email\Send_Email;
 
-require_once './includes/SSO.php';
 
 $text = new Text();
 $character = new Character();

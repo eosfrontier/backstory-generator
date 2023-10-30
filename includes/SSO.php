@@ -1,5 +1,11 @@
 <?php
+if ($_ENV['dev'] == 'true') {
+	$jid = "747";
+	$jgroups = ["32"];
+} else {
 require 'joomla.php';
+}
+
 $curl = curl_init();
 
 curl_setopt_array(
