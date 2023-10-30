@@ -14,7 +14,7 @@ $being_edited = [];
 $backstory_changes = [];
 
 foreach ($backstorys as $backstory) {
-	if (isset($_POST['faction']) && $_POST['faction'] != "" && $backstory->faction != $_POST['faction']) {
+	if (isset($_GET['faction']) && $_GET['faction'] != "" && $backstory->faction != $_GET['faction']) {
 		continue;
 	} else {
 		if ($backstory->backstory_status === 'being_edited') {

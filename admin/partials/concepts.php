@@ -14,7 +14,7 @@ $being_edited = [];
 $concept_changes = [];
 
 foreach ($concepts as $concept) {
-	if (isset($_POST['faction']) && $_POST['faction'] != "" && $concept->faction != $_POST['faction']) {
+	if (isset($_GET['faction']) && $_GET['faction'] != "" && $concept->faction != $_GET['faction']) {
 		continue;
 	} else {
 		if ($concept->status_name === 'being_edited') {

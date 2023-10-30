@@ -149,44 +149,58 @@ if (isset($_POST['concept_changes'])) {
 			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 			<h1>
 				Admin - Concept/Backstory editor
-				<?php if (isset($_POST['faction']) && $_POST['faction'] != "") {
-					echo ' - ' . $_POST['faction'] . ' only';
-				} ?>
+				<?php
+				if (isset($_REQUEST['faction']) && $_REQUEST['faction'] != "")
+					$faction = $_REQUEST['faction'];
+				else
+					$faction = "";
+				if ($faction != "")
+					echo ' - ' . $faction . ' only';
+				?>
 			</h1>
 			<p> Welcome,
 				<?php echo $jname; ?>!
-			<form method="post">
+			<form method="get">
 				<select name="faction" onchange="this.form.submit()">
-					<option value="">Filter by faction</option>
-					<option value="aquila" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'aquila') ? 'selected' : ''; ?>>Aquila</option>
-					<option value="dugo" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'dugo') ? 'selected' : ''; ?>>Dugo</option>
-					<option value="ekanesh" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'ekanesh') ? 'selected' : ''; ?>>Ekanesh</option>
-					<option value="pendzal" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'pendzal') ? 'selected' : ''; ?>>Pendzal</option>
-					<option value="sona" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'sona') ? 'selected' : ''; ?>>Sona</option>
+					<option>Filter by faction</option>
+					<option value="aquila" <?php echo $faction == 'aquila' ? 'selected' : ''; ?>>Aquila</option>
+					<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
+					<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
+					<option value="pendzal" <?php echo $faction == 'pendzal' ? 'selected' : ''; ?>>Pendzal</option>
+					<option value="sona" <?php $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
 					<option value="" class="italic">Reset Filter</option>
-
 				</select>
+				<input type="hidden" name="tab" value="<?php echo $_REQUEST['tab']; ?>" />
 				</p>
 			</form>
 	</header>
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ( (isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'concept') || !isset($_REQUEST['tab']) ) echo 'class="active"' ?>  onclick="window.location.href='?tab=concept';">Concept</button>
-				<button data-tab="backstory" <?php if ( (isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'backstory' )) echo 'class="active"' ?> onclick="window.location.href='?tab=backstory';">Backstory</button>
-				<button data-tab="completed" <?php if ( (isset($_REQUEST['tab']) &&$_REQUEST['tab'] === 'completed' )) echo 'class="active"' ?>onclick="window.location.href='?tab=completed';">Completed</button>
-			</div>
-			<div class="tabs">
-				<div data-tab="concept" class="tab<?php if ( $_REQUEST['tab'] === 'concept' || !isset($_REQUEST['tab']) ) echo ' active' ?>">
-					<h2>Concept</h2>
+				<?php
+					if( isset($_REQUEST['faction']) ) {
+						$faction = $_REQUEST['faction'];
+					} else {
+						$faction = "";
+					}
+					?>
+				<button data-tab="concept" <?php if ((isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'concept') || !isset($_REQUEST['tab'])) echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+					<button data-tab="backstory" <?php if ((isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'backstory')) echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+					<button data-tab="completed" <?php if ((isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'completed')) echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+				</div>
+				<div class="tabs">
+					<div data-tab="concept"
+						class="tab<?php if ($_REQUEST['tab'] === 'concept' || !isset($_REQUEST['tab']))
+					echo ' active' ?>">
+						<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab<?php if ( $_REQUEST['tab'] === 'backstory' ) echo ' active' ?>">
-					<h2>Backstory</h2>
+				<div data-tab="backstory" class="tab<?php if ($_REQUEST['tab'] === 'backstory')	echo ' active' ?>">
+						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab<?php if ( $_REQUEST['tab'] === 'completed' ) echo ' active' ?>">
-					<h2>Completed</h2>
+				<div data-tab="completed" class="tab<?php if ($_REQUEST['tab'] === 'completed')	echo ' active' ?>">
+						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>
 			</div>
