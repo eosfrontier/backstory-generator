@@ -5,15 +5,15 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 require_once '../includes/SSO.php';
-if ($jid === 0) {
-	header('location: https://eosfrontier.space/return-to-backstory-admin');
-}
+echo 'JID:' . $jid;
+// if ($jid === 0) {
+// 	header('location: https://eosfrontier.space/return-to-backstory-admin');
+// }
 
-if (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
-	//die("Sorry, you don't have access here. Naughty person.");
-	header('Status: 303 Moved Temporarily', false, 303);
-	header('Location: ../');
-}
+// if (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
+// 	header('Status: 303 Moved Temporarily', false, 303);
+// 	header('Location: ../');
+// }
 
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Text\Text;
@@ -149,7 +149,7 @@ if (isset($_POST['concept_changes'])) {
 					echo ' - ' . $_POST['faction'] . ' only';
 				} ?>
 			</h1>
-			<p> Welcome, <?php echo $jname; ?> !
+			<p> Welcome, <?php echo $jname; ?>!
 			<form method="post">
 				<select name="faction" onchange="this.form.submit()">
 					<option value="">Filter by faction</option>
