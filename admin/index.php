@@ -172,20 +172,20 @@ if (isset($_POST['concept_changes'])) {
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" class="active">Concept</button>
-				<button data-tab="backstory">Backstory</button>
-				<button data-tab="completed">Completed</button>
+				<button data-tab="concept" <?php if ( (isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'concept') || !isset($_REQUEST['tab']) ) echo 'class="active"' ?>  onclick="window.location.href='?tab=concept';">Concept</button>
+				<button data-tab="backstory" <?php if ( (isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'backstory' )) echo 'class="active"' ?> onclick="window.location.href='?tab=backstory';">Backstory</button>
+				<button data-tab="completed" <?php if ( (isset($_REQUEST['tab']) &&$_REQUEST['tab'] === 'completed' )) echo 'class="active"' ?>onclick="window.location.href='?tab=completed';">Completed</button>
 			</div>
 			<div class="tabs">
-				<div data-tab="concept" class="tab active">
+				<div data-tab="concept" class="tab<?php if ( $_REQUEST['tab'] === 'concept' || !isset($_REQUEST['tab']) ) echo ' active' ?>">
 					<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab">
+				<div data-tab="backstory" class="tab<?php if ( $_REQUEST['tab'] === 'backstory' ) echo ' active' ?>">
 					<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab">
+				<div data-tab="completed" class="tab<?php if ( $_REQUEST['tab'] === 'completed' ) echo ' active' ?>">
 					<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>
