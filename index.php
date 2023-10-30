@@ -2,6 +2,10 @@
 require './includes/include.php';
 require_once './includes/SSO.php';
 
+if ($jid === 0) {
+	header('location: https://eosfrontier.space/return-to-backstory-system');
+}
+
 $id = $logged_in_char->characterID;
 
 use Eos\Backstory_generator\Character\Character;
@@ -92,9 +96,6 @@ $concept = $text->get_concept($id);
 		</div>
 	</header>
 	<main>
-		<h2>
-			<?php echo $character->get_character_name($id); ?>
-		</h2>
 		<?php
 		if ($concept !== 'None found.' && $concept->status_name !== 'requested') {
 			require './partials/concept.php';

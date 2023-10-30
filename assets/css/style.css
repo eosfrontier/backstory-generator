@@ -218,3 +218,7 @@ h5 {
 	padding: 6px 0;
 	font-weight: 600;
 }
+
+option.italic{
+    font-style: italic;
+}

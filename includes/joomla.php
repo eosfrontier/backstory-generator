@@ -18,10 +18,6 @@
 	$jname = $user->name;
 	$jguest = $user->guest;
 
-	if ($user->id === 0) {
-		header('location: https://eosfrontier.space/return-to-backstory-system');
-	}
-
 	// $TIJDELIJKID = $user->id;
 	$myobj = new \stdClass();
 	$myobj->id = $user->get('id');

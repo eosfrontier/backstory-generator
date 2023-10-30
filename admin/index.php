@@ -5,11 +5,14 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 require_once '../includes/SSO.php';
+if ($jid === 0) {
+	header('location: https://eosfrontier.space/return-to-backstory-admin');
+}
 
-if ( !in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
+if (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
 	//die("Sorry, you don't have access here. Naughty person.");
 	header('Status: 303 Moved Temporarily', false, 303);
-    header('Location: ../');
+	header('Location: ../');
 }
 
 use Eos\Backstory_generator\Character\Character;
@@ -46,7 +49,8 @@ if (isset($_POST['backstory_changes'])) {
 		$mail->send_email_to_player($email, $subject, $body);
 	}
 
-	unset($_POST);
+	unset($_POST['backstory_changes']);
+	header('Location: ./');
 }
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
@@ -82,6 +86,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	}
 	$mail->send_email_to_player($email, $subject, $body);
 	unset($_POST);
+	header('Location: ./');
+
 }
 
 if (isset($_POST['concept_changes'])) {
@@ -107,7 +113,9 @@ if (isset($_POST['concept_changes'])) {
 		$mail->send_email_to_player($email, $subject, $body);
 	}
 
-	unset($_POST);
+	unset($_POST['concept_changes']);
+	header('Location: ./');
+
 }
 
 ##########################
@@ -121,7 +129,7 @@ if (isset($_POST['concept_changes'])) {
 
 <head>
 
-	<title>Admin - Concept/Backstory editor</title>
+	<title>Admin - Concept/Backstory editor	</title>
 	<link rel="stylesheet" href="../assets/css/style.css" />
 	<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 	<script>
@@ -137,7 +145,22 @@ if (isset($_POST['concept_changes'])) {
 			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 			<h1>
 				Admin - Concept/Backstory editor
+				<?php if ( isset($_POST['faction']) && $_POST['faction'] != "") {
+			echo ' - ' . $_POST['faction'] . ' only';
+		} ?>
 			</h1>
+			<form method="post">
+				<select name="faction" onchange="this.form.submit()">
+					<option value="">Filter by faction</option>
+					<option value="aquila" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'aquila' ) ? 'selected' : ''; ?>>Aquila</option>
+					<option value="dugo" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'dugo' ) ? 'selected' : ''; ?>>Dugo</option>
+					<option value="ekanesh" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'ekanesh' ) ? 'selected' : ''; ?>>Ekanesh</option>
+					<option value="pendzal" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'pendzal' ) ? 'selected' : ''; ?>>Pendzal</option>
+					<option value="sona" <?php echo (isset($_POST['faction']) && $_POST['faction'] == 'sona' ) ? 'selected' : ''; ?>>Sona</option>
+					<option value="" class="italic">Reset Filter</option>
+
+				</select>
+			</form>
 	</header>
 	<main>
 		<div class="tabs-overview">

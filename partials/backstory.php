@@ -1,5 +1,5 @@
 <hr />
-<h2>Backstory</h2>
+<h2>Backstory -  <?php echo $character->get_character_name($id); ?></h2>
 <h3><span>Status</span>
 	<?php echo $backstory->status_description; ?>
 </h3>

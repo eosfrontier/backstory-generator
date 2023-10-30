@@ -1,9 +1,9 @@
 <?php
 
-if ( isset( $_POST['type'] ) && $_POST['type'] === 'concept' ) {
-	$status->update_status( $_POST['id'], $_POST['status'], $_POST['type'] );
-	if ( $_POST['status'] === 'approved' ) {
-		$status->update_status( $_POST['id'], 'approved', 'concept' );
+if (isset($_POST['type']) && $_POST['type'] === 'concept') {
+	$status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
+	if ($_POST['status'] === 'approved') {
+		$status->update_status($_POST['id'], 'approved', 'concept');
 	}
 }
 
@@ -14,16 +14,20 @@ $being_edited = [];
 $concept_changes = [];
 
 foreach ($concepts as $concept) {
-	if ($concept->status_name === 'being_edited') {
-		$being_edited[] = $concept;
-	}
+	if (isset($_POST['faction']) && $_POST['faction'] != "" && $concept->faction != $_POST['faction']) {
+		continue;
+	} else {
+		if ($concept->status_name === 'being_edited') {
+			$being_edited[] = $concept;
+		}
 
-	if ($concept->status_name === 'awaiting_review') {
-		$awaiting_review[] = $concept;
-	}
+		if ($concept->status_name === 'awaiting_review') {
+			$awaiting_review[] = $concept;
+		}
 
-	if ($concept->status_name === 'changes_requested') {
-		$concept_changes[] = $concept;
+		if ($concept->status_name === 'changes_requested') {
+			$concept_changes[] = $concept;
+		}
 	}
 }
 
