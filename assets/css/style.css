@@ -181,6 +181,12 @@ main {
 	cursor: pointer;
 }
 
+.content-block {
+	padding: 1px 16px 1px;
+	background: #3e424b;
+	margin-bottom: 16px;
+}
+
 
 .overview-block {
 	padding: 16px 16px 1px;

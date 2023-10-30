@@ -5,14 +5,20 @@
 </h3>
 <div class="text">
 	<div class="text-container">
-		<?php echo $backstory->content; ?>
+		<div class="content-block">
+			<?php
+
+			echo $backstory->content; ?>
+		</div>
 	</div>
 	<?php
 	if ($backstory->backstory_changes && $backstory->status_name !== 'approved') {
 		?>
 		<h4>Requested changes</h4>
 		<?php
+		echo '<div class="content-block">';
 		echo $backstory->backstory_changes;
+		echo '</div>';
 	}
 	$edit_status = [
 		'requested',

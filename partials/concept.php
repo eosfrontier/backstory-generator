@@ -4,20 +4,26 @@
 		<?php echo $concept->status_description; ?>
 	</h3>
 	<div class="concept-text">
-		<h4>Concept:</h4>
 		<?php
 		if ($concept->status_name !== 'approved') {
-		echo "<p>Please submit your character concept; a fundamental idea or description that outlines the key aspects of your
-			proposed in-game persona, offering a concise idea of who the character is, their goals, and their
-			distinguishing traits. This should not exceed 1-2 paragraphs. Once the SLs have approved your basic concept,
-			you will then be asked to submit your character's full backstory. </p>";
+			echo "<p>Please submit your character concept; a fundamental idea or description that outlines the key aspects of your
+						proposed in-game persona, offering a concise idea of who the character is, their goals, and their
+						distinguishing traits. This should not exceed 1-2 paragraphs. Once the SLs have approved your basic concept,
+						you will then be asked to submit your character's full backstory. </p>";
 		}
+		?>
+		<h4>Concept:</h4>
+		<?php
+		echo '<div class="content-block">';
 		echo $concept->content;
+		echo '</div>';
 		if ($concept->concept_changes && $concept->status_name !== 'approved') {
 			?>
-			<h4>Requested changes</h4>
+			<h4>Requested changes:</h4>
 			<?php
+			echo '<div class="content-block">';
 			echo $concept->concept_changes;
+			echo '</div>';
 		}
 		$edit_status = [
 			'requested',
@@ -52,8 +58,8 @@
 		<div id="concept-editor">
 			<form method="post">
 				<textarea name="concept-content" id="concept-textarea">
-					<?php echo $concept->content; ?>
-				</textarea>
+						<?php echo $concept->content; ?>
+					</textarea>
 				<input type="hidden" name="type" value="concept" />
 				<input type="hidden" name="status" value="being_edited" />
 				<button class="button button--primary">Save Draft</button>
