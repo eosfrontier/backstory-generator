@@ -8,12 +8,10 @@ require_once '../includes/SSO.php';
 echo 'JID:' . $jid;
 if ($jid === 0) {
 	header('location: https://eosfrontier.space/return-to-backstory-admin');
+} elseif (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
+	header('Status: 303 Moved Temporarily', false, 303);
+	header('Location: ../');
 }
-
-// if (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
-// 	header('Status: 303 Moved Temporarily', false, 303);
-// 	header('Location: ../');
-// }
 
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Text\Text;
