@@ -5,7 +5,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 require_once '../includes/SSO.php';
-echo 'JID:' . $jid;
+
 if ($jid === 0) {
 	header('location: https://eosfrontier.space/return-to-backstory-admin');
 } elseif (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
