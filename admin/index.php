@@ -149,8 +149,7 @@ if (isset($_POST['concept_changes'])) {
 					echo ' - ' . $_POST['faction'] . ' only';
 				} ?>
 			</h1>
-			<p> Welcome,
-				<?php $jname ?>
+			<p> Welcome, <?php echo $jname; ?> !
 			<form method="post">
 				<select name="faction" onchange="this.form.submit()">
 					<option value="">Filter by faction</option>
