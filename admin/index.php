@@ -4,6 +4,22 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
+if( isset($_REQUEST['faction']) ) {
+	$faction = $_REQUEST['faction'];
+} else if ( isset($_POST['faction']) ) {
+	$faction = $_POST['faction'];
+} else {
+	$faction = "";
+}
+
+if( isset($_REQUEST['tab']) ) {
+	$tab = $_REQUEST['tab'];
+} else if ( isset($_POST['tab']) ) {
+	$tab = $_POST['tab'];
+}else {
+	$tab = "concept";
+}
+
 require_once '../includes/SSO.php';
 
 if ($jid === 0) {
@@ -54,7 +70,7 @@ if (isset($_POST['backstory_changes'])) {
 	}
 
 	unset($_POST['backstory_changes']);
-	header('Location: ./');
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
@@ -90,8 +106,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	}
 	$mail->send_email_to_player($email, $subject, $body);
 	unset($_POST);
-	header('Location: ./');
-
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
 
 if (isset($_POST['concept_changes'])) {
@@ -118,8 +133,7 @@ if (isset($_POST['concept_changes'])) {
 	}
 
 	unset($_POST['concept_changes']);
-	header('Location: ./');
-
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
 
 ##########################
@@ -150,19 +164,14 @@ if (isset($_POST['concept_changes'])) {
 			<h1>
 				Admin - Concept/Backstory editor
 				<?php
-				if (isset($_REQUEST['faction']) && $_REQUEST['faction'] != "")
-					$faction = $_REQUEST['faction'];
-				else
-					$faction = "";
-				if ($faction != "")
-					echo ' - ' . $faction . ' only';
+				if ($faction != "")  echo ' - ' . $faction . ' only';
 				?>
 			</h1>
 			<p> Welcome,
 				<?php echo $jname; ?>!
 			<form method="get">
 				<select name="faction" onchange="this.form.submit()">
-					<option>Filter by faction</option>
+					<option value="">Filter by faction</option>
 					<option value="aquila" <?php echo $faction == 'aquila' ? 'selected' : ''; ?>>Aquila</option>
 					<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
 					<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
@@ -170,36 +179,29 @@ if (isset($_POST['concept_changes'])) {
 					<option value="sona" <?php $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
 					<option value="" class="italic">Reset Filter</option>
 				</select>
-				<input type="hidden" name="tab" value="<?php echo $_REQUEST['tab']; ?>" />
+				<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
 				</p>
 			</form>
 	</header>
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<?php
-					if( isset($_REQUEST['faction']) ) {
-						$faction = $_REQUEST['faction'];
-					} else {
-						$faction = "";
-					}
-					?>
-				<button data-tab="concept" <?php if ((isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'concept') || !isset($_REQUEST['tab'])) echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
-					<button data-tab="backstory" <?php if ((isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'backstory')) echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
-					<button data-tab="completed" <?php if ((isset($_REQUEST['tab']) && $_REQUEST['tab'] === 'completed')) echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+				<button data-tab="concept" <?php if ( $tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+					<button data-tab="backstory" <?php if ( $tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+					<button data-tab="completed" <?php if ( $tab === 'completed') echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
 				</div>
 				<div class="tabs">
 					<div data-tab="concept"
-						class="tab<?php if ($_REQUEST['tab'] === 'concept' || !isset($_REQUEST['tab']))
+						class="tab<?php if ( $tab === 'concept' )
 					echo ' active' ?>">
 						<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab<?php if ($_REQUEST['tab'] === 'backstory')	echo ' active' ?>">
+				<div data-tab="backstory" class="tab<?php if ( $tab === 'backstory')	echo ' active' ?>">
 						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab<?php if ($_REQUEST['tab'] === 'completed')	echo ' active' ?>">
+				<div data-tab="completed" class="tab<?php if ( $tab === 'completed')	echo ' active' ?>">
 						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>

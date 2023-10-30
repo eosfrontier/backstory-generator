@@ -14,7 +14,9 @@ foreach ($backstories as $backstory) {
 					<?php echo $backstory->faction; ?>
 				</h4>
 				<div class="admin_concept_edit">
-					<?php if ($IS_SL) {echo '<h5>Backstory text</h5>' . $backstory->content;} ?>
+					<?php if ($IS_SL) {
+						echo '<h5>Backstory text</h5>' . $backstory->content;
+					} ?>
 					<?php if ($backstory->backstory_changes) { ?>
 						<h5>Backstory changes</h5>
 						<?php echo $backstory->backstory_changes; ?>
