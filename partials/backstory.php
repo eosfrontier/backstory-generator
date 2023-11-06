@@ -1,14 +1,13 @@
 <hr />
 <h2>Backstory -  <?php echo $character->get_character_name($id); ?></h2>
-<h3><span>Status</span>
+<h3><span>Status:</span>
 	<?php echo $backstory->status_description; ?>
 </h3>
 <div class="text">
 	<div class="text-container">
-		<div class="content-block">
-			<?php
-
-			echo $backstory->content; ?>
+	<h4>Backstory:</h4>
+	<div class="content-block">
+			<?php echo $backstory->content; ?>
 		</div>
 	</div>
 	<?php

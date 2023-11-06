@@ -4,19 +4,19 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
-if( isset($_REQUEST['faction']) ) {
+if (isset($_REQUEST['faction'])) {
 	$faction = $_REQUEST['faction'];
-} else if ( isset($_POST['faction']) ) {
+} else if (isset($_POST['faction'])) {
 	$faction = $_POST['faction'];
 } else {
 	$faction = "";
 }
 
-if( isset($_REQUEST['tab']) ) {
+if (isset($_REQUEST['tab'])) {
 	$tab = $_REQUEST['tab'];
-} else if ( isset($_POST['tab']) ) {
+} else if (isset($_POST['tab'])) {
 	$tab = $_POST['tab'];
-}else {
+} else {
 	$tab = "concept";
 }
 
@@ -46,6 +46,7 @@ $text = new Text();
 $status = new Status();
 $api = new Get();
 
+
 if (isset($_POST['backstory_changes'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['backstory_changes']);
 
@@ -73,38 +74,45 @@ if (isset($_POST['backstory_changes'])) {
 	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
 
+
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
+	if (isset($_POST['backstory-content']) && $_POST['type'] == 'backstory') {
+		$id = $_POST['id'];
+		$content['content'] = str_replace("'", "&#39;", $_POST['backstory-content']);
+		$text->save_backstory($id, $content);
+	}
 	$email = $api->get_user_email($_POST['id']);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
-	$mail = new Send_Email();
-	if ($_POST['type'] == 'concept') {
-		$subject = 'Character Concept approved - please submit backstory.';
-		$body = "Dear player,
-		<br /><br />
-		The SL team have approved your character concept. <br />
-		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
-		<br />
-		Kind regards,
-		<br />
-		The Spelleider Team<br />
-        Eos: Frontier";
-	}
-	if ($_POST['type'] == 'backstory') {
-		$email = $api->get_user_email($_POST['id']);
+	if (isset($_POST['method']) && $_POST['method'] == 'sl_backend'){}
+	else{
 		$mail = new Send_Email();
-		$subject = 'Character Backstory approved.';
-		$body = "Dear player,
-		<br /><br />
-		The SL team have approved your character backstory. You're all set! <br />
-		We look forward to welcoming your new character to Eos!		<br />
-		<br />
-		<br />
-		Kind regards,
-		<br />
-		The Spelleider Team<br />
-        Eos: Frontier";
+		if ($_POST['type'] == 'concept') {
+			$subject = 'Character Concept approved - please submit backstory.';
+			$body = "Dear player,
+			<br /><br />
+			The SL team have approved your character concept. <br />
+			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
+			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+		}
+		if ($_POST['type'] == 'backstory') {
+			$subject = 'Character Backstory approved.';
+			$body = "Dear player,
+			<br /><br />
+			The SL team have approved your character backstory. You're all set! <br />
+			We look forward to welcoming your new character to Eos!		<br />
+			<br />
+			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+		}
+		$mail->send_email_to_player($email, $subject, $body);
 	}
-	$mail->send_email_to_player($email, $subject, $body);
 	unset($_POST);
 	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
@@ -164,7 +172,8 @@ if (isset($_POST['concept_changes'])) {
 			<h1>
 				Admin - Concept/Backstory editor
 				<?php
-				if ($faction != "")  echo ' - ' . $faction . ' only';
+				if ($faction != "")
+					echo ' - ' . $faction . ' only';
 				?>
 			</h1>
 			<p> Welcome,
@@ -186,24 +195,38 @@ if (isset($_POST['concept_changes'])) {
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ( $tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
-					<button data-tab="backstory" <?php if ( $tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
-					<button data-tab="completed" <?php if ( $tab === 'completed') echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
-				</div>
-				<div class="tabs">
-					<div data-tab="concept"
-						class="tab<?php if ( $tab === 'concept' )
+				<button data-tab="concept" <?php if ($tab === 'concept')
+					echo 'class="active"' ?>
+						onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+				<button data-tab="backstory" <?php if ($tab === 'backstory')
+					echo 'class="active"' ?>
+						onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+				<button data-tab="completed" <?php if ($tab === 'completed')
+					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing')
+					echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction; ?>';">Submit
+					Existing Backstory</button>
+			</div>
+			<div class="tabs">
+				<div data-tab="concept" class="tab<?php if ($tab === 'concept')
 					echo ' active' ?>">
 						<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab<?php if ( $tab === 'backstory')	echo ' active' ?>">
+				<div data-tab="backstory" class="tab<?php if ($tab === 'backstory')
+					echo ' active' ?>">
 						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab<?php if ( $tab === 'completed')	echo ' active' ?>">
+				<div data-tab="completed" class="tab<?php if ($tab === 'completed')
+					echo ' active' ?>">
 						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
+				</div>
+				<div data-tab="submit_existing" class="tab<?php if ($tab === 'submit_existing')
+					echo ' active' ?>">
+						<h2>Submit Existing Backstory</h2>
+					<?php require './partials/submit_existing.php'; ?>
 				</div>
 			</div>
 		</div>

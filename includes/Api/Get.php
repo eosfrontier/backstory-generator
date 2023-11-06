@@ -112,4 +112,31 @@ class Get
 
 		return $response;
 	}
+
+	public function get_all_active_characters()
+	{
+		$headers = [
+			"token: $this->token",
+			'all_characters: true',
+		];
+
+		$location = 'v2/chars_player/';
+
+		$response = json_decode($this->get($headers, $location), true);
+
+		return $response;
+	}
+
+	public function get_all_active_characters_no_backstory()
+	{
+		$headers = [
+			"token: $this->token",
+			'all_characters_no_backstory: true',
+		];
+
+		$location = 'v2/chars_player/';
+
+		$response = json_decode($this->get($headers, $location), true);
+		return $response;
+	}
 }
