@@ -77,7 +77,6 @@ class Put
 
 	public function update_concept($id, $content)
 	{
-
 		$headers = [
 			'type: concept',
 			"token: $this->token",

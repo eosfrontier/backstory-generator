@@ -48,7 +48,7 @@ body {
 	color: var(--text-color);
 	padding: 24px 48px 0;
 	font-family: 'roboto', sans-serif, arial;
-	font-size: 20px;
+	font-size: 1rem;
 }
 
 h1,
@@ -181,6 +181,12 @@ main {
 	cursor: pointer;
 }
 
+.content-block {
+	padding: 1px 16px 1px;
+	background: #3e424b;
+	margin-bottom: 16px;
+}
+
 
 .overview-block {
 	padding: 16px 16px 1px;
@@ -211,4 +217,8 @@ h5 {
 	border-bottom: solid 1px #ccc;
 	padding: 6px 0;
 	font-weight: 600;
+}
+
+option.italic{
+    font-style: italic;
 }

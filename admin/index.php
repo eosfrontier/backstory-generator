@@ -4,9 +4,35 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
+if( isset($_REQUEST['faction']) ) {
+	$faction = $_REQUEST['faction'];
+} else if ( isset($_POST['faction']) ) {
+	$faction = $_POST['faction'];
+} else {
+	$faction = "";
+}
+
+if( isset($_REQUEST['tab']) ) {
+	$tab = $_REQUEST['tab'];
+} else if ( isset($_POST['tab']) ) {
+	$tab = $_POST['tab'];
+}else {
+	$tab = "concept";
+}
+
 require_once '../includes/SSO.php';
-if (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
-	die("Sorry, you don't have access here. Naughty person.");
+
+if ($jid === 0) {
+	header('Status: 303 Moved Temporarily', false, 303);
+	header('location: https://www.eosfrontier.space/return-to-backstory-admin');
+} elseif (!in_array("32", $jgroups, true) && !in_array("30", $jgroups, true)) {
+	header('Status: 303 Moved Temporarily', false, 303);
+	header('Location: ../');
+}
+if (in_array("30", $jgroups, true)) {
+	$IS_SL = true;
+} else {
+	$IS_SL = false;
 }
 
 use Eos\Backstory_generator\Character\Character;
@@ -21,7 +47,7 @@ $status = new Status();
 $api = new Get();
 
 if (isset($_POST['backstory_changes'])) {
-	$content['content'] = $_POST['backstory_changes'];
+	$content['content'] = str_replace("'", "&#39;", $_POST['backstory_changes']);
 
 	$return = $text->save_backstory_changes($_POST['id'], $content);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory');
@@ -43,7 +69,8 @@ if (isset($_POST['backstory_changes'])) {
 		$mail->send_email_to_player($email, $subject, $body);
 	}
 
-	unset($_POST);
+	unset($_POST['backstory_changes']);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
@@ -79,10 +106,11 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	}
 	$mail->send_email_to_player($email, $subject, $body);
 	unset($_POST);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
 
 if (isset($_POST['concept_changes'])) {
-	$content['content'] = $_POST['concept_changes'];
+	$content['content'] = str_replace("'", "&#39;", $_POST['concept_changes']);
 
 	$return = $text->save_concept_changes($_POST['id'], $content);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept');
@@ -104,8 +132,14 @@ if (isset($_POST['concept_changes'])) {
 		$mail->send_email_to_player($email, $subject, $body);
 	}
 
-	unset($_POST);
+	unset($_POST['concept_changes']);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
 }
+
+##########################
+# End messaging section
+##########################
+
 
 ?>
 <!DOCTYPE html>
@@ -113,9 +147,14 @@ if (isset($_POST['concept_changes'])) {
 
 <head>
 
-	<title>Admin - Concept/Backstory editor</title>
+	<title>Admin - Concept/Backstory editor </title>
 	<link rel="stylesheet" href="../assets/css/style.css" />
 	<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+	<script>
+		if (window.history.replaceState) {
+			window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
 </head>
 
 <body>
@@ -124,26 +163,46 @@ if (isset($_POST['concept_changes'])) {
 			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 			<h1>
 				Admin - Concept/Backstory editor
+				<?php
+				if ($faction != "")  echo ' - ' . $faction . ' only';
+				?>
 			</h1>
+			<p> Welcome,
+				<?php echo $jname; ?>!
+			<form method="get">
+				<select name="faction" onchange="this.form.submit()">
+					<option value="">Filter by faction</option>
+					<option value="aquila" <?php echo $faction == 'aquila' ? 'selected' : ''; ?>>Aquila</option>
+					<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
+					<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
+					<option value="pendzal" <?php echo $faction == 'pendzal' ? 'selected' : ''; ?>>Pendzal</option>
+					<option value="sona" <?php $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
+					<option value="" class="italic">Reset Filter</option>
+				</select>
+				<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+				</p>
+			</form>
 	</header>
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" class="active">Concept</button>
-				<button data-tab="backstory">Backstory</button>
-				<button data-tab="completed">Completed</button>
-			</div>
-			<div class="tabs">
-				<div data-tab="concept" class="tab active">
-					<h2>Concept</h2>
+				<button data-tab="concept" <?php if ( $tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+					<button data-tab="backstory" <?php if ( $tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+					<button data-tab="completed" <?php if ( $tab === 'completed') echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+				</div>
+				<div class="tabs">
+					<div data-tab="concept"
+						class="tab<?php if ( $tab === 'concept' )
+					echo ' active' ?>">
+						<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab">
-					<h2>Backstory</h2>
+				<div data-tab="backstory" class="tab<?php if ( $tab === 'backstory')	echo ' active' ?>">
+						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab">
-					<h2>Completed</h2>
+				<div data-tab="completed" class="tab<?php if ( $tab === 'completed')	echo ' active' ?>">
+						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>
 			</div>

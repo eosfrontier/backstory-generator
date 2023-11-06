@@ -1,5 +1,10 @@
 <?php
 require './includes/include.php';
+require_once './includes/SSO.php';
+
+if ($jid === 0) {
+	header('location: https://eosfrontier.space/return-to-backstory-system');
+}
 
 $id = $logged_in_char->characterID;
 
@@ -17,21 +22,21 @@ $mail = new Send_Email();
 $api = new Get();
 
 if (isset($_POST['concept-content'])) {
-	$content['content'] = $_POST['concept-content'];
-
+	$content['content'] = str_replace("'", "&#39;", $_POST['concept-content']);
 	$text->save_concept($id, $content);
 }
 
 if (isset($_POST['backstory-content'])) {
-	$content['content'] = $_POST['backstory-content'];
-
+	$content['content'] = str_replace("'", "&#39;", $_POST['backstory-content']);
 	$text->save_backstory($id, $content);
+
 }
 
 if (isset($_POST['status']) && isset($_POST['type'])) {
 	$saved = $status->update_status($id, $_POST['status'], $_POST['type']);
 	$email = $api->get_user_email($id);
 	$char_name = $character->get_character_name($id);
+	$char_faction = $character->get_character_faction($id);
 	if ($_POST['status'] == "awaiting_review") {
 		if ($_POST['type'] == "concept") {
 			$subject = 'Character Concept submitted: ' . $char_name . '. Please review.';
@@ -57,7 +62,7 @@ if (isset($_POST['status']) && isset($_POST['type'])) {
 			The Backstory System<br />
 			Eos: Frontier";
 		}
-		$mail->send_email_from_player($email, $subject, $body);
+		$mail->send_email_from_player($email, $subject, $body, $char_faction);
 	}
 	header('Refresh:0');
 }
@@ -82,12 +87,15 @@ $concept = $text->get_concept($id);
 			<img class="responsive" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 			<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>"> <button type="button" class="button"
 					name="button"><strong>Return to Chargen</strong></button></a>
+			<?php
+			if (in_array("32", $jgroups, true) || in_array("30", $jgroups, true)) {
+				echo '<a href="./admin"> <button type="button" class="button"
+				name="button"><strong>Admin Portal</strong></button></a>';
+			}	 
+			?>
 		</div>
 	</header>
 	<main>
-		<h2>
-			<?php echo $character->get_character_name($id); ?>
-		</h2>
 		<?php
 		if ($concept !== 'None found.' && $concept->status_name !== 'requested') {
 			require './partials/concept.php';

@@ -1,5 +1,12 @@
 <?php
+if ($_ENV['dev'] == 'true') {
+	$jid = "747";
+	$jname = "Nimuel Agati Iskandu (Development Environment)";
+	$jgroups = ["32", "30"];
+} else {
 require 'joomla.php';
+}
+
 $curl = curl_init();
 
 curl_setopt_array(

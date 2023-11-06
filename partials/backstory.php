@@ -1,18 +1,24 @@
 <hr />
-<h2>Backstory</h2>
+<h2>Backstory -  <?php echo $character->get_character_name($id); ?></h2>
 <h3><span>Status</span>
 	<?php echo $backstory->status_description; ?>
 </h3>
 <div class="text">
 	<div class="text-container">
-		<?php echo $backstory->content; ?>
+		<div class="content-block">
+			<?php
+
+			echo $backstory->content; ?>
+		</div>
 	</div>
 	<?php
 	if ($backstory->backstory_changes && $backstory->status_name !== 'approved') {
 		?>
 		<h4>Requested changes</h4>
 		<?php
+		echo '<div class="content-block">';
 		echo $backstory->backstory_changes;
+		echo '</div>';
 	}
 	$edit_status = [
 		'requested',
@@ -48,7 +54,7 @@
 			<?php echo $backstory->content; ?>
 		</textarea>
 		<input type="hidden" name="type" value="backstory" />
-			<input type="hidden" name="status" value="being_edited" />
-		<button class="button button--primary">Save</button>
+		<input type="hidden" name="status" value="being_edited" />
+		<button class="button button--primary">Save Draft</button>
 	</form>
 </div>

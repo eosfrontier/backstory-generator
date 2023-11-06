@@ -14,16 +14,20 @@ $being_edited = [];
 $backstory_changes = [];
 
 foreach ($backstorys as $backstory) {
-	if ($backstory->backstory_status === 'being_edited') {
-		$being_edited[] = $backstory;
-	}
+	if (isset($_GET['faction']) && $_GET['faction'] != "" && $backstory->faction != $_GET['faction']) {
+		continue;
+	} else {
+		if ($backstory->backstory_status === 'being_edited') {
+			$being_edited[] = $backstory;
+		}
 
-	if ($backstory->backstory_status === 'awaiting_review') {
-		$awaiting_review[] = $backstory;
-	}
+		if ($backstory->backstory_status === 'awaiting_review') {
+			$awaiting_review[] = $backstory;
+		}
 
-	if ($backstory->backstory_status === 'changes_requested') {
-		$backstory_changes[] = $backstory;
+		if ($backstory->backstory_status === 'changes_requested') {
+			$backstory_changes[] = $backstory;
+		}
 	}
 }
 
