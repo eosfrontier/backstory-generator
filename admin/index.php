@@ -195,16 +195,10 @@ if (isset($_POST['concept_changes'])) {
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ($tab === 'concept')
-					echo 'class="active"' ?>
-						onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
-				<button data-tab="backstory" <?php if ($tab === 'backstory')
-					echo 'class="active"' ?>
-						onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
-				<button data-tab="completed" <?php if ($tab === 'completed')
-					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
-				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing')
-					echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction; ?>';">Submit
+				<button data-tab="concept" <?php if ($tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+				<button data-tab="backstory" <?php if ($tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+				<button data-tab="completed" <?php if ($tab === 'completed') echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing') echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction; ?>';">Submit
 					Existing Backstory</button>
 			</div>
 			<div class="tabs">
