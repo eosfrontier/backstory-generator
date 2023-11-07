@@ -172,8 +172,7 @@ if (isset($_POST['concept_changes'])) {
 			<h1>
 				Admin - Concept/Backstory editor
 				<?php
-				if ($faction != "")
-					echo ' - ' . $faction . ' only';
+				if ($faction != "") echo ' - ' . $faction . ' only';
 				?>
 			</h1>
 			<p> Welcome,
