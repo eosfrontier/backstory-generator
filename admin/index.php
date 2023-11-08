@@ -20,6 +20,14 @@ if (isset($_REQUEST['tab'])) {
 	$tab = "concept";
 }
 
+if (isset($_REQUEST['current_event'])) {
+	$current_event = $_REQUEST['current_event'];
+} else if (isset($_POST['current_event'])) {
+	$current_event = $_POST['current_event'];
+} else {
+	$current_event = "";
+}
+
 require_once '../includes/SSO.php';
 
 if ($jid === 0) {
@@ -71,7 +79,7 @@ if (isset($_POST['backstory_changes'])) {
 	}
 
 	unset($_POST['backstory_changes']);
-	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
 }
 
 
@@ -83,8 +91,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	}
 	$email = $api->get_user_email($_POST['id']);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
-	if (isset($_POST['method']) && $_POST['method'] == 'sl_backend'){}
-	else{
+	if (isset($_POST['method']) && $_POST['method'] == 'sl_backend') {
+	} else {
 		$mail = new Send_Email();
 		if ($_POST['type'] == 'concept') {
 			$subject = 'Character Concept approved - please submit backstory.';
@@ -114,7 +122,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		$mail->send_email_to_player($email, $subject, $body);
 	}
 	unset($_POST);
-	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
 }
 
 if (isset($_POST['concept_changes'])) {
@@ -141,7 +149,7 @@ if (isset($_POST['concept_changes'])) {
 	}
 
 	unset($_POST['concept_changes']);
-	header('Location: ./?faction=' . $faction . '&tab=' . $tab);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
 }
 
 ##########################
@@ -172,32 +180,63 @@ if (isset($_POST['concept_changes'])) {
 			<h1>
 				Admin - Concept/Backstory editor
 				<?php
-				if ($faction != "") echo ' - ' . $faction . ' only';
+				if ($faction != "")
+					echo ' - ' . $faction . ' only';
 				?>
 			</h1>
-			<p> Welcome,
-				<?php echo $jname; ?>!
-			<form method="get">
-				<select name="faction" onchange="this.form.submit()">
-					<option value="">Filter by faction</option>
-					<option value="aquila" <?php echo $faction == 'aquila' ? 'selected' : ''; ?>>Aquila</option>
-					<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
-					<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
-					<option value="pendzal" <?php echo $faction == 'pendzal' ? 'selected' : ''; ?>>Pendzal</option>
-					<option value="sona" <?php echo $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
-					<option value="" class="italic">Reset Filter</option>
-				</select>
-				<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-				</p>
-			</form>
+			<div align="right">
+				<form method="get">
+					<label class="switch" onchange="this.form.submit()">
+						<input type="checkbox" name="current_event" value="Yes" <?php if ( $current_event == "Yes") echo 'checked'; ?>>
+						<span class="slider round"></span>
+					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+					<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
+					</label>
+					<h4>
+						<?php
+						if (isset($_GET['current_event']) && $_GET['current_event'] == "Yes") {
+							echo 'This Event Only';
+						} else {
+							echo 'All active characters';
+						}
+						?>
+					</h4>
+				</form>
+			</div>
+		</div>
+		<p> Welcome,
+			<?php echo $jname; ?>!
+		</p>
+		<form method="get">
+			<select name="faction" onchange="this.form.submit()">
+				<option value="">Filter by faction</option>
+				<option value="aquila" <?php echo $faction == 'aquila' ? 'selected' : ''; ?>>Aquila</option>
+				<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
+				<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
+				<option value="pendzal" <?php echo $faction == 'pendzal' ? 'selected' : ''; ?>>Pendzal</option>
+				<option value="sona" <?php echo $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
+				<option value="" class="italic">Reset Filter</option>
+			</select>
+			<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+			<input type="hidden" name="current_event" value="<?php echo $current_event; ?>" />
+
+			</p>
+		</form>
 	</header>
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ($tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
-				<button data-tab="backstory" <?php if ($tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
-				<button data-tab="completed" <?php if ($tab === 'completed') echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
-				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing') echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction; ?>';">Submit Existing Backstory</button>
+				<button data-tab="concept" <?php if ($tab === 'concept')
+					echo 'class="active"' ?>
+						onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+				<button data-tab="backstory" <?php if ($tab === 'backstory')
+					echo 'class="active"' ?>
+						onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+				<button data-tab="completed" <?php if ($tab === 'completed')
+					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing')
+					echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction; ?>';">Submit
+					Existing Backstory</button>
 			</div>
 			<div class="tabs">
 				<div data-tab="concept" class="tab<?php if ($tab === 'concept')

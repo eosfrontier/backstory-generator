@@ -139,4 +139,16 @@ class Get
 		$response = json_decode($this->get($headers, $location), true);
 		return $response;
 	}
+
+	public function get_characters_upcoming_event()
+	{
+		$headers = [
+			"token: $this->token",
+		];
+
+		$location = 'v2/event/current/players';
+
+		$response = json_decode($this->get($headers, $location), true);
+		return $response;
+	}
 }
