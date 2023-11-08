@@ -26,7 +26,7 @@ if (isset($_POST['character'])) {
 		</h2>
 		<div id="backstory-editor" style="display: block;">
 		<form method="post">
-		<textarea name="backstory-content" id="backstory-textarea">
+		<textarea name="backstory-content" id="existing-backstory-textarea">
 			<?php
 			if ( isset($backstory->content) ){ 
 			echo $backstory->content;

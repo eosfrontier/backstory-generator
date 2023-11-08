@@ -8,6 +8,8 @@ document.addEventListener( "DOMContentLoaded", function() {
 			toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
 		} );
 	}
+	load_editer( '#existing-backstory-textarea' );
+
 
 	var editButtons = document.querySelectorAll( ".concept_change-request-button" );
 	if ( editButtons ) {
@@ -32,6 +34,7 @@ document.addEventListener( "DOMContentLoaded", function() {
 		} );
 		//load_editer( '#backstory-textarea' );
 	}
+
 
 	var tabButtons = document.querySelectorAll( ".tab-list button" );
 
