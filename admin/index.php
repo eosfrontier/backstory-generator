@@ -184,7 +184,7 @@ if (isset($_POST['concept_changes'])) {
 					<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
 					<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
 					<option value="pendzal" <?php echo $faction == 'pendzal' ? 'selected' : ''; ?>>Pendzal</option>
-					<option value="sona" <?php $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
+					<option value="sona" <?php echo $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
 					<option value="" class="italic">Reset Filter</option>
 				</select>
 				<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
