@@ -1,10 +1,20 @@
-<?php $characters = $api->get_all_active_characters_no_backstory(); ?>
+<?php $characters = $api->get_all_active_characters_no_backstory();
+
+if ($current_event == "Yes" ) {
+	$current_event_characters = $api->get_characters_upcoming_event();
+}
+ ?>
+
 <form method="POST">
 	<select name="character" onchange="this.form.submit()">
 		<option value="">Choose a character</option>
 		<?php
+		
 		foreach ($characters as $char) {
-			if (isset($_GET['faction']) && $_GET['faction'] != '' && $char['faction'] != $_GET['faction']) {
+			if ( $current_event == "Yes" && !hasId($current_event_characters, $char['characterID']) ) {
+				continue;
+			}
+				if (isset($_GET['faction']) && $_GET['faction'] != '' && $char['faction'] != $_GET['faction']) {
 				continue; #skips the character if the faction filter is chosen and the character is not a member of that faction
 			}
 			if (isset($_POST['character'])) {
@@ -14,7 +24,8 @@
 				echo '<option value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
 		}
 		?>
-
+		<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+		<input type="hidden" name="current_event" value="<?php echo $current_event; ?>" />
 	</select>
 </form>
 
@@ -29,12 +40,12 @@ if (isset($_POST['character'])) {
 		<div id="backstory-editor" style="display: block;">
 			<form method="post">
 				<textarea name="backstory-content" id="existing-backstory-textarea">
-				<?php
-				if (isset($backstory->content)) {
-					echo $backstory->content;
-				}
-				?>
-			</textarea>
+					<?php
+					if (isset($backstory->content)) {
+						echo $backstory->content;
+					}
+					?>
+				</textarea>
 				<input type="hidden" name="type" value="backstory" />
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="method" value="sl_backend" />

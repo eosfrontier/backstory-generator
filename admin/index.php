@@ -54,6 +54,12 @@ $text = new Text();
 $status = new Status();
 $api = new Get();
 
+function hasId($arr, $id) {
+    foreach ($arr as $value) {
+        if ($value['characterID'] == $id) return true;
+    }
+    return false;
+}
 
 if (isset($_POST['backstory_changes'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['backstory_changes']);
