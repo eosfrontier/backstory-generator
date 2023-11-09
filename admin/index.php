@@ -70,8 +70,8 @@ function hasId($arr, $id)
 if (isset($_POST['backstory_changes'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['backstory_changes']);
 
-	$return = $text->save_backstory_changes($_POST['id'], $content);
-	$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory');
+	$return = $text->save_backstory_changes($_POST['id'], $content, $jid);
+	$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory', $jid);
 	$email = $api->get_user_email($_POST['id']);
 
 	if ($email) {
@@ -99,12 +99,12 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	if (isset($_POST['backstory-content']) && $_POST['type'] == 'backstory') {
 		$id = $_POST['id'];
 		$content['content'] = str_replace("'", "&#39;", $_POST['backstory-content']);
-		$text->save_backstory($id, $content);
+		$text->save_backstory($id, $content, $jid);
 	}
 	$email = $api->get_user_email($_POST['id']);
-	$saved = $status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
+	$saved = $status->update_status($_POST['id'], $_POST['status'], $_POST['type'], $jid);
 	if (isset($_POST['method']) && $_POST['method'] == 'sl_backend') {
-		$status->update_status($_POST['id'], $_POST['status'], "concept");
+		$status->update_status($_POST['id'], $_POST['status'], "concept", $jid);
 	} else {
 		$mail = new Send_Email();
 		if ($_POST['type'] == 'concept') {
@@ -142,7 +142,7 @@ if (isset($_POST['concept_changes'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['concept_changes']);
 
 	$return = $text->save_concept_changes($_POST['id'], $content);
-	$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept');
+	$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
 	$email = $api->get_user_email($_POST['id']);
 
 	if ($email) {

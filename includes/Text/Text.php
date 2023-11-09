@@ -31,24 +31,24 @@ class Text
 		return $backstory;
 	}
 
-	public function save_backstory($id, $content)
+	public function save_backstory($id, $content, $user)
 	{
-		return $this->put->update_backstory($id, $content);
+		return $this->put->update_backstory($id, $content, $user);
 	}
 
-	public function save_concept($id, $content)
+	public function save_concept($id, $content, $user)
 	{
-		return $this->put->update_concept($id, $content);
+		return $this->put->update_concept($id, $content, $user);
 	}
 
-	public function save_backstory_changes($id, $content)
+	public function save_backstory_changes($id, $content, $user)
 	{
-		return $this->put->update_backstory_changes($id, $content);
+		return $this->put->update_backstory_changes($id, $content, $user);
 	}
 
-	public function save_concept_changes($id, $content)
+	public function save_concept_changes($id, $content, $user)
 	{
-		return $this->put->update_concept_changes($id, $content);
+		return $this->put->update_concept_changes($id, $content, $user);
 	}
 
 	public function get_concept($id)

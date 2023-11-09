@@ -23,17 +23,17 @@ $api = new Get();
 
 if (isset($_POST['concept-content'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['concept-content']);
-	$text->save_concept($id, $content);
+	$text->save_concept($id, $content, $jid);
 }
 
 if (isset($_POST['backstory-content'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['backstory-content']);
-	$text->save_backstory($id, $content);
+	$text->save_backstory($id, $content, $jid);
 
 }
 
 if (isset($_POST['status']) && isset($_POST['type'])) {
-	$saved = $status->update_status($id, $_POST['status'], $_POST['type']);
+	$saved = $status->update_status($id, $_POST['status'], $_POST['type'], $jid);
 	$email = $api->get_user_email($id);
 	$char_name = $character->get_character_name($id);
 	$char_faction = $character->get_character_faction($id);

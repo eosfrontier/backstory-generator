@@ -59,11 +59,12 @@ class Put
 		return $response;
 	}
 
-	public function update_backstory($id, $content)
+	public function update_backstory($id, $content, $user)
 	{
 
 		$headers = [
 			'type: backstory',
+			"user: $user",
 			"token: $this->token",
 			"char_id: $id",
 		];
@@ -75,10 +76,11 @@ class Put
 		return $response;
 	}
 
-	public function update_concept($id, $content)
+	public function update_concept($id, $content, $user)
 	{
 		$headers = [
 			'type: concept',
+			"user: $user",
 			"token: $this->token",
 			"char_id: $id",
 		];
@@ -90,11 +92,12 @@ class Put
 		return $response;
 	}
 
-	public function update_concept_changes($id, $content)
+	public function update_concept_changes($id, $content, $user)
 	{
 
 		$headers = [
 			'type: concept_changes',
+			"user: $user",
 			"token: $this->token",
 			"char_id: $id",
 		];
@@ -106,11 +109,12 @@ class Put
 		return $response;
 	}
 
-	public function update_backstory_changes($id, $content)
+	public function update_backstory_changes($id, $content, $user)
 	{
 
 		$headers = [
 			'type: backstory_changes',
+			"user: $user",
 			"token: $this->token",
 			"char_id: $id",
 		];
@@ -122,12 +126,13 @@ class Put
 		return $response;
 	}
 
-	public function update_status($id, $status, $type)
+	public function update_status($id, $status, $type, $user)
 	{
 
 		$headers = [
 			"char_id: $id",
 			"type: $type",
+			"user: $user",
 			"status: $status",
 			"token: $this->token",
 		];
