@@ -188,7 +188,7 @@ if (isset($_POST['concept_changes'])) {
 <body>
 		<header>
 		<div class="header">
-			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" /><br>
+			<img class="logo" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" /><br>
 				<div class="slider-section">
 					<form method="get">
 						<label class="switch" onchange="this.form.submit()">

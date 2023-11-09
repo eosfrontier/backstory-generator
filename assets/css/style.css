@@ -118,6 +118,7 @@ header h1 {
 	font-weight: 400;
 	text-transform: uppercase;
 	margin-top: -5px;
+	margin-left: 5px;
 }
 
 .header {
@@ -127,10 +128,10 @@ header h1 {
 	width: 100%;
 }
 
-.header img.responsive {
+
+.header img.logo {
 	flex: 1;
-	max-width: 15%;
-	height: 15%;
+	max-width: 20%;
 }
 
 .header h4 {
