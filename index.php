@@ -83,8 +83,8 @@ $concept = $text->get_concept($id);
 
 <body>
 	<header>
-		<div class="logo cell">
-			<img class="responsive" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
+		<div class="header">
+			<img class="logo" src="assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
 			<a href="/eoschargen/index.php?viewChar=<?php echo $id; ?>"> <button type="button" class="button"
 					name="button"><strong>Return to Chargen</strong></button></a>
 			<?php

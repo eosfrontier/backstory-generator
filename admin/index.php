@@ -12,8 +12,8 @@ if (isset($_REQUEST['faction'])) {
 	$faction = "";
 }
 
-if (isset($_REQUEST['tab'])) {
-	$tab = $_REQUEST['tab'];
+if (isset($_GET['tab'])) {
+	$tab = $_GET['tab'];
 } else if (isset($_POST['tab'])) {
 	$tab = $_POST['tab'];
 } else {
@@ -174,7 +174,6 @@ if (isset($_POST['concept_changes'])) {
 <html>
 
 <head>
-
 	<title>Admin - Concept/Backstory editor </title>
 	<link rel="stylesheet" href="../assets/css/style.css" />
 	<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
@@ -183,6 +182,7 @@ if (isset($_POST['concept_changes'])) {
 			window.history.replaceState(null, null, window.location.href);
 		}
 	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 </head>
 
 <body>
@@ -239,12 +239,8 @@ if (isset($_POST['concept_changes'])) {
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ($tab === 'concept')
-					echo 'class="active"' ?>
-						onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?> . '&current_event=' . $current_event';">Concept</button>
-				<button data-tab="backstory" <?php if ($tab === 'backstory')
-					echo 'class="active"' ?>
-						onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Backstory</button>
+				<button data-tab="concept" <?php if ($tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?> . '&current_event=' . $current_event';">Concept</button>
+				<button data-tab="backstory" <?php if ($tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Backstory</button>
 				<button data-tab="completed" <?php if ($tab === 'completed')
 					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Completed</button>
 				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing')
@@ -252,18 +248,15 @@ if (isset($_POST['concept_changes'])) {
 					Existing Backstory</button>
 			</div>
 			<div class="tabs">
-				<div data-tab="concept" class="tab<?php if ($tab === 'concept')
-					echo ' active' ?>">
+				<div data-tab="concept" class="tab<?php if ($tab === 'concept') echo ' active' ?>">
 						<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab<?php if ($tab === 'backstory')
-					echo ' active' ?>">
+				<div data-tab="backstory" class="tab<?php if ($tab === 'backstory') echo ' active' ?>">
 						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab<?php if ($tab === 'completed')
-					echo ' active' ?>">
+				<div data-tab="completed" class="tab<?php if ($tab === 'completed') echo ' active' ?>">
 						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>
