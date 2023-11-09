@@ -117,7 +117,7 @@ header {
 header h1 {
 	font-weight: 400;
 	text-transform: uppercase;
-	margin-top: -10px;
+	margin-top: -5px;
 }
 
 .header {
@@ -258,6 +258,9 @@ option.italic{
 
 /* Styling for slider switch on admin portal */
 /* The switch - the box around the slider */
+.slider-section {
+	text-align: right;
+}
 .switch {
 	position: relative;
 	display: inline-block;
