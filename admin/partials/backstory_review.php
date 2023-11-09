@@ -14,8 +14,10 @@ $text = new Text();
 			echo $awaiting->content;
 		} ?>
 		<div>
+		<?php if ($IS_SL) { ?>
 			<button class="concept_change-request-button button button--secondary"
 				id="concept-changes-button-<?php echo $awaiting->characterID; ?>">Request changes</button>
+		<?php } ?>
 			<div class="concept-changes-form" id="concept-changes-<?php echo $awaiting->characterID; ?>">
 				<form method="post">
 					<textarea name="backstory_changes" id="concept_changes-form-<?php echo $awaiting->characterID; ?>">
