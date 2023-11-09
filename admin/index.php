@@ -54,15 +54,17 @@ $text = new Text();
 $status = new Status();
 $api = new Get();
 
-if ($current_event == "Yes" ) {
+if ($current_event == "Yes") {
 	$current_event_characters = $api->get_characters_upcoming_event();
 }
 
-function hasId($arr, $id) {
-    foreach ($arr as $value) {
-        if ($value['characterID'] == $id) return true;
-    }
-    return false;
+function hasId($arr, $id)
+{
+	foreach ($arr as $value) {
+		if ($value['characterID'] == $id)
+			return true;
+	}
+	return false;
 }
 
 if (isset($_POST['backstory_changes'])) {
@@ -184,39 +186,40 @@ if (isset($_POST['concept_changes'])) {
 </head>
 
 <body>
-	<header>
-		<div class="logo cell">
-			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" />
-			<h1>
-				Admin - Concept/Backstory editor
-				<?php
-				if ($faction != "")
-					echo ' - ' . $faction . ' only';
-				?>
-			</h1>
-			<div align="right">
-				<form method="get">
-					<label class="switch" onchange="this.form.submit()">
-						<input type="checkbox" name="current_event" value="Yes" <?php if ( $current_event == "Yes") echo 'checked'; ?>>
-						<span class="slider round"></span>
-					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-					<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
-					</label>
-					<h4>
-						<?php
-						if (isset($_GET['current_event']) && $_GET['current_event'] == "Yes") {
-							echo 'This Event Only';
-						} else {
-							echo 'All active characters';
-						}
-						?>
-					</h4>
-				</form>
+		<header>
+		<div class="header">
+			<img class="responsive" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" /><br>
+				<div class="slider-section">
+					<form method="get">
+						<label class="switch" onchange="this.form.submit()">
+							<input type="checkbox" name="current_event" value="Yes" <?php if ($current_event == "Yes")
+								echo 'checked'; ?>>
+							<span class="slider round"></span>
+							<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+							<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
+						</label>
+						<h4>
+							<?php
+							if (isset($_GET['current_event']) && $_GET['current_event'] == "Yes") {
+								echo 'This Event Only';
+							} else {
+								echo 'All active characters';
+							}
+							?>
+						</h4>
+					</form>
+				</div>
 			</div>
-		</div>
-		<p> Welcome,
-			<?php echo $jname; ?>!
-		</p>
+			<h1>
+					Admin - Concept/Backstory editor
+					<?php
+					if ($faction != "")
+						echo ' - ' . $faction . ' only';
+					?>
+				</h1>
+			<p> Welcome,
+				<?php echo $jname; ?>!
+			</p>
 		<form method="get">
 			<select name="faction" onchange="this.form.submit()">
 				<option value="">Filter by faction</option>

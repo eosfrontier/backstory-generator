@@ -10,12 +10,6 @@
 	--button-green-hover: #00A310;
 }
 
-.responsive {
-  width: 176.44px;
-  display: block;
-  height: 59px;
-}
-
 @font-face {
 	font-family: roboto;
 	src: url('../fonts/Roboto-Regular.ttf');
@@ -123,11 +117,40 @@ header {
 header h1 {
 	font-weight: 400;
 	text-transform: uppercase;
-	margin: 0;
 }
+
+.header {
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.header img.responsive {
+	flex: 1;
+	max-width: 15%;
+	height: 15%;
+}
+
+@media (min-width: 768px) {
+	.header {
+	  flex-direction: row;
+	}
+  }
 
 header a {
 	color: var(--text-color);
+}
+
+.logo-cell {
+	flex-direction: row;
+	flex: 1;
+	display: flex;
+}
+
+.logo-cell h1{
+	display: block;
+	flex: 1;
 }
 
 #backstory-editor,
@@ -240,6 +263,9 @@ option.italic{
   }
   
   /* The slider */
+  .header > .slider-section {
+	flex: 0;
+  }
   .slider {
 	position: absolute;
 	cursor: pointer;
