@@ -104,6 +104,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 	$email = $api->get_user_email($_POST['id']);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
 	if (isset($_POST['method']) && $_POST['method'] == 'sl_backend') {
+		$status->update_status($_POST['id'], $_POST['status'], "concept");
 	} else {
 		$mail = new Send_Email();
 		if ($_POST['type'] == 'concept') {

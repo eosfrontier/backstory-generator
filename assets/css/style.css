@@ -94,7 +94,7 @@ hr {
     margin-bottom: 0.5rem;
     border: 0;
     color: var(--text-color);
-    font-size: 1.75rem;
+    /* font-size: 1.75rem; */
     font-family: 'roboto-regular', sans-serif, arial;
     background-color: #386ae8;
     /* Chargen button blue */
