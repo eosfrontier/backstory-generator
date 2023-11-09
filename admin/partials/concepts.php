@@ -13,7 +13,11 @@ $awaiting_review = [];
 $being_edited = [];
 $concept_changes = [];
 
+
 foreach ($concepts as $concept) {
+	if ( $current_event == "Yes" && !hasId($current_event_characters, $concept->characterID) ) {
+		continue;
+	}
 	if (isset($_GET['faction']) && $_GET['faction'] != "" && $concept->faction != $_GET['faction']) {
 		continue;
 	} else {

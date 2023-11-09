@@ -54,6 +54,10 @@ $text = new Text();
 $status = new Status();
 $api = new Get();
 
+if ($current_event == "Yes" ) {
+	$current_event_characters = $api->get_characters_upcoming_event();
+}
+
 function hasId($arr, $id) {
     foreach ($arr as $value) {
         if ($value['characterID'] == $id) return true;
@@ -234,14 +238,14 @@ if (isset($_POST['concept_changes'])) {
 			<div class="tab-list">
 				<button data-tab="concept" <?php if ($tab === 'concept')
 					echo 'class="active"' ?>
-						onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?>';">Concept</button>
+						onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?> . '&current_event=' . $current_event';">Concept</button>
 				<button data-tab="backstory" <?php if ($tab === 'backstory')
 					echo 'class="active"' ?>
-						onclick="window.location.href='?tab=backstory&faction=<?php echo $faction; ?>';">Backstory</button>
+						onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Backstory</button>
 				<button data-tab="completed" <?php if ($tab === 'completed')
-					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction; ?>';">Completed</button>
+					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Completed</button>
 				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing')
-					echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction; ?>';">Submit
+					echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Submit
 					Existing Backstory</button>
 			</div>
 			<div class="tabs">

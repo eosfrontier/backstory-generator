@@ -1,9 +1,4 @@
-<?php $characters = $api->get_all_active_characters_no_backstory();
-
-if ($current_event == "Yes" ) {
-	$current_event_characters = $api->get_characters_upcoming_event();
-}
- ?>
+<?php $characters = $api->get_all_active_characters_no_backstory(); ?>
 
 <form method="POST">
 	<select name="character" onchange="this.form.submit()">
@@ -49,6 +44,7 @@ if (isset($_POST['character'])) {
 				<input type="hidden" name="type" value="backstory" />
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="method" value="sl_backend" />
+				<input type="hidden" name="current_event" value="<?php echo $current_event; ?>" />
 				<input type="hidden" name="id" value="<?php echo $_POST['character']; ?>" />
 				<button class="submit-backstory button button--primary">Submit Backstory</button>
 			</form>

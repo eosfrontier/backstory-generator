@@ -14,6 +14,9 @@ $being_edited = [];
 $backstory_changes = [];
 
 foreach ($backstorys as $backstory) {
+	if ( $current_event == "Yes" && !hasId($current_event_characters, $backstory->characterID) ) {
+		continue;
+	}
 	if (isset($_GET['faction']) && $_GET['faction'] != "" && $backstory->faction != $_GET['faction']) {
 		continue;
 	} else {
