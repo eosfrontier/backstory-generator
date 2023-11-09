@@ -117,6 +117,7 @@ header {
 header h1 {
 	font-weight: 400;
 	text-transform: uppercase;
+	margin-top: -10px;
 }
 
 .header {
@@ -130,6 +131,15 @@ header h1 {
 	flex: 1;
 	max-width: 15%;
 	height: 15%;
+}
+
+.header h4 {
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-right: 5px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
 @media (min-width: 768px) {
@@ -263,9 +273,6 @@ option.italic{
   }
   
   /* The slider */
-  .header > .slider-section {
-	flex: 0;
-  }
   .slider {
 	position: absolute;
 	cursor: pointer;
