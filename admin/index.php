@@ -141,7 +141,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 if (isset($_POST['concept_changes'])) {
 	$content['content'] = str_replace("'", "&#39;", $_POST['concept_changes']);
 
-	$return = $text->save_concept_changes($_POST['id'], $content);
+	$return = $text->save_concept_changes($_POST['id'], $content, $jid);
 	$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
 	$email = $api->get_user_email($_POST['id']);
 
