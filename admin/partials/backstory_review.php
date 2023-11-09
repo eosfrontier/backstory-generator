@@ -38,7 +38,9 @@ $text = new Text();
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="tab" value="<?php echo $_REQUEST['tab']; ?>" />
 				<input type="hidden" name="faction" value="<?php echo $_REQUEST['faction']; ?>" />
+				<?php if ($IS_SL) { ?>
 				<button class="submit-backstory button button--primary">Approve</button>
+				<?php } ?>
 			</form>
 		</div>
 	</div>
