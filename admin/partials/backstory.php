@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['type']) && $_POST['type'] === 'backstory') {
-	$status->update_status($_POST['id'], $_POST['status'], $_POST['type']);
+	$status->update_status($_POST['id'], $_POST['status'], $_POST['type'], $jid);
 	if ($_POST['status'] === 'approved') {
 		$status->update_status($_POST['id'], 'approved', 'backstory', $jid);
 	}

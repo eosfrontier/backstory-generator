@@ -241,7 +241,7 @@ if (isset($_POST['concept_changes'])) {
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ($tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction; ?> . '&current_event=' . $current_event';">Concept</button>
+				<button data-tab="concept" <?php if ($tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Concept</button>
 				<button data-tab="backstory" <?php if ($tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Backstory</button>
 				<button data-tab="completed" <?php if ($tab === 'completed')
 					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Completed</button>
