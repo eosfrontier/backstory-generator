@@ -91,6 +91,7 @@ if (isset($_POST['backstory_changes'])) {
 	}
 
 	unset($_POST['backstory_changes']);
+	unset($_POST['content']);
 	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
 }
 
