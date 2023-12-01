@@ -20,7 +20,7 @@ foreach ($backstorys as $backstory) {
 	if (isset($_GET['faction']) && $_GET['faction'] != "" && $backstory->faction != $_GET['faction']) {
 		continue;
 	} else {
-		if ($backstory->backstory_status === 'requested') {
+		if ($backstory->backstory_status === 'requested' || $backstory->backstory_status === 'being_edited') {
 			$concept = $text->get_concept($backstory->characterID);
 			if ($concept->status_name == 'approved') {
 			$requested[] = $concept;
