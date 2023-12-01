@@ -20,6 +20,13 @@ foreach ($backstorys as $backstory) {
 	if (isset($_GET['faction']) && $_GET['faction'] != "" && $backstory->faction != $_GET['faction']) {
 		continue;
 	} else {
+		if ($backstory->backstory_status === 'requested') {
+			$concept = $text->get_concept($backstory->characterID);
+			if ($concept->status_name == 'approved') {
+			$requested[] = $concept;
+			}
+		}
+
 		if ($backstory->backstory_status === 'being_edited') {
 			$being_edited[] = $backstory;
 		}
@@ -35,6 +42,21 @@ foreach ($backstorys as $backstory) {
 }
 
 ?>
+<h3>Requested</h3>
+<h5>These characters have an approved concept. They have been requested to provide a backstory submission.</br>
+Here you can review their approved CONCEPT.</h5>
+<?php
+if (!empty($requested)) {
+	$key_values = array_column($requested, 'name');
+	array_multisort($key_values, SORT_ASC, $requested);
+
+	foreach ($requested as $request) {
+		include './partials/backstory_requested.php';
+	}
+}
+?>
+<hr />
+
 <h3>Awaiting review</h3>
 <?php
 if (!empty($awaiting_review)) {
