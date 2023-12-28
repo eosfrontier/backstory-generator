@@ -61,8 +61,9 @@ if ($current_event == "Yes") {
 function hasId($arr, $id)
 {
 	foreach ($arr as $value) {
-		if ($value['characterID'] == $id)
+		if ($value['characterID'] == $id) {
 			return true;
+		}
 	}
 	return false;
 }
@@ -184,44 +185,45 @@ if (isset($_POST['concept_changes'])) {
 			window.history.replaceState(null, null, window.location.href);
 		}
 	</script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-		<header>
+	<header>
 		<div class="header">
 			<img class="logo" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo" /><br>
-				<div class="slider-section">
-					<form method="get">
-						<label class="switch" onchange="this.form.submit()">
-							<input type="checkbox" name="current_event" value="Yes" <?php if ($current_event == "Yes")
-								echo 'checked'; ?>>
-							<span class="slider round"></span>
-							<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-							<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
-						</label>
-						<h4>
-							<?php
-							if (isset($_GET['current_event']) && $_GET['current_event'] == "Yes") {
-								echo 'This Event Only';
-							} else {
-								echo 'All active characters';
-							}
-							?>
-						</h4>
-					</form>
-				</div>
+			<div class="slider-section">
+				<form method="get">
+					<label class="switch" onchange="this.form.submit()">
+						<input type="checkbox" name="current_event" value="Yes" <?php if ($current_event == "Yes")
+							echo 'checked'; ?>>
+						<span class="slider round"></span>
+						<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+						<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
+					</label>
+					<h4>
+						<?php
+						if (isset($_GET['current_event']) && $_GET['current_event'] == "Yes") {
+							echo 'This Event Only';
+						} else {
+							echo 'All active characters';
+						}
+						?>
+					</h4>
+				</form>
 			</div>
-			<h1>
-					Admin - Concept/Backstory editor
-					<?php
-					if ($faction != "")
-						echo ' - ' . $faction . ' only';
-					?>
-				</h1>
-			<p> Welcome,
-				<?php echo $jname; ?>!
-			</p>
+		</div>
+		<h1>
+			Admin - Concept/Backstory editor
+			<?php
+			if ($faction != "") {
+				echo ' - ' . $faction . ' only';
+			}
+			?>
+		</h1>
+		<p> Welcome,
+			<?php echo $jname; ?>!
+		</p>
 		<form method="get">
 			<select name="faction" onchange="this.form.submit()">
 				<option value="">Filter by faction</option>
@@ -241,24 +243,22 @@ if (isset($_POST['concept_changes'])) {
 	<main>
 		<div class="tabs-overview">
 			<div class="tab-list">
-				<button data-tab="concept" <?php if ($tab === 'concept') echo 'class="active"' ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Concept</button>
-				<button data-tab="backstory" <?php if ($tab === 'backstory') echo 'class="active"' ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Backstory</button>
-				<button data-tab="completed" <?php if ($tab === 'completed')
-					echo 'class="active"' ?>onclick="window.location.href='?tab=completed&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Completed</button>
-				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing')
-					echo 'class="active"' ?>onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Submit
-					Existing Backstory</button>
+				<button data-tab="concept" <?php if ($tab === 'concept') { echo 'class="active"'; } ?> onclick="window.location.href='?tab=concept&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Concept</button>
+				<button data-tab="backstory" <?php if ($tab === 'backstory') { echo 'class="active"'; } ?> onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Backstory</button>
+				<button data-tab="completed" <?php if ($tab === 'completed') { echo 'class="active"' ; } ?> onclick="window.location.href='?tab=completed&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Completed</button>
+				<button data-tab="submit_existing" <?php if ($tab === 'submit_existing') { echo 'class="active"'; } ?> onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">Submit Existing Backstory</button>
 			</div>
 			<div class="tabs">
-				<div data-tab="concept" class="tab<?php if ($tab === 'concept') echo ' active' ?>">
+				<div data-tab="concept" class="tab<?php if ($tab === 'concept') { echo ' active'; } ?>">
 						<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
-				<div data-tab="backstory" class="tab<?php if ($tab === 'backstory') echo ' active' ?>">
+				<div data-tab="backstory" class="tab<?php if ($tab === 'backstory') { echo ' active'; } ?>">
 						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab<?php if ($tab === 'completed') echo ' active' ?>">
+				<div data-tab="completed" class="tab<?php if ($tab === 'completed') 
+					echo ' active' ?>">
 						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>
