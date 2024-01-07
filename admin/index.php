@@ -201,7 +201,7 @@ if (isset($_POST['concept_changes'])) {
 						<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
 						<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
 					</label>
-					<h4>
+					<div class="filter-display">
 						<?php
 						if (isset($_GET['current_event']) && $_GET['current_event'] == "Yes") {
 							echo 'This Event Only';
@@ -209,7 +209,7 @@ if (isset($_POST['concept_changes'])) {
 							echo 'All active characters';
 						}
 						?>
-					</h4>
+					</div>
 				</form>
 			</div>
 		</div>

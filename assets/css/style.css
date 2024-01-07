@@ -272,6 +272,17 @@ main {
     display: none;
 }
 
+.filter-display {
+    margin: 0 0 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 h5 {
     border-top: solid 1px #ccc;
     border-bottom: solid 1px #ccc;
