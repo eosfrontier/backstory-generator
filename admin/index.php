@@ -257,13 +257,11 @@ if (isset($_POST['concept_changes'])) {
 						<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>
-				<div data-tab="completed" class="tab<?php if ($tab === 'completed') 
-					echo ' active' ?>">
+				<div data-tab="completed" class="tab<?php if ($tab === 'completed') { echo ' active'; } ?>">
 						<h2>Completed</h2>
 					<?php require './partials/completed.php'; ?>
 				</div>
-				<div data-tab="submit_existing" class="tab<?php if ($tab === 'submit_existing')
-					echo ' active' ?>">
+				<div data-tab="submit_existing" class="tab<?php if ($tab === 'submit_existing') { echo ' active'; } ?>">
 						<h2>Submit Existing Backstory</h2>
 					<?php require './partials/submit_existing.php'; ?>
 				</div>
