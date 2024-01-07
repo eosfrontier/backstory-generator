@@ -1,70 +1,70 @@
 :root {
-    --background: #262e3e;
-    --text-color: #ccd1dd;
-    --dark-gray: #323846;
-    --light-gray: rgb(44, 52, 69);
-    --gray: #424959;
-    --button-gray: #3b414e;
-    --button-gray-hover: #424959;
-    --button-green: #008A0E;
-    --button-green-hover: #00A310;
+	--background: #262e3e;
+	--text-color: #ccd1dd;
+	--dark-gray: #323846;
+	--light-gray: rgb(44, 52, 69);
+	--gray: #424959;
+	--button-gray: #3b414e;
+	--button-gray-hover: #424959;
+	--button-green: #008A0E;
+	--button-green-hover: #00A310;
 }
 
 @font-face {
-    font-family: roboto;
-    src: url('../fonts/Roboto-Regular.ttf');
-    font-weight: normal;
+	font-family: roboto;
+	src: url('../fonts/Roboto-Regular.ttf');
+	font-weight: normal;
 }
 
 @font-face {
-    font-family: roboto;
-    src: url('../fonts/Roboto-Bold.ttf');
-    font-weight: bold;
+	font-family: roboto;
+	src: url('../fonts/Roboto-Bold.ttf');
+	font-weight: bold;
 }
 
 @font-face {
-    font-family: roboto;
-    src: url('../fonts/Roboto-Medium.ttf');
-    font-weight: 600;
+	font-family: roboto;
+	src: url('../fonts/Roboto-Medium.ttf');
+	font-weight: 600;
 }
 
 @font-face {
-    font-family: roboto;
-    src: url('../fonts/Roboto-Light.ttf');
-    font-weight: 400;
+	font-family: roboto;
+	src: url('../fonts/Roboto-Light.ttf');
+	font-weight: 400;
 }
 
 body {
-    margin: auto;
-    padding: 10px;
-    background: var(--background);
-    color: var(--text-color);
-    padding: 24px 48px 0;
-    font-family: 'roboto', sans-serif, arial;
-    font-size: 1rem;
+	margin: auto;
+	padding: 10px;
+	background: var(--background);
+	color: var(--text-color);
+	padding: 24px 48px 0;
+	font-family: 'roboto', sans-serif, arial;
+	font-size: 1rem;
 }
 
 @media (min-width: 769px) {
-    body {
-        max-width: 70%;
-    }
+	body {
+		max-width: 70%;
+	}
 }
 
 @media (max-width: 768px) {
 
-    body,
-    main,
-    header,
-    section {
-        width: 100%;
-    }
+	body,
+	main,
+	header,
+	section {
+		width: 100%;
+	}
 
-    main,
-    header,
-    section {
-        display: block;
-        position: relative;
-    }
+	main,
+	header,
+	section {
+		display: block;
+		position: relative;
+	}
 }
 
 h1,
@@ -72,290 +72,290 @@ h2,
 h3,
 h4,
 h5 {
-    font-weight: 400;
-    text-transform: uppercase;
+	font-weight: 400;
+	text-transform: uppercase;
 }
 
 h3 span {
-    font-weight: 600;
+	font-weight: 600;
 }
 
 hr {
-    border: 0;
-    border-top: 1px solid #838795;
-    margin: 1.5rem 1px;
+	border: 0;
+	border-top: 1px solid #838795;
+	margin: 1.5rem 1px;
 }
 
 .button {
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 0.75rem 1.75rem;
-    transition: 0.4s;
-    margin-bottom: 0.5rem;
-    border: 0;
-    color: var(--text-color);
-    /* font-size: 1.75rem; */
-    font-family: 'roboto-regular', sans-serif, arial;
-    background-color: #386ae8;
-    /* Chargen button blue */
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 0.75rem 1.75rem;
+	transition: 0.4s;
+	margin-bottom: 0.5rem;
+	border: 0;
+	color: var(--text-color);
+	/* font-size: 1.75rem; */
+	font-family: 'roboto-regular', sans-serif, arial;
+	background-color: #386ae8;
+	/* Chargen button blue */
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 4px 2px;
+	cursor: pointer;
 }
 
 .button--primary {
-    background: var(--button-green);
+	background: var(--button-green);
 }
 
 .button--primary:hover {
-    background: var(--button-green-hover);
+	background: var(--button-green-hover);
 }
 
 .button--secondary {
-    background: var(--button-gray);
-    border: solid 1px var(--text-color);
+	background: var(--button-gray);
+	border: solid 1px var(--text-color);
 }
 
 .button--secondary:hover {
-    background: var(--button-gray-hover);
+	background: var(--button-gray-hover);
 }
 
 .tox-promotion {
-    display: none;
+	display: none;
 }
 
 .tox-tinymce {
-    margin-bottom: 24px;
+	margin-bottom: 24px;
 }
 
 header {
-    padding: 1px;
-    background: var(--dark-gray);
+	padding: 1px;
+	background: var(--dark-gray);
 }
 
 header h1 {
-    font-weight: 400;
-    text-transform: uppercase;
-    margin-top: -5px;
-    margin-left: 5px;
-    font-size: x-large;
+	font-weight: 400;
+	text-transform: uppercase;
+	margin-top: -5px;
+	margin-left: 5px;
+	font-size: x-large;
 }
 
 .header {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    width: 100%;
-    padding-top: 5px;
-    padding-right: 10px;
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	width: 100%;
+	padding-top: 5px;
+	padding-right: 10px;
 }
 
 
 .header img.logo {
-    flex: 1;
-    max-width: 176.44px;
+	flex: 1;
+	max-width: 176.44px;
 }
 
 .header h4 {
-    margin-bottom: 0;
-    margin-top: 0;
-    padding-right: 5px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding-right: 5px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
 }
 
 @media (min-width: 768px) {
-    .header {
-        flex-direction: row;
-    }
+	.header {
+		flex-direction: row;
+	}
 }
 
 header a {
-    color: var(--text-color);
+	color: var(--text-color);
 }
 
 .logo-cell {
-    flex-direction: row;
-    flex: 1;
-    display: flex;
+	flex-direction: row;
+	flex: 1;
+	display: flex;
 }
 
 .logo-cell h1 {
-    display: block;
-    flex: 1;
+	display: block;
+	flex: 1;
 }
 
 #backstory-editor,
 #concept-editor {
-    display: none;
+	display: none;
 }
 
 main {
-    /* padding: 16px; */
-    background: var(--light-gray);
+	/* padding: 16px; */
+	background: var(--light-gray);
 }
 
 .tab {
-    display: none;
+	display: none;
 }
 
 .tab.active {
-    display: block;
-    padding: 16px;
-    background: var(--gray);
+	display: block;
+	padding: 16px;
+	background: var(--gray);
 }
 
 .tab-list button {
-    border: 0px;
-    background: var(--button-gray);
-    cursor: pointer;
-    color: var(--text-color);
-    font-size: 14px;
-    padding: 8px 12px;
-    border-radius: 5px 5px 0 0;
+	border: 0px;
+	background: var(--button-gray);
+	cursor: pointer;
+	color: var(--text-color);
+	font-size: 14px;
+	padding: 8px 12px;
+	border-radius: 5px 5px 0 0;
 }
 
 .tab-list button.active {
-    background: var(--gray);
+	background: var(--gray);
 }
 
 .tab-list button:hover {
-    border: 0px;
-    background: var(--button-gray-hover);
+	border: 0px;
+	background: var(--button-gray-hover);
 }
 
 .admin_concept_edit {
-    display: none;
+	display: none;
 }
 
 .show {
-    display: block;
+	display: block;
 }
 
 .mouse_hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .content-block {
-    padding: 1px 16px 1px;
-    background: #3e424b;
-    margin-bottom: 16px;
+	padding: 1px 16px 1px;
+	background: #3e424b;
+	margin-bottom: 16px;
 }
 
 
 .overview-block {
-    padding: 16px 16px 1px;
-    background: var(--dark-gray);
-    margin-bottom: 16px;
+	padding: 16px 16px 1px;
+	background: var(--dark-gray);
+	margin-bottom: 16px;
 }
 
 .overview-block h4 {
-    margin: 0 0 16px;
+	margin: 0 0 16px;
 }
 
 .overview-block h4::after {
-    content: "▼";
-    font-size: 14px;
-    margin-left: 12px;
+	content: "▼";
+	font-size: 14px;
+	margin-left: 12px;
 }
 
 .overview-block h4.active::after {
-    content: "▲";
+	content: "▲";
 }
 
 .concept-changes-form {
-    display: none;
+	display: none;
 }
 
 .filter-display {
-    margin: 0 0 16px;
-    font-weight: 400;
-    text-transform: uppercase;
-    display: block;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+	margin: 0 0 16px;
+	font-weight: 400;
+	text-transform: uppercase;
+	display: block;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
 }
 
 h5 {
-    border-top: solid 1px #ccc;
-    border-bottom: solid 1px #ccc;
-    padding: 6px 0;
-    font-weight: 600;
+	border-top: solid 1px #ccc;
+	border-bottom: solid 1px #ccc;
+	padding: 6px 0;
+	font-weight: 600;
 }
 
 option.italic {
-    font-style: italic;
+	font-style: italic;
 }
 
 /* Styling for slider switch on admin portal */
 /* The switch - the box around the slider */
 .slider-section {
-    text-align: right;
+	text-align: right;
 }
 
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
 }
 
 /* Hide default HTML checkbox */
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
 }
 
 /* The slider */
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+	background-color: #2196F3;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+	box-shadow: 0 0 1px #2196F3;
 }
 
 input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
 }
 
 /* Rounded sliders */
 .slider.round {
-    border-radius: 34px;
+	border-radius: 34px;
 }
 
 .slider.round:before {
-    border-radius: 50%;
+	border-radius: 50%;
 }

@@ -4,19 +4,20 @@
 	<select name="character" onchange="this.form.submit()">
 		<option value="">Choose a character</option>
 		<?php
-		
-		foreach ($characters as $char) {
-			if ( $current_event == "Yes" && !hasId($current_event_characters, $char['characterID']) ) {
+
+		foreach ( $characters as $char ) {
+			if ( $current_event == 'Yes' && ! hasId( $current_event_characters, $char['characterID'] ) ) {
 				continue;
 			}
-				if (isset($_GET['faction']) && $_GET['faction'] != '' && $char['faction'] != $_GET['faction']) {
-				continue; #skips the character if the faction filter is chosen and the character is not a member of that faction
+			if ( isset( $_GET['faction'] ) && $_GET['faction'] != '' && $char['faction'] != $_GET['faction'] ) {
+				continue; // skips the character if the faction filter is chosen and the character is not a member of that faction
 			}
-			if (isset($_POST['character'])) {
+			if ( isset( $_POST['character'] ) ) {
 				$selected = $_POST['character'] == $char['characterID'] ? 'selected' : '';
 				echo '<option value="' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
-			} else
+			} else {
 				echo '<option value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
+			}
 		}
 		?>
 		<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
@@ -25,18 +26,18 @@
 </form>
 
 <?php
-if (isset($_POST['character'])) {
-	$backstory = $text->get_backstory($_POST['character']);
+if ( isset( $_POST['character'] ) ) {
+	$backstory = $text->get_backstory( $_POST['character'] );
 	?>
 	<div class="backstory">
 		<h2>Backstory -
-			<?php echo $character->get_character_name($_POST['character']); ?>
+			<?php echo $character->get_character_name( $_POST['character'] ); ?>
 		</h2>
 		<div id="backstory-editor" style="display: block;">
 			<form method="post">
 				<textarea name="backstory-content" id="existing-backstory-textarea">
 					<?php
-					if (isset($backstory->content)) {
+					if ( isset( $backstory->content ) ) {
 						echo $backstory->content;
 					}
 					?>
