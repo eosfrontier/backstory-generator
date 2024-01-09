@@ -10,12 +10,16 @@ $text = new Text();
 		<?php echo $awaiting->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
-		<?php if ($IS_SL) {
+		<?php
+		if ( $IS_SL ) {
 			echo $awaiting->content;
-		} ?>
+		}
+		?>
 		<div>
+		<?php if ( $IS_SL ) { ?>
 			<button class="concept_change-request-button button button--secondary"
 				id="concept-changes-button-<?php echo $awaiting->characterID; ?>">Request changes</button>
+		<?php } ?>
 			<div class="concept-changes-form" id="concept-changes-<?php echo $awaiting->characterID; ?>">
 				<form method="post">
 					<textarea name="backstory_changes" id="concept_changes-form-<?php echo $awaiting->characterID; ?>">
@@ -36,7 +40,9 @@ $text = new Text();
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="tab" value="<?php echo $_REQUEST['tab']; ?>" />
 				<input type="hidden" name="faction" value="<?php echo $_REQUEST['faction']; ?>" />
+				<?php if ( $IS_SL ) { ?>
 				<button class="submit-backstory button button--primary">Approve</button>
+				<?php } ?>
 			</form>
 		</div>
 	</div>

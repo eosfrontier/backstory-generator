@@ -1,18 +1,17 @@
 <hr />
-<h2>Backstory -  <?php echo $character->get_character_name($id); ?></h2>
-<h3><span>Status</span>
+<h2>Backstory -  <?php echo $character->get_character_name( $id ); ?></h2>
+<h3><span>Status:</span>
 	<?php echo $backstory->status_description; ?>
 </h3>
 <div class="text">
 	<div class="text-container">
-		<div class="content-block">
-			<?php
-
-			echo $backstory->content; ?>
+	<h4>Backstory:</h4>
+	<div class="content-block">
+			<?php echo $backstory->content; ?>
 		</div>
 	</div>
 	<?php
-	if ($backstory->backstory_changes && $backstory->status_name !== 'approved') {
+	if ( $backstory->backstory_changes && $backstory->status_name !== 'approved' ) {
 		?>
 		<h4>Requested changes</h4>
 		<?php
@@ -26,21 +25,22 @@
 		'changes_requested',
 	];
 
-	if (in_array($backstory->status_name, $edit_status, true)) {
+	if ( in_array( $backstory->status_name, $edit_status, true ) ) {
 		?>
 		<button class="edit-backstory-button button button--secondary">
 			Edit backstory
 		</button>
-	<?php }
-	; ?>
-	<?php if (($backstory->status_name === 'being_edited' || $backstory->status_name === 'changes_requested') && !empty($backstory->content)) { ?>
+		<?php
+	};
+	?>
+	<?php if ( ( $backstory->status_name === 'being_edited' || $backstory->status_name === 'changes_requested' ) && ! empty( $backstory->content ) ) { ?>
 		<form method="POST">
 			<input type="hidden" name="type" value="backstory" />
 			<input type="hidden" name="status" value="awaiting_review" />
 			<button class="submit-backstory button button--primary">Submit backstory</button>
 		</form>
 	<?php } ?>
-	<?php if ($backstory->status_name === 'awaiting_review') { ?>
+	<?php if ( $backstory->status_name === 'awaiting_review' ) { ?>
 		<form method="POST">
 			<input type="hidden" name="type" value="backstory" />
 			<input type="hidden" name="status" value="being_edited" />

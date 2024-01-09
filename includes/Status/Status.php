@@ -1,4 +1,5 @@
 <?php
+
 namespace Eos\Backstory_generator\Status;
 
 use Eos\Backstory_generator\Api\Get;
@@ -22,8 +23,8 @@ class Status
 		return $this->get->get_all_status();
 	}
 
-	public function update_status($id, $status, $type)
+	public function update_status($id, $status, $type, $user)
 	{
-		return $this->put->update_status($id, $status, $type);
+		return $this->put->update_status($id, $status, $type, $user);
 	}
 }
