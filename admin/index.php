@@ -178,7 +178,20 @@ if ( isset( $_POST['concept_changes'] ) ) {
 <head>
 	<title>Admin - Concept/Backstory editor </title>
 	<link rel="stylesheet" href="../assets/css/style.css"/>
-	<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+		<!-- Import jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../node_modules/jquery/dist/jquery-3.3.1.min.js"><\/script>')</script>
+
+	<!-- Import Trumbowyg -->
+	<script src="../node_modules/trumbowyg/dist/trumbowyg.min.js"></script>
+
+	<!-- Import Trumbowyg plugins... -->
+	<script src="../node_modules/trumbowyg/dist/plugins/cleanpaste/trumbowyg.cleanpaste.min.js"></script>
+	<script src="../node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
+	<script src="../node_modules/trumbowyg/dist/plugins/pasteimage/trumbowyg.pasteimage.min.js"></script>
+
+	<!-- <script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script> -->
+
 	<script>
 		if (window.history.replaceState) {
 			window.history.replaceState(null, null, window.location.href);

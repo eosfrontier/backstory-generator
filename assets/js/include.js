@@ -1,6 +1,6 @@
 document.addEventListener( "DOMContentLoaded", function() {
 
-	function load_editer( location ) {
+	function load_editor( location ) {
 		tinymce.init( {
 			selector: location,
 			menubar: false,
@@ -21,7 +21,7 @@ document.addEventListener( "DOMContentLoaded", function() {
 			submitBackstory.style.display = "none";
 		} );
 
-		load_editer( '#backstory-textarea' );
+		$('#backstory-textarea').trumbowyg();
 	}
 
 	var editButton = document.querySelector( ".edit-concept-button" );
@@ -36,10 +36,10 @@ document.addEventListener( "DOMContentLoaded", function() {
 			editor.style.display = "block";
 		} );
 
-		load_editer( '#concept-textarea' );
+		$('#concept-textarea').trumbowyg();
 	}
 
-	load_editer( '#concept-textarea_new' );
+	$('#concept-textarea_new').trumbowyg();
 
 	window.onbeforeunload = function() {
 		if ( tinymce.activeEditor.isDirty() ) {

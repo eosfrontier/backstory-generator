@@ -78,7 +78,19 @@ $concept   = $text->get_concept( $id );
 		<?php echo $character->get_character_name( $id ); ?>
 	</title>
 	<link rel="stylesheet" href="./assets/css/style.css" />
-	<script src="./vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+
+	<!-- Import jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="node_modules/jquery/dist/jquery-3.3.1.min.js"><\/script>')</script>
+
+	<!-- Import Trumbowyg -->
+	<script src="node_modules/trumbowyg/dist/trumbowyg.min.js"></script>
+
+	<!-- Import Trumbowyg plugins... -->
+	<script src="node_modules/trumbowyg/dist/plugins/cleanpaste/trumbowyg.cleanpaste.min.js"></script>
+	<script src="node_modules/trumbowyg/dist/plugins/pasteimage/trumbowyg.pasteimage.min.js"></script>
+
+	<!-- <script src="./vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script> -->
 </head>
 
 <body>

@@ -1,15 +1,16 @@
 document.addEventListener( "DOMContentLoaded", function() {
-	function load_editer( location ) {
-		tinymce.init( {
-			selector: location,
-			menubar: false,
-			skin: 'oxide-dark',
-			content_css: 'dark',
-			toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
-		} );
-	}
-	load_editer( '#existing-backstory-textarea' );
-
+	// function load_editor( location ) {
+	// 	tinymce.init( {
+	// 		selector: location,
+	// 		menubar: false,
+	// 		skin: 'oxide-dark',
+	// 		content_css: 'dark',
+	// 		toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+	// 	} );
+	// }
+	$('#existing-backstory-textarea').trumbowyg({
+    autogrow: true
+});
 
 	var editButtons = document.querySelectorAll( ".concept_change-request-button" );
 	if ( editButtons ) {
@@ -19,7 +20,7 @@ document.addEventListener( "DOMContentLoaded", function() {
 				const approveForm = document.querySelector( "#concept-approve-" + id );
 				const conceptChangesForm = document.querySelector( "#concept-changes-" + id );
 
-				load_editer( "#concept_changes-form-" + id );
+				$("#concept_changes-form-" + id ).trumbowyg();
 				this.style.display = "none";
 				approveForm.style.display = "none";
 				conceptChangesForm.style.display = "block";
@@ -32,7 +33,7 @@ document.addEventListener( "DOMContentLoaded", function() {
 				// submitBackstory.style.display = "none";
 			} );
 		} );
-		//load_editer( '#backstory-textarea' );
+		//load_editor( '#backstory-textarea' );
 	}
 
 
