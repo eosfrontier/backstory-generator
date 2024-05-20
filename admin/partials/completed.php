@@ -18,6 +18,8 @@ foreach ( $backstories as $backstory ) {
 				</h4>
 				<div class="admin_concept_edit">
 					<?php
+					echo '<h5>Date Backstory Approved: '. $backstory->backstory_approval_date . '</br>
+					Backstory Approved By: ' . $backstory->backstory_approved_by . '</h5>';
 					if ( $IS_SL ) {
 						echo '<h5>Backstory text</h5>' . $backstory->content;
 					}

@@ -10,13 +10,21 @@ $text = new Text();
 		<?php echo $edited->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
-		<?php if ($IS_SL) {
-			echo '<h5>Backstory text</h5>';
+		<?php 
+		echo '<h5>Date Last Updated: '. $edited->backstory_updated_date . '</br>
+		Last Updated By: ' . $edited->backstory_updated_by . '</h5>';
+		if ($IS_SL) {
+			echo '<h5>Backstory text</br>';
 			echo $edited->content;
+		}
 			if ($edited->backstory_changes) {
+				echo '<h5>Date Backstory Changes Requested: '. $edited->backstory_changes_requested_date . '</br>
+		Backstory Changes Requested By: ' . $edited->backstory_changes_requested_by . '</h5>';
+		if ($IS_SL) {
 				echo '<h5>Backstory changes</h5>';
 				echo $edited->backstory_changes;
-			}
-		} ?>
+		}
+			} 
+		?>
 	</div>
 </div>
