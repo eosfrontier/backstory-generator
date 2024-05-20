@@ -72,18 +72,16 @@ function hasId( $arr, $id ) {
 
 // Request Backstory Changes
 if ( isset( $_POST['backstory_changes'] ) ) {
-	$content['content'] = str_replace( "'", '&#39;', $_POST['backstory_changes'] );
-
-	$return = $text->save_backstory_changes( $_POST['id'], $content, $jid );
-	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'backstory', $jid );
+	
 	$email  = $api->get_user_email( $_POST['id'] );
 
 	if ( $email ) {
 		$mail    = new Send_Email();
-		$subject = 'Backstory changes requested';
+		if ($_POST['type'] == 'backstory_changes_remind') {
+		$subject = 'REMINDER: Backstory changes requested';
 		$body    = "Dear player,
 		<br /><br />
-		The SL team have requested a change in your character backstory. <br />
+		This is a reminder that the SL team have requested a change in your character backstory. <br />
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
 		<br />
 		<br />
@@ -91,7 +89,25 @@ if ( isset( $_POST['backstory_changes'] ) ) {
 		<br />
 		The Spelleider Team<br />
 		Eos: Frontier";
+		}
+		else {
+			$content['content'] = str_replace( "'", '&#39;', $_POST['backstory_changes'] );
+			$return = $text->save_backstory_changes( $_POST['id'], $content, $jid );
+			$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'backstory', $jid );
+			$subject = 'Backstory changes requested';
+			$body    = "Dear player,
+			<br /><br />
+			The SL team have requested a change in your character backstory. <br />
+			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
+			<br />
+			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+		}
 		$mail->send_email_to_player( $email, $subject, $body );
+
 	}
 
 	unset( $_POST['backstory_changes'] );
