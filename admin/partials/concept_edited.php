@@ -14,8 +14,9 @@ $text = new Text();
 		Updated By: <?php echo $edited->concept_updated_by;?> </h5>
 		<?php
 		if ( $IS_SL ) {
-			echo '<h5>Concept text</h5>';
+			echo '<div class="content-block">';
 			echo $edited->content;
+			echo '</div>';
 		}
 			if ( $edited->concept_changes ) {
 				echo '<h5>Date Concept Changes Requested: '. $edited->concept_changes_requested_date . '</br>

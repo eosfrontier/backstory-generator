@@ -14,7 +14,18 @@ $text = new Text();
 	Updated By: <?php echo $awaiting->backstory_updated_by;?> </h5>
 		<?php
 		if ( $IS_SL ) {
+			?>
+			<div class="overview-block"> 
+				<h4 class="mouse_hover">Concept Text</h4>
+				<div class="admin_concept_edit">
+				<?php
+			echo '<div class="content-block">';
+			echo $awaiting->concept_content;
+			echo '</div></div></div>';
+			echo '<h4>Backstory Text</h4>';
+			echo '<div class="content-block">';
 			echo $awaiting->content;
+			echo '</div>';
 		}
 		?>
 		<div>

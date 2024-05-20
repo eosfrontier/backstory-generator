@@ -14,7 +14,9 @@ $text = new Text();
 		Updated By: <?php echo $awaiting->concept_updated_by;?> </h5>
 	<?php
 		if ( $IS_SL ) {
+			echo '<div class="content-block">';
 			echo $awaiting->content;
+			echo '</div>';
 		}
 		?>
 		<div>

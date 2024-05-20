@@ -14,7 +14,9 @@ $text = new Text();
 	Concept Approved By: <?php echo $request->concept_approved_by;?> </h5>
 	<?php
 		if ( $IS_SL ) {
+			echo '<div class="content-block">';
 			echo $request->content;
+			echo '</div>';
 			?>
 				<form name="concept_remind" method="POST" class="approve_form_concept"
 				id="concept-remind-<?php echo $request->characterID; ?>">
