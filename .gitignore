@@ -2,3 +2,5 @@ vendor/
 .env
 .DS_Store
 cron/env.php
+.idea/
+node_modules/

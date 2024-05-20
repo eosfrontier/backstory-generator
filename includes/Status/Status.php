@@ -1,4 +1,5 @@
 <?php
+
 namespace Eos\Backstory_generator\Status;
 
 use Eos\Backstory_generator\Api\Get;

@@ -10,8 +10,10 @@ $text = new Text();
 		<?php echo $request->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
-		<?php if ($IS_SL) {
+		<?php
+		if ( $IS_SL ) {
 			echo $request->content;
-		} ?>
+		}
+		?>
 	</div>
 </div>
