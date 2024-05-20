@@ -1,6 +1,6 @@
 <?php
 if ($_ENV['dev'] == 'true') {
-	$jid = "747";
+	$jid = "720";
 	$jname = "Nimuel Agati Iskandu (Development Environment)";
 	$jgroups = ["32", "30"];
 } else {

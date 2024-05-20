@@ -70,6 +70,7 @@ function hasId( $arr, $id ) {
 // messaging section
 //
 
+// Request Backstory Changes
 if ( isset( $_POST['backstory_changes'] ) ) {
 	$content['content'] = str_replace( "'", '&#39;', $_POST['backstory_changes'] );
 
@@ -107,7 +108,8 @@ if ( isset( $_POST['type'] ) && isset( $_POST['status'] ) && ( $_POST['status'] 
 	}
 	$email = $api->get_user_email( $_POST['id'] );
 	$saved = $status->update_status( $_POST['id'], $_POST['status'], $_POST['type'], $jid );
-	if ( isset( $_POST['method'] ) && $_POST['method'] == 'sl_backend' ) {
+
+	if ( isset( $_POST['method'] ) && $_POST['method'] == 'sl_backend') {
 		$status->update_status( $_POST['id'], $_POST['status'], 'concept', $jid );
 	} else {
 		$mail = new Send_Email();
@@ -154,6 +156,7 @@ if ( isset( $_POST['type'] ) && isset( $_POST['status'] ) && ( $_POST['status'] 
 	header( 'Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event );
 }
 
+// Request concept changes
 if ( isset( $_POST['concept_changes'] ) ) {
 	$content['content'] = str_replace( "'", '&#39;', $_POST['concept_changes'] );
 

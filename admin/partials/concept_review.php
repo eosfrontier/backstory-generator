@@ -10,7 +10,9 @@ $text = new Text();
 		<?php echo $awaiting->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
-		<?php
+		<h5> Date Concept Updated: <?php echo $awaiting->concept_updated_date;?></br>
+		Updated By: <?php echo $awaiting->concept_updated_by;?> </h5>
+	<?php
 		if ( $IS_SL ) {
 			echo $awaiting->content;
 		}

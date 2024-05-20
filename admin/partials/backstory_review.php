@@ -10,6 +10,8 @@ $text = new Text();
 		<?php echo $awaiting->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
+	<h5> Date Updated: <?php echo $awaiting->backstory_updated_date;?></br>
+	Updated By: <?php echo $awaiting->backstory_updated_by;?> </h5>
 		<?php
 		if ( $IS_SL ) {
 			echo $awaiting->content;
