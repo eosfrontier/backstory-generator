@@ -19,7 +19,7 @@ $text = new Text();
 				<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
 				<?php
 				if ( $IS_SL ) {
-					echo '<button class="submit-backstory button button--primary">Approve</button>';
+					echo '<button class="submit-backstory button button--primary">Send Reminder E-mail</button>';
 				}
 				?>
 			</form>
