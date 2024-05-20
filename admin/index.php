@@ -66,6 +66,9 @@ function hasId( $arr, $id ) {
 	}
 	return false;
 }
+//
+// messaging section
+//
 
 if ( isset( $_POST['backstory_changes'] ) ) {
 	$content['content'] = str_replace( "'", '&#39;', $_POST['backstory_changes'] );
@@ -115,6 +118,18 @@ if ( isset( $_POST['type'] ) && isset( $_POST['status'] ) && ( $_POST['status'] 
 			The SL team have approved your character concept. <br />
 			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
 			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+		}
+		if ( $_POST['type'] == 'concept_remind' ) {
+			$subject = 'REMINDER: Character Concept approved - please submit backstory.';
+			$body    = "Dear player,
+			<br /><br />
+			This is a reminder that the SL team have approved your character concept. <br />
+			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
+			<br /><br />
 			Kind regards,
 			<br />
 			The Spelleider Team<br />
