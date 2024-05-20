@@ -164,6 +164,7 @@ if (isset($_POST['concept_changes'])) {
 	}
 
 	unset($_POST['concept_changes']);
+	unset($content);
 	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
 }
 
