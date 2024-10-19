@@ -3,7 +3,6 @@
 		"yoast/yoastcs": "2.1",
 		"squizlabs/php_codesniffer": "^3.5",
 		"vlucas/phpdotenv": "^5.4",
-		"tinymce/tinymce": "^6.2",
 		"phpmailer/phpmailer": "^6.8"
 	},
 	"autoload": {

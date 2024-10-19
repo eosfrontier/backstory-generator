@@ -66,20 +66,22 @@ function hasId( $arr, $id ) {
 	}
 	return false;
 }
+//
+// messaging section
+//
 
+// Request Backstory Changes
 if ( isset( $_POST['backstory_changes'] ) ) {
-	$content['content'] = str_replace( "'", '&#39;', $_POST['backstory_changes'] );
-
-	$return = $text->save_backstory_changes( $_POST['id'], $content, $jid );
-	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'backstory', $jid );
+	
 	$email  = $api->get_user_email( $_POST['id'] );
 
 	if ( $email ) {
 		$mail    = new Send_Email();
-		$subject = 'Backstory changes requested';
+		if ($_POST['type'] == 'backstory_changes_remind') {
+		$subject = 'REMINDER: Backstory changes requested';
 		$body    = "Dear player,
 		<br /><br />
-		The SL team have requested a change in your character backstory. <br />
+		This is a reminder that the SL team have requested a change in your character backstory. <br />
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
 		<br />
 		<br />
@@ -87,7 +89,25 @@ if ( isset( $_POST['backstory_changes'] ) ) {
 		<br />
 		The Spelleider Team<br />
 		Eos: Frontier";
+		}
+		else {
+			$content['content'] = str_replace( "'", '&#39;', $_POST['backstory_changes'] );
+			$return = $text->save_backstory_changes( $_POST['id'], $content, $jid );
+			$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'backstory', $jid );
+			$subject = 'Backstory changes requested';
+			$body    = "Dear player,
+			<br /><br />
+			The SL team have requested a change in your character backstory. <br />
+			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
+			<br />
+			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+		}
 		$mail->send_email_to_player( $email, $subject, $body );
+
 	}
 
 	unset( $_POST['backstory_changes'] );
@@ -97,73 +117,107 @@ if ( isset( $_POST['backstory_changes'] ) ) {
 
 
 if ( isset( $_POST['type'] ) && isset( $_POST['status'] ) && ( $_POST['status'] == 'approved' ) ) {
-	if ( isset( $_POST['backstory-content'] ) && $_POST['type'] == 'backstory' ) {
-		$id                 = $_POST['id'];
-		$content['content'] = str_replace( "'", '&#39;', $_POST['backstory-content'] );
-		$text->save_backstory( $id, $content, $jid );
-	}
 	$email = $api->get_user_email( $_POST['id'] );
-	$saved = $status->update_status( $_POST['id'], $_POST['status'], $_POST['type'], $jid );
-	if ( isset( $_POST['method'] ) && $_POST['method'] == 'sl_backend' ) {
-		$status->update_status( $_POST['id'], $_POST['status'], 'concept', $jid );
-	} else {
+	if ( $_POST['type'] == 'concept_remind' ) {
 		$mail = new Send_Email();
-		if ( $_POST['type'] == 'concept' ) {
-			$subject = 'Character Concept approved - please submit backstory.';
-			$body    = "Dear player,
-			<br /><br />
-			The SL team have approved your character concept. <br />
-			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
-			<br />
-			Kind regards,
-			<br />
-			The Spelleider Team<br />
-			Eos: Frontier";
-		}
-		if ( $_POST['type'] == 'backstory' ) {
-			$subject = 'Character Backstory approved.';
-			$body    = "Dear player,
-			<br /><br />
-			The SL team have approved your character backstory. You're all set! <br />
-			We look forward to welcoming your new character to Eos!		<br />
-			<br />
-			<br />
-			Kind regards,
-			<br />
-			The Spelleider Team<br />
-			Eos: Frontier";
-		}
-		$mail->send_email_to_player( $email, $subject, $body );
-	}
-	unset( $_POST );
-	header( 'Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event );
-}
-
-if ( isset( $_POST['concept_changes'] ) ) {
-	$content['content'] = str_replace( "'", '&#39;', $_POST['concept_changes'] );
-
-	$return = $text->save_concept_changes( $_POST['id'], $content, $jid );
-	$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept', $jid );
-	$email  = $api->get_user_email( $_POST['id'] );
-
-	if ( $email ) {
-		$mail    = new Send_Email();
-		$subject = 'Character Concept changes requested.';
+		$subject = 'REMINDER: Character Concept approved - please submit backstory.';
 		$body    = "Dear player,
 		<br /><br />
-		The SL team have requested a change in your character concept. <br />
-		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
-		<br />
-		<br />
+		This is a reminder that the SL team have approved your character concept. <br />
+		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
+		<br /><br />
 		Kind regards,
 		<br />
 		The Spelleider Team<br />
 		Eos: Frontier";
 		$mail->send_email_to_player( $email, $subject, $body );
 	}
+	else {
+		if ( isset( $_POST['backstory-content'] ) && $_POST['type'] == 'backstory' ) {
+			$id                 = $_POST['id'];
+			$content['content'] = str_replace( "'", '&#39;', $_POST['backstory-content'] );
+			$text->save_backstory( $id, $content, $jid );
+		}
+		$saved = $status->update_status( $_POST['id'], $_POST['status'], $_POST['type'], $jid );
 
-	unset( $_POST['concept_changes'] );
+		if ( isset( $_POST['method'] ) && $_POST['method'] == 'sl_backend') {
+			$status->update_status( $_POST['id'], $_POST['status'], 'concept', $jid );
+		} else {
+			$mail = new Send_Email();
+			if ( $_POST['type'] == 'concept' ) {
+				$subject = 'Character Concept approved - please submit backstory.';
+				$body    = "Dear player,
+				<br /><br />
+				The SL team have approved your character concept. <br />
+				Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your full character backstory.
+				<br />
+				Kind regards,
+				<br />
+				The Spelleider Team<br />
+				Eos: Frontier";
+			}
+			if ( $_POST['type'] == 'backstory' ) {
+				$subject = 'Character Backstory approved.';
+				$body    = "Dear player,
+				<br /><br />
+				The SL team have approved your character backstory. You're all set! <br />
+				We look forward to welcoming your new character to Eos!		<br />
+				<br />
+				<br />
+				Kind regards,
+				<br />
+				The Spelleider Team<br />
+				Eos: Frontier";
+			}
+			$mail->send_email_to_player( $email, $subject, $body );
+		}
+	}
+	unset( $_POST );
 	header( 'Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event );
+}
+
+// Request concept changes
+if ( isset( $_POST['concept_changes'] ) ) {
+	$email  = $api->get_user_email( $_POST['id'] );
+	if ( $email ) {
+		$mail    = new Send_Email();
+		if ($_POST['type'] == 'concept_changes_remind') {
+			$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept', $jid );
+			$subject = 'REMINDER: Character Concept changes requested.';
+			$body    = "Dear player,
+			<br /><br />
+			This is a reminder that the SL team have requested a change in your character concept. <br />
+			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
+			<br />
+			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+			$mail->send_email_to_player( $email, $subject, $body );
+		}
+		else {
+			$content['content'] = str_replace( "'", '&#39;', $_POST['concept_changes'] );
+			$return = $text->save_concept_changes( $_POST['id'], $content, $jid );
+			$saved  = $status->update_status( $_POST['id'], $_POST['status'], 'concept', $jid );
+			$subject = 'Character Concept changes requested.';
+			$body    = "Dear player,
+			<br /><br />
+			The SL team have requested a change in your character concept. <br />
+			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
+			<br />
+			<br />
+			Kind regards,
+			<br />
+			The Spelleider Team<br />
+			Eos: Frontier";
+			$mail->send_email_to_player( $email, $subject, $body );
+		}
+	}
+
+	unset($_POST['concept_changes']);
+	unset($content);
+	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
 }
 
 //
@@ -178,7 +232,20 @@ if ( isset( $_POST['concept_changes'] ) ) {
 <head>
 	<title>Admin - Concept/Backstory editor </title>
 	<link rel="stylesheet" href="../assets/css/style.css"/>
-	<script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+		<!-- Import jQuery -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../node_modules/jquery/dist/jquery-3.3.1.min.js"><\/script>')</script>
+
+	<!-- Import Trumbowyg -->
+	<script src="../node_modules/trumbowyg/dist/trumbowyg.min.js"></script>
+
+	<!-- Import Trumbowyg plugins... -->
+	<script src="../node_modules/trumbowyg/dist/plugins/cleanpaste/trumbowyg.cleanpaste.min.js"></script>
+	<script src="../node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
+	<script src="../node_modules/trumbowyg/dist/plugins/pasteimage/trumbowyg.pasteimage.min.js"></script>
+
+	<!-- <script src="../vendor/tinymce/tinymce/tinymce.min.js" referrerpolicy="origin"></script> -->
+
 	<script>
 		if (window.history.replaceState) {
 			window.history.replaceState(null, null, window.location.href);

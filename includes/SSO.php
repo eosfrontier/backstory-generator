@@ -1,6 +1,6 @@
 <?php
 if ($_ENV['dev'] == 'true') {
-	$jid = "747";
+	$jid = "720";
 	$jname = "Nimuel Agati Iskandu (Development Environment)";
 	$jgroups = ["32", "30"];
 } else {
@@ -12,7 +12,7 @@ $curl = curl_init();
 curl_setopt_array(
 	$curl,
 	[
-		CURLOPT_URL => 'https://api.eosfrontier.space/orthanc/v2/chars_player/',
+		CURLOPT_URL => $_ENV['api_location'] . '/v2/chars_player/',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -22,7 +22,7 @@ curl_setopt_array(
 		CURLOPT_CUSTOMREQUEST => 'GET',
 		CURLOPT_HTTPHEADER => [
 			'accountID:' . $jid,
-			'token: am9zaHNwbGF5Z3JvdW5k',
+			'token:' . $_ENV['token'],
 		],
 	]
 );
