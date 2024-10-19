@@ -14,9 +14,9 @@
 			}
 			if ( isset( $_POST['character'] ) ) {
 				$selected = $_POST['character'] == $char['characterID'] ? 'selected' : '';
-				echo '<option value="' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
+				echo '<option ' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
 			} else {
-				echo '<option value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
+				echo '<option class="factionblurb factionselector fct_'.$char['faction'].'" style="display: none;" value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
 			}
 		}
 		?>

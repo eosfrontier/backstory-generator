@@ -35,7 +35,6 @@ $text = new Text();
 					<input type="hidden" name="status" value="changes_requested" />
 					<input type="hidden" name="id" value="<?php echo $awaiting->characterID; ?>" />
 					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-					<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
 					<button class="button button--primary">Send change request</button>
 				</form>
 			</div>
@@ -45,7 +44,6 @@ $text = new Text();
 				<input type="hidden" name="id" value="<?php echo $awaiting->characterID; ?>" />
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-				<input type="hidden" name="faction" value="<?php echo $faction; ?>" />
 				<?php
 				if ( $IS_SL ) {
 					echo '<button class="submit-backstory button button--primary">Approve</button>';

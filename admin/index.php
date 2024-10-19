@@ -4,13 +4,6 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/..' );
 $dotenv->load();
 
-if ( isset( $_GET['faction'] ) ) {
-	$faction = $_GET['faction'];
-} elseif ( isset( $_POST['faction'] ) ) {
-	$faction = $_POST['faction'];
-} else {
-	$faction = '';
-}
 
 if ( isset( $_GET['tab'] ) ) {
 	$tab = $_GET['tab'];
@@ -112,7 +105,7 @@ if ( isset( $_POST['backstory_changes'] ) ) {
 
 	unset( $_POST['backstory_changes'] );
 	unset( $_POST['content'] );
-	header( 'Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event );
+	header( 'Location: ./?tab=' . $tab . '&current_event=' . $current_event );
 }
 
 
@@ -173,7 +166,7 @@ if ( isset( $_POST['type'] ) && isset( $_POST['status'] ) && ( $_POST['status'] 
 		}
 	}
 	unset( $_POST );
-	header( 'Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event );
+	header( 'Location: ./?tab=' . $tab . '&current_event=' . $current_event );
 }
 
 // Request concept changes
@@ -217,7 +210,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 
 	unset($_POST['concept_changes']);
 	unset($content);
-	header('Location: ./?faction=' . $faction . '&tab=' . $tab . '&current_event=' . $current_event);
+	header('Location: ./?tab=' . $tab . '&current_event=' . $current_event);
 }
 
 //
@@ -269,7 +262,6 @@ if ( isset( $_POST['concept_changes'] ) ) {
 						>
 					<span class="slider round"></span>
 					<input type="hidden" name="tab" value="<?php echo $tab; ?>"/>
-					<input type="hidden" name="faction" value="<?php echo $faction; ?>"/>
 				</label>
 				<div class="filter-display">
 					<?php
@@ -285,19 +277,14 @@ if ( isset( $_POST['concept_changes'] ) ) {
 	</div>
 	<h1>
 		Admin - Concept/Backstory editor
-		<?php
-		if ( $faction != '' ) {
-			echo ' - ' . $faction . ' only';
-		}
-		?>
 	</h1>
 	<p> Welcome,
 		<?php echo $jname; ?>!
 	</p>
 	
-	<div class="formitem center-xs">
+	<div class="formitem center-xs factionblurb fct_selector" style="display: none">
     <label for="faction_dropdown">Filter by faction:</label></br>
-    <select name="factionselect" id="chooseFactionSelect" onchange="switchFactionBlurb(this.value);">
+    <select name="factionselect" id="chooseFactionSelect"  onchange="switchFactionBlurb(this.value);" >
     <option selected value="*">All Factions</option>
       <?php 
 	  $factions = array('aquila','dugo','ekanesh','pendzal','sona');

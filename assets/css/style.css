@@ -368,3 +368,14 @@ input:checked+.slider:before {
 .factionblurb.dialog h2 {
   margin-top: .5rem
 }
+
+.factionselector,
+.factionselector.dialog {
+  background: hsl(216, 26%, 96%);
+  display: none
+}
+
+.factionselector h2,
+.factionselector.dialog h2 {
+  margin-top: .5rem
+}
