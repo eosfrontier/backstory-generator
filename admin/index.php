@@ -4,8 +4,8 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/..' );
 $dotenv->load();
 
-if ( isset( $_REQUEST['faction'] ) ) {
-	$faction = $_REQUEST['faction'];
+if ( isset( $_GET['faction'] ) ) {
+	$faction = $_GET['faction'];
 } elseif ( isset( $_POST['faction'] ) ) {
 	$faction = $_POST['faction'];
 } else {
@@ -20,8 +20,8 @@ if ( isset( $_GET['tab'] ) ) {
 	$tab = 'concept';
 }
 
-if ( isset( $_REQUEST['current_event'] ) ) {
-	$current_event = $_REQUEST['current_event'];
+if ( isset( $_GET['current_event'] ) ) {
+	$current_event = $_GET['current_event'];
 } elseif ( isset( $_POST['current_event'] ) ) {
 	$current_event = $_POST['current_event'];
 } else {
@@ -254,7 +254,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body onload="switchFactionBlurb('*');">
 <header>
 	<div class="header">
 		<img class="logo" src="../assets/img/outpost-icc-pm.png" alt="logo" title="ICC logo"/><br>
@@ -294,21 +294,20 @@ if ( isset( $_POST['concept_changes'] ) ) {
 	<p> Welcome,
 		<?php echo $jname; ?>!
 	</p>
-	<form method="get">
-		<select name="faction" onchange="this.form.submit()">
-			<option value="">Filter by faction</option>
-			<option value="aquila" <?php echo $faction == 'aquila' ? 'selected' : ''; ?>>Aquila</option>
-			<option value="dugo" <?php echo $faction == 'dugo' ? 'selected' : ''; ?>>Dugo</option>
-			<option value="ekanesh" <?php echo $faction == 'ekanesh' ? 'selected' : ''; ?>>Ekanesh</option>
-			<option value="pendzal" <?php echo $faction == 'pendzal' ? 'selected' : ''; ?>>Pendzal</option>
-			<option value="sona" <?php echo $faction == 'sona' ? 'selected' : ''; ?>>Sona</option>
-			<option value="" class="italic">Reset Filter</option>
-		</select>
-		<input type="hidden" name="tab" value="<?php echo $tab; ?>"/>
-		<input type="hidden" name="current_event" value="<?php echo $current_event; ?>"/>
-
-		</p>
-	</form>
+	
+	<div class="formitem center-xs">
+    <label for="faction_dropdown">Filter by faction:</label></br>
+    <select name="factionselect" id="chooseFactionSelect" onchange="switchFactionBlurb(this.value);">
+    <option selected value="*">All Factions</option>
+      <?php 
+	  $factions = array('aquila','dugo','ekanesh','pendzal','sona');
+	  foreach ($factions as $faction) {
+          echo '<option value="'. $faction . '">'.ucfirst($faction).'</option>';
+      }
+      ?>
+    </select>
+  </div>
+	
 </header>
 <main>
 	<div class="tabs-overview">
@@ -319,7 +318,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 				echo 'class="active"';
 			}
 			?>
-					onclick="window.location.href='?tab=concept&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">
+					onclick="window.location.href='?tab=concept&current_event=' . $current_event; ?>';">
 				Concept
 			</button>
 			<button data-tab="backstory" 
@@ -328,7 +327,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 				echo 'class="active"';
 			}
 			?>
-					onclick="window.location.href='?tab=backstory&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">
+					onclick="window.location.href='?tab=backstory&current_event=' . $current_event; ?>';">
 				Backstory
 			</button>
 			<button data-tab="completed" 
@@ -337,7 +336,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 				echo 'class="active"';
 			}
 			?>
-					onclick="window.location.href='?tab=completed&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">
+					onclick="window.location.href='?tab=completed&current_event=' . $current_event; ?>';">
 				Completed
 			</button>
 			<button data-tab="submit_existing" 
@@ -346,7 +345,7 @@ if ( isset( $_POST['concept_changes'] ) ) {
 				echo 'class="active"';
 			}
 			?>
-					onclick="window.location.href='?tab=submit_existing&faction=<?php echo $faction . '&current_event=' . $current_event; ?>';">
+					onclick="window.location.href='?tab=submit_existing&current_event=' . $current_event; ?>';">
 				Submit Existing Backstory
 			</button>
 		</div>

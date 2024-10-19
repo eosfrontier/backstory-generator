@@ -118,3 +118,21 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	});
 });
+function switchFactionBlurb(factionName) {
+
+	var target = $('.factionblurb');
+	if (factionName == "*"){
+		$(".fct_aquila").fadeIn();
+		$(".fct_dugo").fadeIn();
+		$(".fct_ekanesh").fadeIn();
+		$(".fct_pendzal").fadeIn();
+		$(".fct_sona").fadeIn();
+	}
+	else if (target.html() != "" && factionName && factionName != "") {
+		target.hide();
+
+		$(".fct_" + factionName).fadeIn();
+
+		return true;
+	}
+}

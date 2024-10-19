@@ -11,7 +11,7 @@ foreach ( $backstories as $backstory ) {
 	} else {
 		if ( $backstory->backstory_status === 'approved' ) {
 			?>
-			<div class="overview-block">
+			<div class="factionblurb fct_<?php echo $backstory->faction; ?> overview-block" style="display: none;">
 				<h4 class="mouse_hover">
 					<?php echo $backstory->name; ?> -
 					<?php echo $backstory->faction; ?>
