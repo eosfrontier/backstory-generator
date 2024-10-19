@@ -19,9 +19,10 @@ r.email as email, faction.character_name as ic_name, soort_inschrijving.field_va
 	((r.published = 1 AND (r.payment_method = 'os_ideal' OR r.payment_method = 'os_paypal' OR r.payment_method = 'os_bancontact')) OR
     (r.published in (0,1) AND r.payment_method = 'os_offline')) AND new_player.field_value = 'Yes'";
 $res = $UPLINK->query($sql);
-$sqle = "SELECT title FROM jml_eb_events WHERE id = $EVENTID";
+$sqle = "SELECT title, event_date FROM jml_eb_events WHERE id = $EVENTID";
 $rese = $UPLINK->query($sqle);
 $fetche = mysqli_fetch_assoc($rese);
+$threeWeeksBefore = date('Y-m-d', (strtotime($fetche['event_date']) - 1814400));
 
 while ($row = mysqli_fetch_array($res)) {
     $sql2 = "SELECT * FROM ecc_backstory WHERE characterID = '" . $row['characterID'] . "'";
@@ -35,6 +36,7 @@ while ($row = mysqli_fetch_array($res)) {
 		Thank you for registering for <strong>" . $fetche['title'] . "</strong> with a new character, <strong>" . utf8_encode($row['ic_name']) . "</strong>.<br /> 
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your character concept to the SL Team.
 		<br />
+        IMPORTANT NOTE: To ensure that the SL Team has enough time for successful integration of your character into the setting, you must submit your initial concept no later than $threeWeeksBefore.<br />
 		<br />
 		Kind regards,
 		<br />
