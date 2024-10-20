@@ -5,10 +5,10 @@ $dotenv = Dotenv\Dotenv::createImmutable( __DIR__ . '/..' );
 $dotenv->load();
 
 
-if ( isset( $_GET['tab'] ) ) {
-	$tab = $_GET['tab'];
-} elseif ( isset( $_POST['tab'] ) ) {
+if ( isset( $_POST['tab'] ) ) {
 	$tab = $_POST['tab'];
+} elseif ( isset( $_GET['tab'] ) ) {
+	$tab = $_GET['tab'];
 } else {
 	$tab = 'concept';
 }
