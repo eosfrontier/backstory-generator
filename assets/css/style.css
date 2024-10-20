@@ -357,3 +357,25 @@ input:checked+.slider:before {
 .slider.round:before {
 	border-radius: 50%;
 }
+
+.factionblurb,
+.factionblurb.dialog {
+  background: #323846;
+  display: none
+}
+
+.factionblurb h2,
+.factionblurb.dialog h2 {
+  margin-top: .5rem
+}
+
+.factionselector,
+.factionselector.dialog {
+  background: hsl(216, 26%, 96%);
+  display: none
+}
+
+.factionselector h2,
+.factionselector.dialog h2 {
+  margin-top: .5rem
+}

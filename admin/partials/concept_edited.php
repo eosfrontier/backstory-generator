@@ -4,7 +4,7 @@ use Eos\Backstory_generator\Text\Text;
 
 $text = new Text();
 ?>
-<div class="overview-block">
+<div class="factionblurb fct_<?php echo $edited->faction; ?> overview-block" style="display: none;">
 	<h4 class="mouse_hover">
 		<?php echo $edited->name; ?> -
 		<?php echo $edited->faction; ?>

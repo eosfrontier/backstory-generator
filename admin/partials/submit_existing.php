@@ -9,18 +9,15 @@
 			if ( $current_event === 'Yes' && ! hasId( $current_event_characters, $char['characterID'] ) ) {
 				continue;
 			}
-			if ( isset( $_GET['faction'] ) && $_GET['faction'] != '' && $char['faction'] != $_GET['faction'] ) {
-				continue; // skips the character if the faction filter is chosen and the character is not a member of that faction
-			}
 			if ( isset( $_POST['character'] ) ) {
 				$selected = $_POST['character'] == $char['characterID'] ? 'selected' : '';
-				echo '<option value="' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
+				echo '<option class="factionblurb factionselector fct_'.$char['faction'].'" style="display: none;" value="' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
 			} else {
-				echo '<option value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
+				echo '<option class="factionblurb factionselector fct_'.$char['faction'].'" style="display: none;" value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
 			}
 		}
 		?>
-		<input type="hidden" name="tab" value="<?php echo $tab; ?>"/>
+		<input type="hidden" name="tab" value="submit_existing"/>
 		<input type="hidden" name="current_event" value="<?php echo $current_event; ?>"/>
 	</select>
 </form>
