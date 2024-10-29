@@ -118,3 +118,41 @@ document.addEventListener("DOMContentLoaded", function () {
 		})
 	});
 });
+function switchFactionBlurb(factionName) {
+	var target = $('.factionblurb');
+	if (factionName == "*"){
+		$(".fct_aquila").fadeIn();
+		$(".fct_dugo").fadeIn();
+		$(".fct_ekanesh").fadeIn();
+		$(".fct_pendzal").fadeIn();
+		$(".fct_sona").fadeIn();
+		$(".fct_selector").fadeIn();
+		return true;
+	}
+	else if (target.html() != "" && factionName && factionName != "") {
+		target.hide();
+
+		$(".fct_" + factionName).fadeIn();
+		$(".fct_selector").fadeIn();
+
+		return true;
+	}
+	var target2 = $('.factionselector');
+	if (factionName == "*"){
+		$(".fct_aquila").fadeIn();
+		$(".fct_dugo").fadeIn();
+		$(".fct_ekanesh").fadeIn();
+		$(".fct_pendzal").fadeIn();
+		$(".fct_sona").fadeIn();
+		$(".fct_selector").fadeIn();
+		return true;
+	}
+	else if (target2.html() != "" && factionName && factionName != "") {
+		target2.hide();
+
+		$(".fct_" + factionName).fadeIn();
+		$(".fct_selector").fadeIn();
+
+		return true;
+	}
+}
