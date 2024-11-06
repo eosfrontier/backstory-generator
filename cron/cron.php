@@ -36,7 +36,7 @@ while ($row = mysqli_fetch_array($res)) {
 		Thank you for registering for <strong>" . $fetche['title'] . "</strong> with a new character, <strong>" . utf8_encode($row['ic_name']) . "</strong>.<br /> 
 		Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your character concept to the SL Team.
 		<br />
-        IMPORTANT NOTE: To ensure that the SL Team has enough time for successful integration of your character into the setting, you must submit your initial concept no later than $threeWeeksBefore.<br />
+        IMPORTANT NOTE: To ensure that the SL Team has enough time for successful integration of your character into the setting, you must submit your initial concept ASAP, so that you will have time to submit your backstory no later than the deadline: $threeWeeksBefore.<br />
 		<br />
 		Kind regards,
 		<br />
