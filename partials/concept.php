@@ -1,5 +1,5 @@
 <div class="concept">
-	<h2>Concept -  <?php echo $character->get_character_name($id); ?></h2> 
+	<h2>Concept - <?php echo $character->get_character_name($id); ?></h2>
 	<h3><span>Status</span>:
 		<?php echo $concept->status_description; ?>
 	</h3>
@@ -17,6 +17,12 @@
 		echo '<div class="content-block">';
 		echo $concept->content;
 		echo '</div>';
+		if (isset($concept->concept_comment) && $concept->concept_comment != '') {
+			echo '<h4>Concept approval comment:</h4>';
+			echo '<div class="content-block">';
+			echo $concept->concept_comment;
+			echo '</div>';
+		}
 		if ($concept->concept_changes && $concept->status_name !== 'approved') {
 			?>
 			<h4>Requested changes:</h4>
@@ -58,8 +64,8 @@
 		<div id="concept-editor">
 			<form method="post">
 				<textarea name="concept-content" id="concept-textarea">
-						<?php echo $concept->content; ?>
-					</textarea>
+							<?php echo $concept->content; ?>
+						</textarea>
 				<input type="hidden" name="type" value="concept" />
 				<input type="hidden" name="status" value="being_edited" />
 				<button class="button button--primary">Save Draft</button>
