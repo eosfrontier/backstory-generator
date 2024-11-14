@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2024-8-may (Frontier 18 release)
+### Added
+- SLs can now leave a comment when they approve a concept ( #21 )
+
+### Changed
+- E-mail inviting player to the backstory system now contains a due date ( #20 )
+
+### Changed 
+ - Replace TinyMCE with better WYSIWYG Editor (Trumbowyg)
+
+## [1.1.0] - 2024-8-may (Frontier 18 release)
+
+### Changed 
+ - Replace TinyMCE with better WYSIWYG Editor (Trumbowyg)
+
 ## [1.0.0] - 2024-07-jan (Frontier 17 release)
 
 ### Added
