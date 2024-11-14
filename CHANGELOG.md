@@ -8,10 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [Unreleased]
 
 ### Added
-- SLs can now leave a comment when they approve a concept ( https://github.comeosfrontier/backstory-generator/issues/21 )
+- SLs can now leave a comment when they approve a concept ( https://github.com/eosfrontier/backstory-generator/issues/21 )
 
 ### Changed
-- E-mail inviting player to the backstory system now contains a due date ( https://github.comeosfrontier/backstory-generator/issues/17 )
+- E-mail inviting player to the backstory system now contains a due date ( https://github.com/eosfrontier/backstory-generator/issues/17 )
 
 ## [1.1.0] - 2024-8-may (Frontier 18 release)
 
