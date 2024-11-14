@@ -3,15 +3,6 @@ require getcwd() . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-function console_log($output, $with_script_tags = true)
-{
-	$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
-		');';
-	if ($with_script_tags) {
-		$js_code = '<script>' . $js_code . '</script>';
-	}
-	echo $js_code;
-}
 
 if (isset($_POST['tab'])) {
 	$tab = $_POST['tab'];
