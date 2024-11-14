@@ -82,22 +82,23 @@ if (isset($_POST['backstory_changes'])) {
 		<br />
 		The Spelleider Team<br />
 		Eos: Frontier";
-		} else {
-			$content['content'] = str_replace("'", '&#39;', $_POST['backstory_changes']);
-			$return = $text->save_backstory_changes($_POST['id'], $content, $jid);
-			$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory', $jid);
-			$subject = 'Backstory changes requested';
-			$body = "Dear player,
-			<br /><br />
-			The SL team have requested a change in your character backstory. <br />
-			Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
-			<br />
-			<br />
-			Kind regards,
-			<br />
-			The Spelleider Team<br />
-			Eos: Frontier";
-		}
+		} 
+			else {
+				$content['content'] = str_replace("'", '&#39;', $_POST['backstory_changes']);
+				$return = $text->save_backstory_changes($_POST['id'], $content, $jid);
+				$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory', $jid);
+				$subject = 'Backstory changes requested';
+				$body = "Dear player,
+				<br /><br />
+				The SL team have requested a change in your character backstory. <br />
+				Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
+				<br />
+				<br />
+				Kind regards,
+				<br />
+				The Spelleider Team<br />
+				Eos: Frontier";
+			}
 		$mail->send_email_to_player($email, $subject, $body);
 
 	}
@@ -122,7 +123,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		The Spelleider Team<br />
 		Eos: Frontier";
 		$mail->send_email_to_player($email, $subject, $body);
-	} else {
+	} 
+	else {
 		if (isset($_POST['backstory-content']) && $_POST['type'] == 'backstory') {
 			$id = $_POST['id'];
 			$content['content'] = str_replace("'", '&#39;', $_POST['backstory-content']);
@@ -131,7 +133,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 
 		if (isset($_POST['method']) && $_POST['method'] == 'sl_backend') {
 			$status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
-		} else {
+		} 
+		else {
 			$mail = new Send_Email();
 			if ($_POST['type'] == 'concept') {
 				$subject = 'Character Concept approved - please submit backstory.';
@@ -150,7 +153,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 						<br />
 						The Spelleider Team<br />
 						Eos: Frontier";
-				} else {
+				} 
+				else {
 					$body = "Dear player,
 					<br /><br />
 					The SL team have approved your character concept. <br />
@@ -202,7 +206,8 @@ if (isset($_POST['concept_changes'])) {
 			The Spelleider Team<br />
 			Eos: Frontier";
 			$mail->send_email_to_player($email, $subject, $body);
-		} else {
+		} 
+		else {
 			$content['content'] = str_replace("'", '&#39;', $_POST['concept_changes']);
 			$return = $text->save_concept_changes($_POST['id'], $content, $jid);
 			$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
