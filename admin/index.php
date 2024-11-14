@@ -50,8 +50,7 @@ if ($current_event == 'Yes') {
 	$current_event_characters = $api->get_characters_upcoming_event();
 }
 
-function hasId( $arr, $id )
-{
+function hasId( $arr, $id ) {
 	foreach ($arr as $value) {
 		if ($value['characterID'] == $id) {
 			return true;
