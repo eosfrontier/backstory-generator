@@ -73,7 +73,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		}
 
 		if (isset($_POST['method']) && $_POST['method'] == 'sl_backend') {
-			$status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
+			$status->update_status($_POST['id'], $_POST['status'], 'backstory', $jid);
 		}
         //Concept approved by SL - Notify player to work on their backstory 
 		else {
