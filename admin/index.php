@@ -49,7 +49,8 @@ if ($current_event == 'Yes') {
 	$current_event_characters = $api->get_characters_upcoming_event();
 }
 
-function hasId( $arr, $id ) {
+function hasId($arr, $id)
+{
 	foreach ($arr as $value) {
 		if ($value['characterID'] == $id) {
 			return true;
@@ -150,53 +151,45 @@ require './partials/email_messages.php';
 				if ($tab === 'concept') {
 					echo 'class="active"';
 				}
-				?>
-					onclick="window.location.href='?tab=concept&current_event=' . $current_event; ?>';">
+				?>>
 					Concept
 				</button>
 				<button data-tab="backstory" <?php
 				if ($tab === 'backstory') {
 					echo 'class="active"';
 				}
-				?>
-					onclick="window.location.href='?tab=backstory&current_event=' . $current_event; ?>';">
+				?>>
 					Backstory
 				</button>
 				<button data-tab="completed" <?php
 				if ($tab === 'completed') {
 					echo 'class="active"';
 				}
-				?>
-					onclick="window.location.href='?tab=completed&current_event=' . $current_event; ?>';">
+				?>>
 					Completed
 				</button>
 				<button data-tab="submit_existing" <?php
 				if ($tab === 'submit_existing') {
 					echo 'class="active"';
 				}
-				?>
-					onclick="window.location.href='?tab=submit_existing&current_event=' . $current_event; ?>';">
+				?>>
 					Submit Existing Backstory
 				</button>
 			</div>
 			<div class="tabs">
-				<div data-tab="concept" class="tab
-			<?php
-			if ($tab === 'concept') {
-				echo ' active';
-			}
-			?>
-			">
+				<div data-tab="concept" class="tab <?php if ($tab === 'concept') {
+					echo ' active';
+				} ?> ">
 					<h2>Concept</h2>
 					<?php require './partials/concepts.php'; ?>
 				</div>
 				<div data-tab="backstory" class="tab
-			<?php
-			if ($tab === 'backstory') {
-				echo ' active';
-			}
-			?>
-			">
+					<?php
+					if ($tab === 'backstory') {
+						echo ' active';
+					}
+					?>
+					">
 					<h2>Backstory</h2>
 					<?php require './partials/backstory.php'; ?>
 				</div>

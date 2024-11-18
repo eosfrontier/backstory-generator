@@ -274,7 +274,6 @@ main {
     content: "▲";
 }
 
-
 .status-block h3::after {
     content: "▼";
     font-size: 14px;

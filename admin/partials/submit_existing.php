@@ -11,9 +11,9 @@
 			}
 			if (isset($_POST['character'])) {
 				$selected = $_POST['character'] == $char['characterID'] ? 'selected' : '';
-				echo '<option class="overview-row factionselector fct_any' . $char['faction'] . '" style="display: none;" value="' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
+				echo '<option class="factionblurb factionselector fct_' . $char['faction'] . '" style="display: none;" value="' . $char['characterID'] . '" ' . $selected . '  >' . $char['character_name'] . '</option>';
 			} else {
-				echo '<option class="overview-row factionselector fct_' . $char['faction'] . '" style="display: none;" value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
+				echo '<option class="factionblurb factionselector fct_' . $char['faction'] . '" style="display: none;" value="' . $char['characterID'] . '"  >' . $char['character_name'] . '</option>';
 			}
 		}
 		?>
@@ -33,12 +33,12 @@ if (isset($_POST['character'])) {
 		<div id="backstory-editor" style="display: block;">
 			<form method="post">
 				<textarea name="backstory-content" id="existing-backstory-textarea">
-						<?php
-						if (isset($backstory->content)) {
-							echo $backstory->content;
-						}
-						?>
-					</textarea>
+							<?php
+							if (isset($backstory->content)) {
+								echo $backstory->content;
+							}
+							?>
+						</textarea>
 				<input type="hidden" name="type" value="backstory" />
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="method" value="sl_backend" />

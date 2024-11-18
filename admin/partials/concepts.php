@@ -38,53 +38,74 @@ foreach ($concepts as $concept) {
 
 if (!empty($requested)) {
 	?>
-	<h3>Requested</h3>
-	<h4>These players have not started editing their concept first draft.</h4>
-		<?php
-		$key_values = array_column($requested, 'name');
-		array_multisort($key_values, SORT_ASC, $requested);
+	<div class="status-block">
+		<h3 class="mouse_hover">Requested (click to expand)</h3>
+		<div class="admin_concept_edit">
+			<?php
+			$key_values = array_column($requested, 'name');
+			array_multisort($key_values, SORT_ASC, $requested);
 
-		foreach ($requested as $empty_concept) {
-			include './partials/concept_requested.php';
-		}
-		?>
+			foreach ($requested as $empty_concept) {
+				include './partials/concept_requested.php';
+			}
+			?>
+		</div>
+	</div>
 	<hr />
 	<?php
 }
 
 if (!empty($awaiting_review)) {
 	?>
-	<h3 class="mouse_hover">Awaiting review</h3>
-	<?php
-	$key_values = array_column($awaiting_review, 'name');
-	array_multisort($key_values, SORT_ASC, $awaiting_review);
+	<div class="status-block">
+		<h3 class="mouse_hover">Awaiting review (click to expand)</h3>
+		<div class="admin_concept_edit">
+			<?php
+			$key_values = array_column($awaiting_review, 'name');
+			array_multisort($key_values, SORT_ASC, $awaiting_review);
 
-	foreach ($awaiting_review as $awaiting) {
-		include './partials/concept_review.php';
-	}
-	echo '<hr />';
+			foreach ($awaiting_review as $awaiting) {
+				include './partials/concept_review.php';
+			}
+			?>
+		</div>
+	</div>
+	<hr />
+	<?php
 }
 if (!empty($being_edited)) {
 	?>
-	<h3>Being edited</h3>
-	<?php
-	$key_values = array_column($being_edited, 'name');
-	array_multisort($key_values, SORT_ASC, $being_edited);
+	<div class="status-block">
+		<h3 class="mouse_hover">Being edited (click to expand)</h3>
+		<div class="admin_concept_edit">
+			<?php
+			$key_values = array_column($being_edited, 'name');
+			array_multisort($key_values, SORT_ASC, $being_edited);
 
-	foreach ($being_edited as $edited) {
-		include './partials/concept_edited.php';
-	}
-	echo '<hr />';
+			foreach ($being_edited as $edited) {
+				include './partials/concept_edited.php';
+			}
+			?>
+		</div>
+	</div>
+	<hr />
+	<?php
 }
 
 if (!empty($concept_changes)) {
 	?>
-	<h3>Concept changes requested</h3>
-	<?php
-	$key_values = array_column($concept_changes, 'name');
-	array_multisort($key_values, SORT_ASC, $concept_changes);
+	<div class="status-block">
+		<h3 class="mouse_hover">Concept changes requested (click to expand)</h3>
+		<div class="admin_concept_edit">
+			<?php
+			$key_values = array_column($concept_changes, 'name');
+			array_multisort($key_values, SORT_ASC, $concept_changes);
 
-	foreach ($concept_changes as $edited) {
-		include './partials/concept_change_requested.php';
-	}
+			foreach ($concept_changes as $edited) {
+				include './partials/concept_change_requested.php';
+			}
+			?>
+		</div>
+	</div>
+	<?php
 }
