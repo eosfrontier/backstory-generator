@@ -65,7 +65,7 @@ if (!empty($concept_changes)) {
 	array_multisort($key_values, SORT_ASC, $concept_changes);
 
 	foreach ($concept_changes as $edited) {
-		include './partials/concept_edited.php';
+		include './partials/concept_change_requested.php';
 	}
 }
 ?>

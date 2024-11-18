@@ -25,7 +25,7 @@ $text = new Text();
 				echo '<h5>Concept changes</br>';
 				echo $edited->concept_changes;
 				?>
-				<!-- <form name="concept_changes_remind" method="POST" class="approve_form_concept"
+				<form name="concept_changes_remind" method="POST" class="approve_form_concept"
 					id="concept-changes-remind-<?php echo $edited->characterID; ?>">
 					<input type="hidden" name="type" value="concept_changes_remind" />
 					<input type="hidden" name="email_trigger" value="true" />
@@ -34,7 +34,7 @@ $text = new Text();
 					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
 					<input type="hidden" name="status" value="changes_requested" />
 					<button class="submit-backstory button button--primary">Send Reminder E-mail</button>
-				</form> -->
+				</form>
 				<?php
 			}
 		}

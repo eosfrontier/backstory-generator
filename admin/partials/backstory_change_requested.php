@@ -36,7 +36,7 @@ $text = new Text();
 				echo $edited->backstory_changes;
 				echo '</div>';
 				?>
-						<!-- <form name="concept_remind" method="POST" class="approve_form_concept"
+						<form name="concept_remind" method="POST" class="approve_form_concept"
 							id="concept-remind-<?php echo $edited->characterID; ?>">
 							<input type="hidden" name="type" value="backstory_changes_remind" />
 							<input type="hidden" name="backstory_changes" value="true" />
@@ -44,7 +44,7 @@ $text = new Text();
 							<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
 							<input type="hidden" name="status" value="approved" />
 							<button class="submit-backstory button button--primary">Send Reminder E-mail</button>
-						</form> -->
+						</form>
 						<?php
 			}
 		}
