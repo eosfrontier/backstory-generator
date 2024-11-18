@@ -33,7 +33,7 @@ $text = new Text();
 					<input type="hidden" name="id" value="<?php echo $edited->characterID; ?>" />
 					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
 					<input type="hidden" name="status" value="changes_requested" />
-					<button class="submit-backstory button button--primary">Send Reminder E-mail</button>
+					<button class="submit-backstory button button--primary">Remind Player to Make Concept Changes</button>
 				</form>
 				<?php
 			}

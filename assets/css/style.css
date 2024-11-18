@@ -231,6 +231,9 @@ main {
 .admin_concept_edit {
     display: none;
 }
+/* .admin_concept_names {
+    display: none;
+} */
 
 .admin_concept_comment {
     display: none;
@@ -268,6 +271,17 @@ main {
 }
 
 .overview-block h4.active::after {
+    content: "▲";
+}
+
+
+.status-block h3::after {
+    content: "▼";
+    font-size: 14px;
+    margin-left: 12px;
+}
+
+.status-block h3.active::after {
     content: "▲";
 }
 

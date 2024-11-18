@@ -26,6 +26,18 @@ $text = new Text();
 					echo '<div class="content-block">';
 					echo $edited->content;
 					echo '</div>';
+					?>
+					<form name="concept_changes_remind" method="POST" class="approve_form_concept"
+						id="concept-changes-remind-<?php echo $edited->characterID; ?>">
+						<input type="hidden" name="type" value="backstory_not_submitted_remind" />
+						<input type="hidden" name="email_trigger" value="true" />
+						<input type="hidden" name="concept_changes" value="true" />
+						<input type="hidden" name="id" value="<?php echo $edited->characterID; ?>" />
+						<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+						<input type="hidden" name="status" value="being_edited" />
+						<button class="submit-backstory button button--primary">Remind Player to Submit Backstory</button>
+					</form>
+					<?php
 		}
 		if ($edited->backstory_changes) {
 			echo '<h5>Date Backstory Changes Requested: ' . $edited->backstory_changes_requested_date . '</br>
@@ -35,17 +47,6 @@ $text = new Text();
 				<div class="content-block">';
 				echo $edited->backstory_changes;
 				echo '</div>';
-				?>
-						<!-- <form name="concept_remind" method="POST" class="approve_form_concept"
-							id="concept-remind-<?php echo $edited->characterID; ?>">
-							<input type="hidden" name="type" value="backstory_changes_remind" />
-							<input type="hidden" name="backstory_changes" value="true" />
-							<input type="hidden" name="id" value="<?php echo $edited->characterID; ?>" />
-							<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-							<input type="hidden" name="status" value="approved" />
-							<button class="submit-backstory button button--primary">Send Reminder E-mail</button>
-						</form> -->
-						<?php
 			}
 		}
 		?>

@@ -17,6 +17,18 @@ $text = new Text();
 			echo '<div class="content-block">';
 			echo $edited->content;
 			echo '</div>';
+			?>
+			<form name="concept_changes_remind" method="POST" class="approve_form_concept"
+					id="concept-changes-remind-<?php echo $edited->characterID; ?>">
+					<input type="hidden" name="type" value="concept_not_submitted_remind" />
+					<input type="hidden" name="email_trigger" value="true" />
+					<input type="hidden" name="concept_changes" value="true" />
+					<input type="hidden" name="id" value="<?php echo $edited->characterID; ?>" />
+					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
+					<input type="hidden" name="status" value="being_edited" />
+					<button class="submit-backstory button button--primary">Remind Player to Submit Concept</button>
+				</form>
+			<?php
 		}
 		if ($edited->concept_changes) {
 			echo '<h5>Date Concept Changes Requested: ' . $edited->concept_changes_requested_date . '</br>
@@ -24,18 +36,6 @@ $text = new Text();
 			if ($IS_SL) {
 				echo '<h5>Concept changes</br>';
 				echo $edited->concept_changes;
-				?>
-				<!-- <form name="concept_changes_remind" method="POST" class="approve_form_concept"
-					id="concept-changes-remind-<?php echo $edited->characterID; ?>">
-					<input type="hidden" name="type" value="concept_changes_remind" />
-					<input type="hidden" name="email_trigger" value="true" />
-					<input type="hidden" name="concept_changes" value="true" />
-					<input type="hidden" name="id" value="<?php echo $edited->characterID; ?>" />
-					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
-					<input type="hidden" name="status" value="changes_requested" />
-					<button class="submit-backstory button button--primary">Send Reminder E-mail</button>
-				</form> -->
-				<?php
 			}
 		}
 

@@ -19,6 +19,9 @@ foreach ($concepts as $concept) {
 	if (isset($_GET['faction']) && $_GET['faction'] != '' && $concept->faction != $_GET['faction']) {
 		continue;
 	} else {
+		if ($concept->status_name === 'requested') {
+			$requested[] = $concept;
+		}
 		if ($concept->status_name === 'being_edited') {
 			$being_edited[] = $concept;
 		}
@@ -33,34 +36,51 @@ foreach ($concepts as $concept) {
 	}
 }
 
-?>
-<h3>Awaiting review</h3>
-<?php
+if (!empty($requested)) {
+	?>
+	<h3>Requested</h3>
+	<h4>These players have not started editing their concept first draft.</h4>
+		<?php
+		$key_values = array_column($requested, 'name');
+		array_multisort($key_values, SORT_ASC, $requested);
+
+		foreach ($requested as $empty_concept) {
+			include './partials/concept_requested.php';
+		}
+		?>
+	<hr />
+	<?php
+}
+
 if (!empty($awaiting_review)) {
+	?>
+	<h3 class="mouse_hover">Awaiting review</h3>
+	<?php
 	$key_values = array_column($awaiting_review, 'name');
 	array_multisort($key_values, SORT_ASC, $awaiting_review);
 
 	foreach ($awaiting_review as $awaiting) {
 		include './partials/concept_review.php';
 	}
+	echo '<hr />';
 }
-?>
-<hr />
-<h3>Being edited</h3>
-<?php
 if (!empty($being_edited)) {
+	?>
+	<h3>Being edited</h3>
+	<?php
 	$key_values = array_column($being_edited, 'name');
 	array_multisort($key_values, SORT_ASC, $being_edited);
 
 	foreach ($being_edited as $edited) {
 		include './partials/concept_edited.php';
 	}
+	echo '<hr />';
 }
-?>
-<hr />
-<h3>Concept changes requested</h3>
-<?php
+
 if (!empty($concept_changes)) {
+	?>
+	<h3>Concept changes requested</h3>
+	<?php
 	$key_values = array_column($concept_changes, 'name');
 	array_multisort($key_values, SORT_ASC, $concept_changes);
 
@@ -68,4 +88,3 @@ if (!empty($concept_changes)) {
 		include './partials/concept_change_requested.php';
 	}
 }
-?>
