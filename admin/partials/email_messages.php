@@ -1,5 +1,7 @@
 <?php
 use Eos\Backstory_generator\Email\Send_Email;
+use Eos\Backstory_generator\Api\Put;
+$apiPut = new Put();
 
 // Request Backstory Changes
 if (isset($_POST['backstory_changes'])) {
@@ -20,12 +22,13 @@ if (isset($_POST['backstory_changes'])) {
 		<br />
 		The Spelleider Team<br />
 		Eos: Frontier";
-		} else {
-			$content['content'] = str_replace("'", '&#39;', $_POST['backstory_changes']);
-			$return = $text->save_backstory_changes($_POST['id'], $content, $jid);
-			$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory', $jid);
-			$subject = 'Backstory changes requested';
-			$body = "Dear player,
+		} 
+			else {
+				$content['content'] = str_replace("'", '&#39;', $_POST['backstory_changes']);
+				$return = $text->save_backstory_changes($_POST['id'], $content, $jid);
+				$saved = $status->update_status($_POST['id'], $_POST['status'], 'backstory', $jid);
+				$subject = 'Backstory changes requested';
+				$body = "Dear player,
 				<br /><br />
 				The SL team have requested a change in your character backstory. <br />
 				Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to see the changes we've requested.
@@ -35,7 +38,7 @@ if (isset($_POST['backstory_changes'])) {
 				<br />
 				The Spelleider Team<br />
 				Eos: Frontier";
-		}
+			}
 		$mail->send_email_to_player($email, $subject, $body);
 
 	}
@@ -47,8 +50,8 @@ if (isset($_POST['backstory_changes'])) {
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'approved')) {
 	$email = $api->get_user_email($_POST['id']);
-	//Reminder that concept is approved, backstory is not started
-	if ($_POST['type'] == 'concept_approved_remind') {
+    //Reminder that concept is approved, backstory is not started
+    if ($_POST['type'] == 'concept_approved_remind') {
 		$mail = new Send_Email();
 		$subject = 'REMINDER: Character Concept approved - please submit backstory.';
 		$body = "Dear player,
@@ -61,7 +64,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		The Spelleider Team<br />
 		Eos: Frontier";
 		$mail->send_email_to_player($email, $subject, $body);
-	} else {
+	} 
+	else {
 		if (isset($_POST['backstory-content']) && $_POST['type'] == 'backstory') {
 			$id = $_POST['id'];
 			$content['content'] = str_replace("'", '&#39;', $_POST['backstory-content']);
@@ -71,7 +75,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		if (isset($_POST['method']) && $_POST['method'] == 'sl_backend') {
 			$status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
 		}
-		//Concept approved by SL - Notify player to work on their backstory 
+        //Concept approved by SL - Notify player to work on their backstory 
 		else {
 			$mail = new Send_Email();
 			if ($_POST['type'] == 'concept') {
@@ -91,7 +95,8 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 						<br />
 						The Spelleider Team<br />
 						Eos: Frontier";
-				} else {
+				} 
+				else {
 					$body = "Dear player,
 					<br /><br />
 					The SL team have approved your character concept. <br />
@@ -143,7 +148,9 @@ if (isset($_POST['concept_changes'])) {
 			The Spelleider Team<br />
 			Eos: Frontier";
 			$mail->send_email_to_player($email, $subject, $body);
-		} else {
+			$apiPut->set_reminder_time($_POST['id']);
+		} 
+		elseif ($_POST['type'] == 'changes_requested') {
 			$content['content'] = str_replace("'", '&#39;', $_POST['concept_changes']);
 			$return = $text->save_concept_changes($_POST['id'], $content, $jid);
 			$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
@@ -171,8 +178,8 @@ if (isset($_POST['concept_changes'])) {
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'being_edited')) {
 	$email = $api->get_user_email($_POST['id']);
-	//Reminder that concept is approved, backstory is not started
-	if ($_POST['type'] == 'concept_not_submitted_remind') {
+    //Reminder that concept is approved, backstory is not started
+    if ($_POST['type'] == 'concept_not_submitted_remind') {
 		$mail = new Send_Email();
 		$subject = 'REMINDER: Character Concept not yet submitted.';
 		$body = "Dear player,
@@ -185,8 +192,10 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'be
 		The Spelleider Team<br />
 		Eos: Frontier";
 		$mail->send_email_to_player($email, $subject, $body);
-	} elseif ($_POST['type'] == 'backstory_not_submitted_remind') {
-		$mail = new Send_Email();
+		$apiPut->set_reminder_time($_POST['id']);
+	} 
+    elseif ($_POST['type'] == 'backstory_not_submitted_remind') {
+        $mail = new Send_Email();
 		$subject = 'REMINDER: Backstory not yet submitted.';
 		$body = "Dear player,
 		<br /><br />
@@ -198,14 +207,15 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'be
 		The Spelleider Team<br />
 		Eos: Frontier";
 		$mail->send_email_to_player($email, $subject, $body);
-	}
+		$apiPut->set_reminder_time($_POST['id']);
+    }
 }
 
 if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'requested')) {
-	if ($_POST['type'] == 'concept_not_started_remind') {
-		$mail = new Send_Email();
-		$subject = 'REMINDER: Concept not yet submitted.';
-		$body = "Dear player,
+    if ($_POST['type'] == 'concept_not_started_remind') {
+        $mail = new Send_Email();
+        $subject = 'REMINDER: Concept not yet submitted.';
+        $body = "Dear player,
         <br /><br />
         The SL team would like to remind you that we still need a Character Concept submitted. <br />
         Please proceed to <a href='https://www.eosfrontier.space/eos_backstory/'>the backstory editor</a> to submit your Character Concept for approval.
@@ -214,6 +224,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 're
         <br />
         The Spelleider Team<br />
         Eos: Frontier";
-		$mail->send_email_to_player($email, $subject, $body);
-	}
+        $mail->send_email_to_player($email, $subject, $body);
+		$apiPut->set_reminder_time($_POST['id']);
+    }
 }

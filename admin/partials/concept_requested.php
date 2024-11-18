@@ -10,8 +10,20 @@ $text = new Text();
 		<?php echo $empty_concept->faction; ?>
 	</h4>
 	<div class="admin_concept_edit">
-		<!-- <h5> Date Concept Updated: <?php echo $empty_concept->concept_updated_date; ?></br>
-			Updated By: <?php echo $empty_concept->concept_updated_by; ?> </h5> -->
+		<h5> Last Reminder Sent: 
+			<font <?php 
+		$daysSinceReminder = time() - strtotime($empty_concept->last_reminder_sent);
+		if ($daysSinceReminder < 7*86400){
+			echo 'color="red"';
+		}
+		echo ">";
+		echo $empty_concept->last_reminder_sent; ?>
+		<?php if ($daysSinceReminder < 7*86400){
+			echo '(within last 7 days)';
+		}
+		?>
+		</font></br></h5> 
+			<!-- Updated By: <?php echo $empty_concept->concept_updated_by; ?> -->
 		<?php
 		if ($IS_SL) {
 			?>

@@ -159,4 +159,20 @@ class Put
 
 		return $response;
 	}
+	public function set_reminder_time($id)
+	{
+
+		$headers = [
+			'type: reminder',
+			"token: $this->token",
+			"char_id: $id",
+		];
+
+		$location = 'v2/chars_player/backstory/reminder_sent/';
+
+		$response = $this->get($headers, $location);
+
+		return $response;
+	}
 }
+

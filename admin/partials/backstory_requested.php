@@ -25,6 +25,18 @@ $text = new Text();
 				echo '</div>';
 			}
 			?>
+			<h5> Last Reminder Sent:
+				<font <?php
+				$daysSinceReminder = time() - strtotime($request->last_reminder_sent);
+				if ($daysSinceReminder < 7 * 86400) {
+					echo 'color="red"';
+				}
+				echo ">";
+				echo $request->last_reminder_sent; ?> 	<?php if ($daysSinceReminder < 7 * 86400) {
+						   echo '(within last 7 days)';
+					   }
+					   ?> </font>
+			</h5>
 			<form name="concept_remind" method="POST" class="approve_form_concept"
 				id="concept-remind-<?php echo $request->characterID; ?>">
 				<input type="hidden" name="type" value="concept_approved_remind" />

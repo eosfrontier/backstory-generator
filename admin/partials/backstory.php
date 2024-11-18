@@ -7,14 +7,14 @@ if (isset($_POST['type']) && $_POST['type'] === 'backstory') {
 	}
 }
 
-$backstorys = $text->get_all_backstory();
+$backstories = $text->get_all_backstory();
 
 $backstory_requested = [];
 $awaiting_review = [];
 $being_edited = [];
 $backstory_changes = [];
 
-foreach ($backstorys as $backstory) {
+foreach ($backstories as $backstory) {
 	if ($current_event === 'Yes' && !hasId($current_event_characters, $backstory->characterID)) {
 		continue;
 	}
@@ -109,8 +109,8 @@ if (!empty($backstory_changes)) {
 			$key_values = array_column($backstory_changes, 'name');
 			array_multisort($key_values, SORT_ASC, $backstory_changes);
 
-			foreach ($backstory_changes as $edited) {
-				include './partials/backstory_edited.php';
+			foreach ($backstory_changes as $backstory_change) {
+				include './partials/backstory_change_requested.php';
 			}
 			?>
 		</div>
