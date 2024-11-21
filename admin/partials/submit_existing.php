@@ -33,12 +33,12 @@ if (isset($_POST['character'])) {
 		<div id="backstory-editor" style="display: block;">
 			<form method="post">
 				<textarea name="backstory-content" id="existing-backstory-textarea">
-						<?php
-						if (isset($backstory->content)) {
-							echo $backstory->content;
-						}
-						?>
-					</textarea>
+							<?php
+							if (isset($backstory->content)) {
+								echo $backstory->content;
+							}
+							?>
+						</textarea>
 				<input type="hidden" name="type" value="backstory" />
 				<input type="hidden" name="status" value="approved" />
 				<input type="hidden" name="method" value="sl_backend" />

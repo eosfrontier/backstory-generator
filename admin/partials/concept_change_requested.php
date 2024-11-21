@@ -25,6 +25,18 @@ $text = new Text();
 				echo '<h5>Concept changes</br>';
 				echo $edited->concept_changes;
 				?>
+				<h5> Last Reminder Sent:
+				<font <?php
+				$daysSinceReminder = time() - strtotime($edited->last_reminder_sent);
+				if ($daysSinceReminder < 7 * 86400) {
+					echo 'color="red"';
+				}
+				echo ">";
+				echo $edited->last_reminder_sent; ?> 	<?php if ($daysSinceReminder < 7 * 86400) {
+						   echo '(within last 7 days)';
+					   }
+					   ?> </font>
+			</h5>
 				<form name="concept_changes_remind" method="POST" class="approve_form_concept"
 					id="concept-changes-remind-<?php echo $edited->characterID; ?>">
 					<input type="hidden" name="type" value="concept_changes_remind" />
@@ -33,7 +45,7 @@ $text = new Text();
 					<input type="hidden" name="id" value="<?php echo $edited->characterID; ?>" />
 					<input type="hidden" name="tab" value="<?php echo $tab; ?>" />
 					<input type="hidden" name="status" value="changes_requested" />
-					<button class="submit-backstory button button--primary">Send Reminder E-mail</button>
+					<button class="submit-backstory button button--primary">Remind Player to Make Concept Changes</button>
 				</form>
 				<?php
 			}
