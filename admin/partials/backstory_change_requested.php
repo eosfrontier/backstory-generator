@@ -80,4 +80,5 @@ $text = new Text();
 		</div>
 		</div>
 		</div>
+		</div>
 </div>
