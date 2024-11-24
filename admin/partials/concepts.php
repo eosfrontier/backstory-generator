@@ -88,12 +88,12 @@ if (!empty($being_edited)) {
 			?>
 		</div>
 	</div>
-	<hr />
 	<?php
 }
 
 if (!empty($concept_changes)) {
 	?>
+	<hr />
 	<div class="status-block">
 		<h3 class="mouse_hover">Concept changes requested (click to expand)</h3>
 		<div class="admin_concept_edit">
