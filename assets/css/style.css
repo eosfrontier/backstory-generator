@@ -74,9 +74,11 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
     font-weight: 400;
     text-transform: uppercase;
+    margin-left: 10px;
 }
 
 h3 span {
@@ -272,6 +274,14 @@ main {
 
 .overview-block h4.active::after {
     content: "▲";
+}
+
+h5.mouse_hover.active::after {
+    content: "▲";
+}
+
+h5.mouse_hover::after {
+    content: "▼";
 }
 
 .status-block h3::after {

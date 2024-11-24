@@ -16,17 +16,24 @@ $text = new Text();
 		if ($IS_SL) {
 			?>
 			<div class="overview-block">
-				<h4 class="mouse_hover">Concept Text</h4>
+			<h4 class="mouse_hover">Concept</h4>
 				<div class="admin_concept_edit">
-					<?php
-					echo '<div class="content-block">';
-					echo $edited->concept_content;
-					echo '</div></div></div>';
-					echo '<h5>Backstory text</br>';
-					echo '<div class="content-block">';
-					echo $edited->content;
-					echo '</div>';
-					?>
+					<h5 class="mouse_hover">Concept Text</h5>
+						<div class="admin_concept_edit">
+							<div class="content-block">';
+							<?php echo $edited->concept_content; ?>
+							</div>
+						</div>
+					<?php if (isset($edited->concept_comment) && $edited->concept_comment != '') { ?>
+					<h5 class="mouse_hover">Concept approval comment:</h5>
+					<div class="admin_concept_edit">
+						<div class="content-block">
+						<?php echo $edited->concept_comment; ?>
+						</div>
+					</div>
+				</div>
+				<?php } ?>
+				</div>
 					<h5> Last Reminder Sent:
 						<font <?php
 						$daysSinceReminder = time() - strtotime($edited->last_reminder_sent);
