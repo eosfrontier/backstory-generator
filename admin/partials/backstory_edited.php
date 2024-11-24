@@ -33,6 +33,12 @@ $text = new Text();
 					</div>
 				</div>
 				<?php } ?>
+				<h4 class="mouse_hover">Backstory:</h4>
+				<div class="admin_concept_edit">
+					<div class="content-block">
+					<?php echo $edited->content; ?>
+					</div>
+				</div>
 				</div>
 					<h5> Last Reminder Sent:
 						<font <?php
