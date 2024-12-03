@@ -22,6 +22,7 @@ if (isset($_POST['backstory_changes'])) {
 		<br />
 		The Spelleider Team<br />
 		Eos: Frontier";
+		$apiPut->set_reminder_time($_POST['id']);
 		} 
 			else {
 				$content['content'] = str_replace("'", '&#39;', $_POST['backstory_changes']);
@@ -64,6 +65,7 @@ if (isset($_POST['type']) && isset($_POST['status']) && ($_POST['status'] == 'ap
 		The Spelleider Team<br />
 		Eos: Frontier";
 		$mail->send_email_to_player($email, $subject, $body);
+		$apiPut->set_reminder_time($_POST['id']);
 	} 
 	else {
 		if (isset($_POST['backstory-content']) && $_POST['type'] == 'backstory') {
