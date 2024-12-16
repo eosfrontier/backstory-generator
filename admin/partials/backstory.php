@@ -96,8 +96,10 @@ if (!empty($being_edited)) {
 			?>
 		</div>
 	</div>
-	<hr />
 	<?php
+	if(!empty($backstory_changes)){
+		echo '<hr />';
+	}
 }
 
 if (!empty($backstory_changes)) {

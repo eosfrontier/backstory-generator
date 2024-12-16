@@ -9,12 +9,13 @@ $text = new Text();
 	<div class="admin_concept_edit">
 		<h5> Date Approved: <?php echo $request->concept_approval_date; ?></br>
 			 Concept Approved By: <?php echo $request->concept_approved_by; ?> </h5>
-		<?php if ($IS_SL) { ?>
+		<?php if ($IS_SL) { 
+			echo '<!-- CharID for ' .  $request->name . ':' . $request->characterID . '-->'; ?>
 			<h4 class="mouse_hover">Approved Concept:</h4>
 			<div class="admin_concept_edit">
 				<div class="content-block">
-				<?php echo $request->content; 
-				echo '<!--' . $request->characterID . '-->'; ?>
+				<?php echo $request->content; ?>
+				
 				</div>
 			</div>
 			<?php if (isset($request->concept_comment) && $request->concept_comment != '') { ?>
@@ -49,5 +50,6 @@ $text = new Text();
 			<?php
 		}
 		?>
+		potato
 	</div>
 </div>
