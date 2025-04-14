@@ -50,6 +50,5 @@ $text = new Text();
 			<?php
 		}
 		?>
-		potato
 	</div>
 </div>

@@ -42,7 +42,7 @@ foreach ($backstories as $backstory) {
 	}
 }
 
-if (!empty($requested)) {
+if (!empty($backstory_requested)) {
 	?>
 	<div class="status-block">
 		<h3 class="mouse_hover">Requested (click to expand)</h3>
@@ -50,8 +50,8 @@ if (!empty($requested)) {
 			<h5>These characters have an approved concept. They have been requested to provide a backstory submission.</br>
 				Here you can review their approved CONCEPT.</h5>
 			<?php
-			$key_values = array_column($requested, 'name');
-			array_multisort($key_values, SORT_ASC, $requested);
+			$key_values = array_column($backstory_requested, 'name');
+			array_multisort($key_values, SORT_ASC, $backstory_requested);
 
 			foreach ($backstory_requested as $request) {
 				include './partials/backstory_requested.php';
