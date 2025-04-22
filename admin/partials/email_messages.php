@@ -152,7 +152,7 @@ if (isset($_POST['concept_changes'])) {
 			$mail->send_email_to_player($email, $subject, $body);
 			$apiPut->set_reminder_time($_POST['id']);
 		} 
-		elseif ($_POST['type'] == 'changes_requested') {
+		elseif ($_POST['type'] == 'concept' && $_POST['status'] == 'changes_requested') {
 			$content['content'] = str_replace("'", '&#39;', $_POST['concept_changes']);
 			$return = $text->save_concept_changes($_POST['id'], $content, $jid);
 			$saved = $status->update_status($_POST['id'], $_POST['status'], 'concept', $jid);
