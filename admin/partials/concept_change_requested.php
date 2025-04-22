@@ -22,7 +22,7 @@ $text = new Text();
 			echo '<h5>Date Concept Changes Requested: ' . $edited->concept_changes_requested_date . '</br>
 				Concept Changes Requested By: ' . $edited->concept_changes_requested_by . '</h5>';
 			if ($IS_SL) {
-				echo '<h5>Concept changes</br>';
+				echo '<h5>Concept changes</h5>';
 				echo $edited->concept_changes;
 				?>
 				<h5> Last Reminder Sent:
