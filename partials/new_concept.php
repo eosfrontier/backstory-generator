@@ -5,8 +5,8 @@
 		<form method="post">
 			<textarea name="concept-content" id="concept-textarea_new"></textarea>
 			<input type="hidden" name="type" value="concept" />
-			<input type="hidden" name="status" value="being_edited" />
-			<button class="button button--primary">Save Draft</button>
+			<button class="button button--secondary" name="status" type="submit" value="being_edited">Save Draft</button>
+			<button class="button button--primary" name="status" type="submit" value="awaiting_review">Submit to SLs for Approval</button>
 		</form>
 	</div>
 </div>

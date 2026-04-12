@@ -16,18 +16,31 @@ $text = new Text();
 		if ($IS_SL) {
 			?>
 			<div class="overview-block">
-				<h4 class="mouse_hover">Concept Text</h4>
+				<h4 class="mouse_hover">Concept</h4>
 				<div class="admin_concept_edit">
-					<?php
-					echo '<div class="content-block">';
-					echo $awaiting->concept_content;
-					echo '</div></div></div>';
-					echo '<h4>Backstory Text</h4>';
-					echo '<div class="content-block">';
-					echo $awaiting->content;
-					echo '</div>';
-		}
-		?>
+				<h5 class="mouse_hover">Concept Text</h5>
+					<div class="admin_concept_edit">
+						<div class="content-block">';
+						<?php echo $awaiting->concept_content; ?>
+						</div>
+					</div>
+				<?php if (isset($awaiting->concept_comment) && $awaiting->concept_comment != '') { ?>
+				<h5 class="mouse_hover">Concept approval comment:</h5>
+				<div class="admin_concept_edit">
+					<div class="content-block">
+					<?php echo $awaiting->concept_comment; ?>
+					</div>
+				</div>
+				<?php } ?>
+				</div>
+				<h4 class="mouse_hover">Backstory Text</h4>
+				<div class="admin_concept_edit">
+					<div class="content-block">
+						<?php echo $awaiting->content; ?>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
 				<div>
 					<?php if ($IS_SL) { ?>
 						<button class="concept_change-request-button button button--secondary"
