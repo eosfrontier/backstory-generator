@@ -4,6 +4,14 @@ require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
+function console_log($output, $with_script_tags = true) {
+	$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .');';
+	if ($with_script_tags) {
+		$js_code = '<script>' . $js_code . '</script>';
+	}
+echo $js_code;
+}
+
 if (isset($_POST['tab'])) {
 	$tab = $_POST['tab'];
 } elseif (isset($_GET['tab'])) {
@@ -21,17 +29,19 @@ if (isset($_GET['current_event'])) {
 }
 
 require_once '../includes/SSO.php';
-
 if ($jid === 0) {
 	header('Status: 303 Moved Temporarily', false, 303);
 	header('location: https://www.eosfrontier.space/return-to-backstory-admin');
 } elseif (!in_array('32', $jgroups, true) && !in_array('30', $jgroups, true)) {
+	console_log($jid . ' is NOT SL or bestuur.');	
 	header('Status: 303 Moved Temporarily', false, 303);
 	header('Location: ../');
 }
 if (in_array('30', $jgroups, true)) {
 	$IS_SL = true;
+	echo console_log($jid . ' is SL.');
 } else {
+	echo console_log($jid . ' is NOT SL.');
 	$IS_SL = false;
 }
 

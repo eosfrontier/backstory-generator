@@ -1,4 +1,11 @@
 <?php
+// Enable error displaying
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+// Report all errors EXCEPT notices and deprecation warnings
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+
 require './includes/include.php';
 require_once './includes/SSO.php';
 
