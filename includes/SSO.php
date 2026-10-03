@@ -1,10 +1,10 @@
 <?php
-if ($_ENV['dev'] == 'true') {
-	$jid = "720";
-	$jname = "Nimuel Agati Iskandu (Development Environment)";
-	$jgroups = ["32", "30"];
+if (($_ENV['dev'] ?? 'false') == 'true') {
+        $jid = "720";
+        $jname = "Nimuel Agati Iskandu (Development Environment)";
+        $jgroups = ["32", "30"];
 } else {
-require 'joomla.php';
+	require 'joomla.php';
 }
 
 $curl = curl_init();
@@ -32,3 +32,4 @@ $response = curl_exec($curl);
 curl_close($curl);
 
 $logged_in_char = json_decode($response);
+console_log( $logged_in_char);
