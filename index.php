@@ -1,10 +1,10 @@
 <?php
 // Enable error displaying
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
 
 // Report all errors EXCEPT notices and deprecation warnings
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
+//error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
 
 require './includes/include.php';
 require_once './includes/SSO.php';
@@ -14,7 +14,6 @@ if ( $jid === 0 ) {
 }
 
 $id = $logged_in_char->characterID;
-
 use Eos\Backstory_generator\Character\Character;
 use Eos\Backstory_generator\Status\Status;
 use Eos\Backstory_generator\Text\Text;
@@ -116,6 +115,11 @@ $concept   = $text->get_concept( $id );
 	</header>
 	<main>
 		<?php
+		if (!isset($id)) {
+		echo 'You must first create a character in the Character Generator before you can use this system. Please click "Return to Chargen."';
+		exit();
+		}
+
 		if ( $concept !== 'None found.' && $concept->status_name !== 'requested' ) {
 			require './partials/concept.php';
 

@@ -2,8 +2,17 @@
 require getcwd() . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
-require '../../eos-charactergenerator/db.php';
+require '../../eos-charactergenerator/dbcron.php';
 use Eos\Backstory_generator\Email\Send_Email;
+$stmt = db::$conn->prepare(
+  "SELECT e.id from jml_eb_events e
+JOIN jml_eb_event_categories c ON (c.event_id = e.id)
+WHERE SUBSTRING_INDEX(event_end_date,' ',1) >= CURDATE() AND c.category_id = 1 ORDER BY SUBSTRING_INDEX(event_date,' ',1) ASC LIMIT 1;"
+);
+$res  = $stmt->execute();
+$res  = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$EVENTID = ($res['0'])['id'];
+
 
 $mail = new Send_Email();
 
