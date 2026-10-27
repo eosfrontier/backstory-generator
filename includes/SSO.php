@@ -32,4 +32,3 @@ $response = curl_exec($curl);
 curl_close($curl);
 
 $logged_in_char = json_decode($response);
-console_log( $logged_in_char);
