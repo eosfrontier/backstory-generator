@@ -32,7 +32,6 @@ require_once '../includes/SSO.php';
 if ($jid === 0) {
 	header('Location: https://www.eosfrontier.space/return-to-backstory-admin', true, 303);
 } elseif (!in_array('32', $jgroups, true) && !in_array('30', $jgroups, true)) {
-	console_log($jid . ' is NOT SL or bestuur.');	
 	header('Status: 303 Moved Temporarily', false, 303);
 	header('Location: ../');
 }
